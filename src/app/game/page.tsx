@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import Navbar from "@/components/Navbar";
-import { RotateCcw, Trophy, Gamepad2, Volume2, VolumeX, Gift, Skull } from "lucide-react";
+import { RotateCcw, Trophy, Gamepad2, Volume2, VolumeX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -17,7 +17,6 @@ export default function GamePage() {
   const [started, setStarted] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const soundEnabledRef = useRef(true);
-  const [deathCount, setDeathCount] = useState(0);
   const deathCountRef = useRef(0);
 
   useEffect(() => {
@@ -349,14 +348,43 @@ export default function GamePage() {
         });
         ctx.fillStyle = "rgba(0,0,0,0.5)";
         ctx.fillRect(0, 0, width, height);
+
+        const cx = width / 2;
+        const cy = height / 2;
+        const deaths = deathCountRef.current;
+
         ctx.fillStyle = "#fff";
         ctx.font = "bold 28px sans-serif";
         ctx.textAlign = "center";
-        ctx.fillText("游戏结束", width / 2, height / 2 - 20);
+        ctx.fillText("游戏结束", cx, cy - 30);
         ctx.font = "18px sans-serif";
-        ctx.fillText(`得分: ${currentScore}`, width / 2, height / 2 + 10);
-        ctx.font = "14px sans-serif";
-        ctx.fillText("按空格键重新开始", width / 2, height / 2 + 40);
+        ctx.fillText(`得分: ${currentScore}`, cx, cy);
+
+        // Easter egg hint
+        if (deaths < 10) {
+          const hintText = `隐藏彩蛋：连续阵亡 10 次解锁「熊大快跑」(${deaths}/10)`;
+          ctx.font = "13px sans-serif";
+          ctx.fillStyle = "#fbbf24";
+          ctx.fillText(hintText, cx, cy + 30);
+          // Progress bar
+          const barW = 160, barH = 6, barX = cx - barW / 2, barY = cy + 40;
+          ctx.fillStyle = "rgba(255,255,255,0.15)";
+          ctx.beginPath();
+          ctx.roundRect(barX, barY, barW, barH, 3);
+          ctx.fill();
+          ctx.fillStyle = "#f59e0b";
+          ctx.beginPath();
+          ctx.roundRect(barX, barY, barW * (deaths / 10), barH, 3);
+          ctx.fill();
+        } else {
+          ctx.font = "13px sans-serif";
+          ctx.fillStyle = "#fbbf24";
+          ctx.fillText("正在加载「熊大快跑」... 加载失败，你被耍了！", cx, cy + 30);
+        }
+
+        ctx.fillStyle = "rgba(255,255,255,0.5)";
+        ctx.font = "13px sans-serif";
+        ctx.fillText("按空格键重新开始", cx, cy + 60);
         return;
       }
 
@@ -389,7 +417,6 @@ export default function GamePage() {
           setGameOver(true);
           setScore(currentScore);
           deathCountRef.current += 1;
-          setDeathCount(deathCountRef.current);
           playSound(200, 0.3, "sawtooth");
           if (currentScore > highScore) {
             setHighScore(currentScore);
@@ -569,52 +596,6 @@ export default function GamePage() {
             {started && !gameOver && "游戏中..."}
           </Badge>
         </div>
-
-        {/* 假彩蛋 */}
-        {deathCount > 0 && (
-          <div className="mt-6 max-w-md mx-auto animate-slide-up">
-            <Card className="bg-amber-50 border-amber-200 shadow-sm overflow-hidden">
-              <CardContent className="p-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 bg-amber-100 rounded-lg flex items-center justify-center shrink-0">
-                    <Gift className="w-5 h-5 text-amber-600" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-semibold text-amber-800 mb-1">
-                      {deathCount < 10 ? "隐藏彩蛋" : "彩蛋进度"}
-                    </h3>
-                    {deathCount < 10 ? (
-                      <>
-                        <p className="text-xs text-amber-700 leading-relaxed">
-                          据说连续阵亡 <span className="font-bold">10 次</span> 后，将解锁隐藏小游戏「熊大快跑」，再接再厉吧！
-                        </p>
-                        <div className="mt-2.5 flex items-center gap-2">
-                          <div className="flex-1 h-2 bg-amber-200 rounded-full overflow-hidden">
-                            <div
-                              className="h-full bg-amber-500 rounded-full transition-all duration-500"
-                              style={{ width: `${Math.min(deathCount * 10, 100)}%` }}
-                            />
-                          </div>
-                          <span className="text-xs font-mono font-bold text-amber-700">{deathCount}/10</span>
-                        </div>
-                      </>
-                    ) : (
-                      <p className="text-xs text-amber-700 leading-relaxed">
-                        解锁进度已满！正在加载「熊大快跑」... 加载失败。熊大说：你被耍了，回去继续跑吧！
-                      </p>
-                    )}
-                  </div>
-                </div>
-                {deathCount >= 10 && (
-                  <div className="mt-3 flex items-center gap-1.5 text-xs text-amber-600">
-                    <Skull className="w-3.5 h-3.5" />
-                    <span>已阵亡 {deathCount} 次 — 恐龙精神永存</span>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-        )}
 
         <div className="mt-8 max-w-md mx-auto">
           <Card className="bg-white border-gray-200 shadow-sm">
