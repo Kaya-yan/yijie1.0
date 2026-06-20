@@ -134,10 +134,10 @@ export default function DashboardPage() {
               多语言智能聚合平台
             </Badge>
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 tracking-tight text-balance">
-              智能翻译，连接世界
+              多模型聚合，精准翻译
             </h1>
             <p className="text-gray-500 max-w-xl mx-auto leading-relaxed">
-              集成 Kimi、DeepSeek、通义千问等国内主流大模型，提供精准的多语言翻译服务
+              一次接入 Kimi、DeepSeek、通义千问等国内主流大模型，支持中英日韩法德西俄 8 种语言互译
             </p>
           </div>
 
@@ -392,7 +392,7 @@ export default function DashboardPage() {
         )}
 
         {/* How It Works */}
-        <section className="mb-16 section-enter section-enter-5">
+        <section className="mb-16 section-enter section-enter-7">
           <h2 className="text-xl font-semibold text-gray-900 text-center mb-2 tracking-tight">如何使用</h2>
           <p className="text-gray-500 text-center mb-8 text-sm">三步开始你的智能翻译之旅</p>
           <div className="grid sm:grid-cols-3 gap-8">
@@ -407,14 +407,14 @@ export default function DashboardPage() {
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-2 text-sm">{item.title}</h3>
                 <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
-                {i < 2 && <div className="hidden sm:block absolute top-5 left-full w-8 text-gray-300">→</div>}
+                {i < 2 && <div className="hidden sm:block absolute top-5 left-full w-8 h-px bg-gray-200" />}
               </div>
             ))}
           </div>
         </section>
 
         {/* Scenarios */}
-        <section className="mb-16 section-enter section-enter-6">
+        <section className="mb-16 section-enter section-enter-8">
           <h2 className="text-xl font-semibold text-gray-900 text-center mb-2 tracking-tight">适用场景</h2>
           <p className="text-gray-500 text-center mb-6 text-sm">覆盖学习、工作、生活中的各种翻译需求</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -423,8 +423,8 @@ export default function DashboardPage() {
               { title: "商务邮件", desc: "正式得体的商务沟通翻译", color: "bg-emerald-50 text-emerald-700" },
               { title: "日常对话", desc: "自然流畅的口语化翻译", color: "bg-amber-50 text-amber-700" },
               { title: "技术文档", desc: "代码注释、API 文档等技术内容", color: "bg-slate-100 text-slate-700" },
-            ].map((item) => (
-              <div key={item.title} className="p-4 bg-white border border-gray-200 rounded-xl spring-hover">
+            ].map((item, i) => (
+              <div key={item.title} className={`p-4 bg-white border border-gray-200 rounded-xl spring-hover animate-slide-up stagger-${i + 1}`}>
                 <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium mb-2 ${item.color}`}>{item.title}</span>
                 <p className="text-xs text-gray-600">{item.desc}</p>
               </div>
@@ -433,7 +433,7 @@ export default function DashboardPage() {
         </section>
 
         {/* Stats */}
-        <section className="mb-16 section-enter">
+        <section className="mb-16 section-enter section-enter-9">
           <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 p-8 sm:p-10 shadow-sm">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
               {[
@@ -533,8 +533,15 @@ export default function DashboardPage() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-gray-200 py-8 text-center">
-          <p className="text-xs text-gray-400">© 2025 译界. 多语言智能聚合平台.</p>
+        <footer className="border-t border-gray-200 py-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-400">
+            <p>© 2025 译界 · 多语言智能聚合平台</p>
+            <div className="flex items-center gap-4">
+              <a href="/settings" className="hover:text-gray-600 transition-colors">API 设置</a>
+              <a href="/tools" className="hover:text-gray-600 transition-colors">AI 工具</a>
+              <span className="text-gray-300">Next.js 16 + TypeScript</span>
+            </div>
+          </div>
         </footer>
       </main>
     </div>

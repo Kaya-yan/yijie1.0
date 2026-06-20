@@ -315,6 +315,11 @@ body {
 .section-enter-4 { animation-delay: 0.24s; }
 .section-enter-5 { animation-delay: 0.30s; }
 .section-enter-6 { animation-delay: 0.36s; }
+.section-enter-7 { animation-delay: 0.42s; }
+.section-enter-8 { animation-delay: 0.48s; }
+.section-enter-9 { animation-delay: 0.54s; }
+.section-enter-10 { animation-delay: 0.60s; }
+.section-enter-11 { animation-delay: 0.66s; }
 
 /* Spring hover for interactive cards */
 .spring-hover {
