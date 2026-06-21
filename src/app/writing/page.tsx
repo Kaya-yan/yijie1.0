@@ -212,13 +212,13 @@ export default function WritingPage() {
   return (
     <div className="min-h-screen pixel-grid" style={{ background: "var(--pixel-bg)" }}>
       <Navbar />
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
+      <main id="main-content" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         <div className="text-center mb-8 section-enter">
           <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <PenTool className="w-7 h-7 text-emerald-600" />
           </div>
-          <h1 className="text-3xl font-bold mb-2 tracking-tight" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(12px, 3vw, 18px)", color: "var(--pixel-text)", lineHeight: "2" }}>AI 写作训练</h1>
-          <p className="text-gray-500">
+          <h1 className="font-pixel-title" style={{ color: "var(--pixel-text)" }}>AI 写作训练</h1>
+          <p className="text-pixel-text-light">
             {isConfigured ? "AI 驱动的写作助手，实时分析与建议" : "选择场景，开始你的写作练习"}
           </p>
         </div>
@@ -250,7 +250,7 @@ export default function WritingPage() {
           <div className="lg:col-span-2 space-y-4">
             <Card className="bg-white border-gray-200 shadow-sm overflow-hidden">
               <div className="px-4 py-3 border-b bg-gray-50/50 flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-700">
+                <span className="text-sm font-medium text-pixel-text">
                   {scenes.find((s) => s.id === scene)?.name}写作
                 </span>
                 <div className="flex items-center gap-2">
@@ -284,7 +284,7 @@ export default function WritingPage() {
                   </Button>
                 </div>
                 <CardContent className="p-5">
-                  <p className="text-gray-900 leading-relaxed whitespace-pre-wrap">{polishedVersion}</p>
+                  <p className="text-pixel-text leading-relaxed whitespace-pre-wrap">{polishedVersion}</p>
                 </CardContent>
               </Card>
             )}
@@ -304,12 +304,12 @@ export default function WritingPage() {
                 <CardContent className="p-5 space-y-4">
                   {guide.outline.length > 0 && (
                     <div>
-                      <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">大纲结构</h4>
+                      <h4 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-2">大纲结构</h4>
                       <ol className="space-y-1.5">
                         {guide.outline.map((item, i) => (
                           <li key={i} className="flex items-start gap-2 text-sm">
                             <span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-medium shrink-0 mt-0.5">{i + 1}</span>
-                            <span className="text-gray-700">{item}</span>
+                            <span className="text-pixel-text">{item}</span>
                           </li>
                         ))}
                       </ol>
@@ -317,13 +317,13 @@ export default function WritingPage() {
                   )}
                   {guide.template && (
                     <div>
-                      <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">模板框架</h4>
-                      <pre className="text-sm text-gray-600 bg-gray-50 p-3 rounded-lg whitespace-pre-wrap font-mono">{guide.template}</pre>
+                      <h4 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-2">模板框架</h4>
+                      <pre className="text-sm text-pixel-text-light bg-gray-50 p-3 rounded-lg whitespace-pre-wrap font-mono">{guide.template}</pre>
                     </div>
                   )}
                   {guide.usefulSentences.length > 0 && (
                     <div>
-                      <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">常用句式</h4>
+                      <h4 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-2">常用句式</h4>
                       <div className="space-y-1.5">
                         {guide.usefulSentences.map((s, i) => (
                           <div key={i} className="flex items-center gap-2 p-2 bg-emerald-50 rounded-lg">
@@ -336,10 +336,10 @@ export default function WritingPage() {
                   )}
                   {guide.tips.length > 0 && (
                     <div>
-                      <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">写作技巧</h4>
+                      <h4 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-2">写作技巧</h4>
                       <ul className="space-y-1.5">
                         {guide.tips.map((tip, i) => (
-                          <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
+                          <li key={i} className="flex items-start gap-2 text-sm text-pixel-text-light">
                             <CheckCircle className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
                             {tip}
                           </li>
@@ -357,7 +357,7 @@ export default function WritingPage() {
             {/* Score */}
             <Card className="bg-white border-gray-200 shadow-sm">
               <CardHeader className="pb-2">
-                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">写作评分</h3>
+                <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider">写作评分</h3>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center justify-center">
@@ -376,17 +376,17 @@ export default function WritingPage() {
                     </svg>
                     <div className="absolute inset-0 flex items-center justify-center">
                       {analyzing ? (
-                        <Loader2 className="w-5 h-5 text-gray-400 animate-spin" />
+                        <Loader2 className="w-5 h-5 text-pixel-text-muted animate-spin" />
                       ) : (
-                        <span className="text-2xl font-bold text-gray-900">{score}</span>
+                        <span className="text-2xl font-bold text-pixel-text">{score}</span>
                       )}
                     </div>
                   </div>
                 </div>
-                <p className="text-center text-sm text-gray-500 mt-2">
+                <p className="text-center text-sm text-pixel-text-light mt-2">
                   {score >= 80 ? "优秀" : score >= 60 ? "良好" : score > 0 ? "继续加油" : "开始写作获取评分"}
                 </p>
-                {analysis && <p className="text-center text-xs text-gray-400 mt-1">{analysis}</p>}
+                {analysis && <p className="text-center text-xs text-pixel-text-muted mt-1">{analysis}</p>}
               </CardContent>
             </Card>
 
@@ -394,7 +394,7 @@ export default function WritingPage() {
             {dimensionScores && (
               <Card className="bg-white border-gray-200 shadow-sm">
                 <CardHeader className="pb-2">
-                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">维度评分</h3>
+                  <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider">维度评分</h3>
                 </CardHeader>
                 <CardContent>
                   <div className="flex justify-center">
@@ -441,8 +441,8 @@ export default function WritingPage() {
                       const labels: Record<string, string> = { grammar: "语法", vocabulary: "词汇", logic: "逻辑", format: "格式" };
                       return (
                         <div key={key} className="flex items-center justify-between text-xs">
-                          <span className="text-gray-500">{labels[key]}</span>
-                          <span className="font-medium text-gray-700">{val}</span>
+                          <span className="text-pixel-text-light">{labels[key]}</span>
+                          <span className="font-medium text-pixel-text">{val}</span>
                         </div>
                       );
                     })}
@@ -454,7 +454,7 @@ export default function WritingPage() {
             {/* Suggestions */}
             <Card className="bg-white border-gray-200 shadow-sm">
               <CardHeader className="pb-2">
-                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider flex items-center gap-2">
                   <Sparkles className="w-3.5 h-3.5" />
                   AI 建议
                 </h3>
@@ -471,12 +471,12 @@ export default function WritingPage() {
                     {suggestions.map((s, i) => (
                       <div key={i} className="flex items-start gap-2">
                         <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                        <span className="text-sm text-gray-600">{s}</span>
+                        <span className="text-sm text-pixel-text-light">{s}</span>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-pixel-text-muted">
                     {isConfigured ? "开始写作后，AI 将提供实时建议" : "开始写作后，将显示写作建议"}
                   </p>
                 )}
@@ -525,7 +525,7 @@ export default function WritingPage() {
             {writingHistory.length > 0 && (
               <Card className="bg-white border-gray-200 shadow-sm">
                 <CardHeader className="pb-2">
-                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">历史记录</h3>
+                  <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider">历史记录</h3>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
@@ -535,9 +535,9 @@ export default function WritingPage() {
                           <Badge variant="secondary" className="text-xs">
                             {sceneMap[item.scene] || item.scene}
                           </Badge>
-                          <span className="text-xs font-medium text-gray-600">{item.score}分</span>
+                          <span className="text-xs font-medium text-pixel-text-light">{item.score}分</span>
                         </div>
-                        <p className="text-xs text-gray-500 line-clamp-2">{item.text}</p>
+                        <p className="text-xs text-pixel-text-light line-clamp-2">{item.text}</p>
                       </div>
                     ))}
                   </div>

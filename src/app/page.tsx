@@ -47,43 +47,43 @@ export default function LoginPage() {
       <header className="relative z-10 flex items-center justify-between px-8 py-6">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 flex items-center justify-center pixel-border" style={{ background: "var(--pixel-blue)" }}>
-            <span className="text-white text-xs" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px" }}>YJ</span>
+            <span className="text-white font-pixel" style={{ fontSize: "10px" }}>YJ</span>
           </div>
-          <span className="text-xl font-bold tracking-tight" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "14px", color: "var(--pixel-text)" }}>
+          <span className="font-pixel-heading font-bold tracking-tight" style={{ color: "var(--pixel-text)" }}>
             译界
           </span>
         </div>
         <div className="flex items-center gap-2 text-sm" style={{ color: "var(--pixel-text-light)" }}>
-          <span style={{ fontFamily: "'VT323', monospace", fontSize: "18px" }}>v1.0</span>
+          <span className="font-pixel-body">v1.0</span>
         </div>
       </header>
 
       {/* Main login card */}
-      <main className="flex-1 flex items-center justify-center relative z-10 px-4">
+      <main id="main-content" className="flex-1 flex items-center justify-center relative z-10 px-4">
         <div className="w-full max-w-md animate-scale-in">
           <Card className="pixel-card bg-white">
             <CardContent className="p-8">
               <div className="text-center mb-8">
                 {/* Pixel art logo */}
-                <div className="mx-auto mb-5 animate-float" style={{ fontFamily: "'Press Start 2P', monospace" }}>
+                <div className="mx-auto mb-5 animate-float font-pixel">
                   <div className="text-4xl mb-1" style={{ color: "var(--pixel-blue)", letterSpacing: "4px" }}>YI JIE</div>
                   <div className="text-xs" style={{ color: "var(--pixel-text-muted)" }}>[ 译 界 ]</div>
                 </div>
-                <h1 className="text-2xl font-bold mb-2" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "14px", color: "var(--pixel-text)" }}>
+                <h1 className="font-pixel-heading font-bold mb-2" style={{ color: "var(--pixel-text)" }}>
                   WELCOME
                 </h1>
-                <p style={{ fontFamily: "'VT323', monospace", fontSize: "20px", color: "var(--pixel-text-light)" }}>
+                <p className="font-pixel-body" style={{ color: "var(--pixel-text-light)" }}>
                   输入密码以进入平台
                 </p>
               </div>
 
               <form onSubmit={handleLogin} className="space-y-5">
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "9px", color: "var(--pixel-text-light)" }}>
+                  <label className="block font-pixel-label mb-2" style={{ color: "var(--pixel-text-light)" }}>
                     PASSWORD
                   </label>
                   <div className="relative">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2" style={{ fontFamily: "'VT323', monospace", fontSize: "20px", color: "var(--pixel-text-muted)" }}>{">"}</span>
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 font-pixel-body" style={{ color: "var(--pixel-text-muted)" }}>{">"}</span>
                     <Input
                       type="password"
                       value={password}
@@ -94,7 +94,7 @@ export default function LoginPage() {
                     />
                   </div>
                   {error && (
-                    <p className="mt-2 text-sm flex items-center gap-1" style={{ fontFamily: "'VT323', monospace", fontSize: "18px", color: "var(--pixel-red)" }}>
+                    <p className="mt-2 text-sm flex items-center gap-1 font-pixel-body" style={{ color: "var(--pixel-red)" }}>
                       <span className="inline-block w-2 h-2" style={{ background: "var(--pixel-red)" }} />
                       {error}
                     </p>
@@ -107,10 +107,10 @@ export default function LoginPage() {
                   className="pixel-btn w-full h-12"
                 >
                   {loading ? (
-                    <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px" }} className="animate-pulse">LOADING...</span>
+                    <span className="font-pixel animate-pulse" style={{ fontSize: "10px" }}>LOADING...</span>
                   ) : (
                     <>
-                      <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px" }}>START</span>
+                      <span className="font-pixel" style={{ fontSize: "10px" }}>START</span>
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </>
                   )}
@@ -122,22 +122,22 @@ export default function LoginPage() {
                 <div className="flex items-center justify-center gap-6" style={{ color: "var(--pixel-text-muted)" }}>
                   <div className="flex items-center gap-1.5">
                     <Languages className="w-4 h-4" />
-                    <span style={{ fontFamily: "'VT323', monospace", fontSize: "18px" }}>翻译</span>
+                    <span className="font-pixel-body">翻译</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <BookOpen className="w-4 h-4" />
-                    <span style={{ fontFamily: "'VT323', monospace", fontSize: "18px" }}>词典</span>
+                    <span className="font-pixel-body">词典</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <Brain className="w-4 h-4" />
-                    <span style={{ fontFamily: "'VT323', monospace", fontSize: "18px" }}>AI</span>
+                    <span className="font-pixel-body">AI</span>
                   </div>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <p className="text-center text-xs mt-6" style={{ fontFamily: "'VT323', monospace", fontSize: "16px", color: "var(--pixel-text-muted)" }}>
+          <p className="text-center text-xs mt-6 font-pixel-body" style={{ color: "var(--pixel-text-muted)" }}>
             译界 - 多语言智能聚合平台
           </p>
         </div>

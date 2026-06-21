@@ -56,8 +56,8 @@ function TextStatsTool() {
             { label: "数字个数", value: stats.numbers },
           ].map((s) => (
             <div key={s.label} className="text-center p-3 bg-gray-50 rounded-lg">
-              <div className="text-xl font-bold text-gray-900">{s.value}</div>
-              <div className="text-xs text-gray-500 mt-1">{s.label}</div>
+              <div className="text-xl font-bold text-pixel-text">{s.value}</div>
+              <div className="text-xs text-pixel-text-light mt-1">{s.label}</div>
             </div>
           ))}
         </div>
@@ -89,7 +89,7 @@ function TextDiffTool() {
     <div className="space-y-4">
       <div className="grid md:grid-cols-2 gap-4">
         <div>
-          <label className="text-xs font-medium text-gray-500 mb-1 block">文本 A</label>
+          <label className="text-xs font-medium text-pixel-text-light mb-1 block">文本 A</label>
           <Textarea
             value={text1}
             onChange={(e) => { setText1(e.target.value); setShowDiff(false); }}
@@ -98,7 +98,7 @@ function TextDiffTool() {
           />
         </div>
         <div>
-          <label className="text-xs font-medium text-gray-500 mb-1 block">文本 B</label>
+          <label className="text-xs font-medium text-pixel-text-light mb-1 block">文本 B</label>
           <Textarea
             value={text2}
             onChange={(e) => { setText2(e.target.value); setShowDiff(false); }}
@@ -117,25 +117,25 @@ function TextDiffTool() {
       </Button>
       {diffResult && (
         <div className="space-y-1">
-          <div className="flex items-center gap-4 text-xs text-gray-500 mb-2">
+          <div className="flex items-center gap-4 text-xs text-pixel-text-light mb-2">
             <span>相同行: {diffResult.filter((d) => d.same).length}</span>
             <span>不同行: {diffResult.filter((d) => !d.same).length}</span>
           </div>
           <div className="border rounded-lg overflow-hidden">
             <div className="grid grid-cols-2 divide-x">
               <div className="p-1">
-                <div className="text-xs font-medium text-gray-400 px-2 py-1 bg-gray-50">文本 A</div>
+                <div className="text-xs font-medium text-pixel-text-muted px-2 py-1 bg-gray-50">文本 A</div>
                 {diffResult.map((d, i) => (
-                  <div key={i} className={`px-2 py-0.5 text-sm font-mono ${d.same ? "text-gray-600" : "bg-red-50 text-red-700"}`}>
-                    {d.line1 || <span className="text-gray-300">(空行)</span>}
+                  <div key={i} className={`px-2 py-0.5 text-sm font-mono ${d.same ? "text-pixel-text-light" : "bg-red-50 text-red-700"}`}>
+                    {d.line1 || <span className="text-pixel-text-muted">(空行)</span>}
                   </div>
                 ))}
               </div>
               <div className="p-1">
-                <div className="text-xs font-medium text-gray-400 px-2 py-1 bg-gray-50">文本 B</div>
+                <div className="text-xs font-medium text-pixel-text-muted px-2 py-1 bg-gray-50">文本 B</div>
                 {diffResult.map((d, i) => (
-                  <div key={i} className={`px-2 py-0.5 text-sm font-mono ${d.same ? "text-gray-600" : "bg-green-50 text-green-700"}`}>
-                    {d.line2 || <span className="text-gray-300">(空行)</span>}
+                  <div key={i} className={`px-2 py-0.5 text-sm font-mono ${d.same ? "text-pixel-text-light" : "bg-green-50 text-green-700"}`}>
+                    {d.line2 || <span className="text-pixel-text-muted">(空行)</span>}
                   </div>
                 ))}
               </div>
@@ -183,15 +183,15 @@ function FormatConverterTool() {
         <div className="space-y-2">
           {conversions.map((c) => (
             <div key={c.label} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-              <span className="text-xs font-medium text-gray-500 w-20 shrink-0">{c.label}</span>
-              <span className="text-sm text-gray-900 flex-1 truncate font-mono">{c.value}</span>
+              <span className="text-xs font-medium text-pixel-text-light w-20 shrink-0">{c.label}</span>
+              <span className="text-sm text-pixel-text flex-1 truncate font-mono">{c.value}</span>
               <Button
                 variant="ghost"
                 size="icon"
                 className="h-7 w-7 shrink-0"
                 onClick={() => copyText(c.value)}
               >
-                {copied ? <Check className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3 text-gray-400" />}
+                {copied ? <Check className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3 text-pixel-text-muted" />}
               </Button>
             </div>
           ))}
@@ -204,7 +204,7 @@ function FormatConverterTool() {
 // ============ External Tools Data ============
 
 const categories = [
-  { id: "all", name: "全部", icon: Sparkles, color: "bg-gray-100 text-gray-700" },
+  { id: "all", name: "全部", icon: Sparkles, color: "bg-gray-100 text-pixel-text" },
   { id: "builtin", name: "内置工具", icon: Wrench, color: "bg-emerald-100 text-emerald-700" },
   { id: "llm", name: "大模型", icon: Cpu, color: "bg-blue-100 text-blue-700" },
   { id: "writing", name: "写作", icon: PenTool, color: "bg-emerald-100 text-emerald-700" },
@@ -339,13 +339,13 @@ export default function ToolsPage() {
   return (
     <div className="min-h-screen pixel-grid" style={{ background: "var(--pixel-bg)" }}>
       <Navbar />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
+      <main id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         <div className="text-center mb-8 section-enter">
           <div className="w-14 h-14 flex items-center justify-center mx-auto mb-4 pixel-border" style={{ background: "var(--pixel-blue)" }}>
             <Wrench className="w-7 h-7 text-white" />
           </div>
-          <h1 className="text-3xl font-bold mb-2 tracking-tight" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(12px, 3vw, 18px)", color: "var(--pixel-text)", lineHeight: "2" }}>AI 工具聚合</h1>
-          <p className="text-gray-500">发现最好用的 AI 工具，提升你的效率</p>
+          <h1 className="font-pixel-title mb-2" style={{ color: "var(--pixel-text)" }}>AI 工具聚合</h1>
+          <p className="text-pixel-text-light">发现最好用的 AI 工具，提升你的效率</p>
         </div>
 
         {/* Built-in Tools Section */}
@@ -353,7 +353,7 @@ export default function ToolsPage() {
           <div className="mb-8 section-enter section-enter-1">
             <div className="flex items-center gap-2 mb-4">
               <Calculator className="w-4 h-4 text-emerald-500" />
-              <h2 className="text-sm font-semibold text-gray-700">内置工具</h2>
+              <h2 className="text-sm font-semibold text-pixel-text">内置工具</h2>
             </div>
             <div className="grid sm:grid-cols-3 gap-3 mb-6">
               {builtInToolsList.map((tool) => {
@@ -372,8 +372,8 @@ export default function ToolsPage() {
                       <Icon className="w-5 h-5" />
                     </div>
                     <div className="text-left">
-                      <div className="font-medium text-gray-900 text-sm">{tool.name}</div>
-                      <div className="text-xs text-gray-500">{tool.desc}</div>
+                      <div className="font-medium text-pixel-text text-sm">{tool.name}</div>
+                      <div className="text-xs text-pixel-text-light">{tool.desc}</div>
                     </div>
                   </button>
                 );
@@ -385,7 +385,7 @@ export default function ToolsPage() {
               <Card className="bg-white border-gray-200 shadow-sm">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-gray-900">
+                    <h3 className="font-semibold text-pixel-text">
                       {builtInToolsList.find((t) => t.id === activeBuiltinTool)?.name}
                     </h3>
                     <Button variant="ghost" size="sm" onClick={() => setActiveBuiltinTool(null)} className="h-7 text-xs">
@@ -408,7 +408,7 @@ export default function ToolsPage() {
           <div className="mb-8 section-enter section-enter-2">
             <div className="flex items-center gap-2 mb-4">
               <TrendingUp className="w-4 h-4 text-red-500" />
-              <h2 className="text-sm font-semibold text-gray-700">热门推荐</h2>
+              <h2 className="text-sm font-semibold text-pixel-text">热门推荐</h2>
             </div>
             <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
               {hotTools.map((tool) => (
@@ -421,8 +421,8 @@ export default function ToolsPage() {
                 >
                   <span className={`w-8 h-8 flex items-center justify-center rounded-lg text-white shadow-sm ${tool.color}`}>{(() => { const Icon = categoryIconMap[tool.category] || Sparkles; return <Icon className="w-4 h-4" strokeWidth={1.8} />; })()}</span>
                   <div>
-                    <div className="font-medium text-gray-900 text-sm">{tool.name}</div>
-                    <div className="text-xs text-gray-500">{tool.desc}</div>
+                    <div className="font-medium text-pixel-text text-sm">{tool.name}</div>
+                    <div className="text-xs text-pixel-text-light">{tool.desc}</div>
                   </div>
                 </a>
               ))}
@@ -433,7 +433,7 @@ export default function ToolsPage() {
         {/* Search */}
         <div className="max-w-md mx-auto mb-8 section-enter section-enter-3">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-pixel-text-muted" />
             <Input
               type="text"
               value={search}
@@ -465,7 +465,7 @@ export default function ToolsPage() {
                 <Badge
                   variant="secondary"
                   className={`ml-1 text-xs ${
-                    activeCategory === cat.id ? "bg-white/20 text-white" : "bg-gray-100 text-gray-500"
+                    activeCategory === cat.id ? "bg-white/20 text-white" : "bg-gray-100 text-pixel-text-light"
                   }`}
                 >
                   {count}
@@ -495,8 +495,8 @@ export default function ToolsPage() {
                       <Icon className="w-5 h-5" />
                     </div>
                     <div className="text-left">
-                      <div className="font-medium text-gray-900 text-sm">{tool.name}</div>
-                      <div className="text-xs text-gray-500">{tool.desc}</div>
+                      <div className="font-medium text-pixel-text text-sm">{tool.name}</div>
+                      <div className="text-xs text-pixel-text-light">{tool.desc}</div>
                     </div>
                   </button>
                 );
@@ -506,7 +506,7 @@ export default function ToolsPage() {
               <Card className="bg-white border-gray-200 shadow-sm">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-gray-900">
+                    <h3 className="font-semibold text-pixel-text">
                       {builtInToolsList.find((t) => t.id === activeBuiltinTool)?.name}
                     </h3>
                   </div>
@@ -542,10 +542,10 @@ export default function ToolsPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-1 mb-1">
-                    <h3 className="font-semibold text-gray-900 text-sm">{tool.name}</h3>
-                    <ExternalLink className="w-3 h-3 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                    <h3 className="font-semibold text-pixel-text text-sm">{tool.name}</h3>
+                    <ExternalLink className="w-3 h-3 text-pixel-text-muted opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                   </div>
-                  <p className="text-xs text-gray-500 line-clamp-2">{tool.desc}</p>
+                  <p className="text-xs text-pixel-text-light line-clamp-2">{tool.desc}</p>
                 </div>
               </a>
             ))}
@@ -555,19 +555,19 @@ export default function ToolsPage() {
         {activeCategory !== "builtin" && filtered.length === 0 && (
           <div className="text-center py-16">
             <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Search className="w-6 h-6 text-gray-400" />
+              <Search className="w-6 h-6 text-pixel-text-muted" />
             </div>
-            <p className="text-gray-500 mb-1">没有找到匹配的工具</p>
-            <p className="text-sm text-gray-400">尝试其他关键词或分类</p>
+            <p className="text-pixel-text-light mb-1">没有找到匹配的工具</p>
+            <p className="text-sm text-pixel-text-muted">尝试其他关键词或分类</p>
           </div>
         )}
 
         {/* Stats */}
         <div className="mt-12 text-center">
-          <p className="text-sm text-gray-400">
-            共收录 <span className="font-semibold text-gray-600">{tools.length}</span> 个外部 AI 工具 +
-            <span className="font-semibold text-gray-600"> {builtInToolsList.length}</span> 个内置工具，
-            涵盖 <span className="font-semibold text-gray-600">{categories.length - 2}</span> 个类别
+          <p className="text-sm text-pixel-text-muted">
+            共收录 <span className="font-semibold text-pixel-text-light">{tools.length}</span> 个外部 AI 工具 +
+            <span className="font-semibold text-pixel-text-light"> {builtInToolsList.length}</span> 个内置工具，
+            涵盖 <span className="font-semibold text-pixel-text-light">{categories.length - 2}</span> 个类别
           </p>
         </div>
       </main>

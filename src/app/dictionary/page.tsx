@@ -156,13 +156,13 @@ export default function DictionaryPage() {
   return (
     <div className="min-h-screen pixel-grid" style={{ background: "var(--pixel-bg)" }}>
       <Navbar />
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
+      <main id="main-content" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         <div className="text-center mb-8 section-enter">
           <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <BookOpen className="w-7 h-7 text-blue-600" />
           </div>
-          <h1 className="text-3xl font-bold mb-2 tracking-tight" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(12px, 3vw, 18px)", color: "var(--pixel-text)", lineHeight: "2" }}>智能词典</h1>
-          <p className="text-gray-500">
+          <h1 className="font-pixel-title" style={{ color: "var(--pixel-text)" }}>智能词典</h1>
+          <p className="text-pixel-text-light">
             {isConfigured ? "AI 驱动的智能词典，提供详细释义" : "输入单词，获取释义、例句与发音"}
           </p>
         </div>
@@ -170,7 +170,7 @@ export default function DictionaryPage() {
         <div className="max-w-xl mx-auto mb-8 section-enter section-enter-1">
           <div className="flex gap-2">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-pixel-text-muted" />
               <Input
                 type="text"
                 value={query}
@@ -209,7 +209,7 @@ export default function DictionaryPage() {
           <div className="flex items-center justify-center py-16">
             <div className="flex flex-col items-center gap-2">
               <Loader2 className="w-6 h-6 text-blue-500 animate-spin" />
-              <span className="text-sm text-gray-500">查询中...</span>
+              <span className="text-sm text-pixel-text-light">查询中...</span>
             </div>
           </div>
         )}
@@ -226,13 +226,13 @@ export default function DictionaryPage() {
             <CardHeader className="pb-4">
               <div className="flex items-start justify-between">
                 <div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-1">{result.word}</h2>
+                  <h2 className="text-3xl font-bold text-pixel-text mb-1">{result.word}</h2>
                   <div className="flex items-center gap-3">
                     {result.phonetic && (
-                      <span className="font-mono text-gray-500">{result.phonetic}</span>
+                      <span className="font-mono text-pixel-text-light">{result.phonetic}</span>
                     )}
                     {result.pos && (
-                      <Badge variant="secondary" className="bg-gray-100 text-gray-600">{result.pos}</Badge>
+                      <Badge variant="secondary" className="bg-gray-100 text-pixel-text-light">{result.pos}</Badge>
                     )}
                   </div>
                 </div>
@@ -240,7 +240,7 @@ export default function DictionaryPage() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-9 w-9 text-gray-400 hover:text-blue-600"
+                    className="h-9 w-9 text-pixel-text-muted hover:text-blue-600"
                     onClick={() => speak(result.word)}
                   >
                     <Volume2 className="w-4 h-4" />
@@ -249,7 +249,7 @@ export default function DictionaryPage() {
                     variant="ghost"
                     size="icon"
                     className={`h-9 w-9 ${
-                      hasWord(result.word) ? "text-yellow-500" : "text-gray-400 hover:text-yellow-500"
+                      hasWord(result.word) ? "text-yellow-500" : "text-pixel-text-muted hover:text-yellow-500"
                     }`}
                     onClick={toggleSave}
                   >
@@ -263,13 +263,13 @@ export default function DictionaryPage() {
 
             <CardContent className="pt-6">
               <div className="flex items-center gap-2 mb-3">
-                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">释义</h3>
+                <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider">释义</h3>
                 {result.frequency && (
                   <Badge variant="secondary" className={`text-xs ${
                     result.frequency === "common" ? "bg-green-50 text-green-700" :
                     result.frequency === "medium" ? "bg-blue-50 text-blue-700" :
                     result.frequency === "academic" ? "bg-purple-50 text-purple-700" :
-                    "bg-gray-100 text-gray-600"
+                    "bg-gray-100 text-pixel-text-light"
                   }`}>
                     {result.frequency === "common" ? "高频" : result.frequency === "medium" ? "中频" : result.frequency === "academic" ? "学术" : "低频"}
                   </Badge>
@@ -279,7 +279,7 @@ export default function DictionaryPage() {
                 {result.defs.map((def, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="text-blue-600 font-medium text-sm mt-0.5">{i + 1}.</span>
-                    <span className="text-gray-900">{def}</span>
+                    <span className="text-pixel-text">{def}</span>
                   </li>
                 ))}
               </ul>
@@ -289,8 +289,8 @@ export default function DictionaryPage() {
               <>
                 <Separator />
                 <CardContent className="pt-6">
-                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">词根词源</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{result.etymology}</p>
+                  <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-3">词根词源</h3>
+                  <p className="text-sm text-pixel-text-light leading-relaxed">{result.etymology}</p>
                 </CardContent>
               </>
             )}
@@ -299,7 +299,7 @@ export default function DictionaryPage() {
               <>
                 <Separator />
                 <CardContent className="pt-6">
-                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">常用搭配</h3>
+                  <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-3">常用搭配</h3>
                   <div className="flex flex-wrap gap-2">
                     {result.collocations.map((c) => (
                       <Badge key={c} variant="outline" className="text-sm font-mono">{c}</Badge>
@@ -313,12 +313,12 @@ export default function DictionaryPage() {
               <>
                 <Separator />
                 <CardContent className="pt-6">
-                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">词形变化</h3>
+                  <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-3">词形变化</h3>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                     {Object.entries(result.inflections).filter(([, v]) => v).map(([key, value]) => (
                       <div key={key} className="flex items-center gap-2 text-sm">
-                        <span className="text-gray-400 text-xs w-20 shrink-0">{key}</span>
-                        <span className="text-gray-700 font-mono">{value}</span>
+                        <span className="text-pixel-text-muted text-xs w-20 shrink-0">{key}</span>
+                        <span className="text-pixel-text font-mono">{value}</span>
                       </div>
                     ))}
                   </div>
@@ -330,12 +330,12 @@ export default function DictionaryPage() {
               <>
                 <Separator />
                 <CardContent className="pt-6">
-                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">例句</h3>
+                  <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-3">例句</h3>
                   <div className="space-y-3">
                     {result.examples.map((ex, i) => (
                       <div key={i} className="p-4 bg-gray-50 rounded-lg">
-                        <p className="text-gray-900 mb-1">{ex.en}</p>
-                        <p className="text-gray-500 text-sm">{ex.zh}</p>
+                        <p className="text-pixel-text mb-1">{ex.en}</p>
+                        <p className="text-pixel-text-light text-sm">{ex.zh}</p>
                       </div>
                     ))}
                   </div>
@@ -350,7 +350,7 @@ export default function DictionaryPage() {
                   <div className="grid grid-cols-2 gap-4">
                     {result.synonyms && result.synonyms.length > 0 && (
                       <div>
-                        <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">近义词</h3>
+                        <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-2">近义词</h3>
                         <div className="flex flex-wrap gap-1.5">
                           {result.synonyms.map((word) => (
                             <Badge key={word} variant="outline" className="text-xs">
@@ -362,7 +362,7 @@ export default function DictionaryPage() {
                     )}
                     {result.antonyms && result.antonyms.length > 0 && (
                       <div>
-                        <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">反义词</h3>
+                        <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-2">反义词</h3>
                         <div className="flex flex-wrap gap-1.5">
                           {result.antonyms.map((word) => (
                             <Badge key={word} variant="outline" className="text-xs">
@@ -382,10 +382,10 @@ export default function DictionaryPage() {
         {searched && !loading && !error && !result && (
           <div className="text-center py-16">
             <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Search className="w-6 h-6 text-gray-400" />
+              <Search className="w-6 h-6 text-pixel-text-muted" />
             </div>
-            <p className="text-gray-500 mb-2">未找到该单词</p>
-            <p className="text-sm text-gray-400">
+            <p className="text-pixel-text-light mb-2">未找到该单词</p>
+            <p className="text-sm text-pixel-text-muted">
               {isConfigured ? "请检查拼写或尝试其他词汇" : "提示：试试 hello, world, love"}
             </p>
           </div>

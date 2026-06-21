@@ -258,6 +258,55 @@ body {
   background-size: 16px 16px;
 }
 
+/* === Pixel Font Utilities === */
+.font-pixel {
+  font-family: "Press Start 2P", monospace;
+}
+.font-pixel-body {
+  font-family: "VT323", monospace;
+}
+.font-pixel-title {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(12px, 3vw, 18px);
+  line-height: 2;
+  letter-spacing: 1px;
+}
+.font-pixel-heading {
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(10px, 2vw, 14px);
+  line-height: 2;
+}
+.font-pixel-label {
+  font-family: "Press Start 2P", monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* === Pixel Text Color Utilities === */
+.text-pixel-text { color: var(--pixel-text); }
+.text-pixel-text-light { color: var(--pixel-text-light); }
+.text-pixel-text-muted { color: var(--pixel-text-muted); }
+
+/* === Pixel Loading Spinner === */
+@keyframes pixel-spin {
+  0% { content: "|"; }
+  25% { content: "/"; }
+  50% { content: "-"; }
+  75% { content: "\\"; }
+}
+.pixel-spinner::after {
+  content: "|";
+  animation: pixel-spin 0.4s steps(4) infinite;
+  font-family: "VT323", monospace;
+  font-size: 24px;
+}
+
+/* Override Tailwind's animate-spin to use stepped rotation */
+.animate-spin {
+  animation: spin 0.8s steps(8) infinite !important;
+}
+
 /* === Scanline Overlay === */
 .scanlines::after {
   content: "";
@@ -271,7 +320,7 @@ body {
     rgba(0,0,0,0.015) 2px,
     rgba(0,0,0,0.015) 4px
   );
-  z-index: 9999;
+  z-index: 50;
 }
 
 /* === Pixel Animations === */

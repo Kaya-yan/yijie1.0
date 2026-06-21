@@ -126,17 +126,17 @@ export default function DashboardPage() {
     <div className="min-h-screen pixel-grid" style={{ background: "var(--pixel-bg)" }}>
       <Navbar />
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
+      <main id="main-content" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         {/* Hero */}
         <section className="mb-16 section-enter">
           <div className="text-center mb-8">
             <Badge variant="secondary" className="mb-4 bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium">
               多语言智能聚合平台
             </Badge>
-            <h1 className="text-3xl sm:text-4xl font-bold mb-3 tracking-tight text-balance" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(14px, 3vw, 22px)", color: "var(--pixel-text)", lineHeight: "1.8" }}>
+            <h1 className="font-pixel-title mb-3 text-balance" style={{ color: "var(--pixel-text)" }}>
               多模型聚合，精准翻译
             </h1>
-            <p className="text-gray-500 max-w-xl mx-auto leading-relaxed">
+            <p className="font-pixel-body max-w-xl mx-auto leading-relaxed" style={{ fontSize: "20px", color: "var(--pixel-text-light)" }}>
               一次接入 Kimi、DeepSeek、通义千问等国内主流大模型，支持中英日韩法德西俄 8 种语言互译
             </p>
           </div>
@@ -147,8 +147,8 @@ export default function DashboardPage() {
               <PopoverTrigger className="inline-flex items-center justify-center h-10 px-4 gap-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
                 <div className={`w-2 h-2 rounded-full ${selectedModel?.color || "bg-gray-400"}`} />
                 <span className="font-medium text-sm">{selectedModel?.name || "选择模型"}</span>
-                <span className="text-gray-400 text-xs">({selectedModel?.desc || ""})</span>
-                <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${modelOpen ? "rotate-180" : ""}`} />
+                <span className="text-pixel-text-muted text-xs">({selectedModel?.desc || ""})</span>
+                <ChevronDown className={`w-4 h-4 text-pixel-text-muted transition-transform ${modelOpen ? "rotate-180" : ""}`} />
               </PopoverTrigger>
               <PopoverContent className="w-[240px] p-0" align="center">
                 <Command>
@@ -160,7 +160,7 @@ export default function DashboardPage() {
                         <CommandItem key={m.id} onSelect={() => { setSelectedModel(m); setSelectedModelId(m.id); setModelOpen(false); }} className="gap-2">
                           <div className={`w-2 h-2 rounded-full ${m.color}`} />
                           <span>{m.name}</span>
-                          <span className="text-gray-400 text-xs ml-auto">{m.desc}</span>
+                          <span className="text-pixel-text-muted text-xs ml-auto">{m.desc}</span>
                           {selectedModel?.id === m.id && <Check className="w-4 h-4 text-blue-600" />}
                         </CommandItem>
                       ))}
@@ -187,7 +187,7 @@ export default function DashboardPage() {
                 <PopoverTrigger className="inline-flex items-center justify-center gap-2 px-3 py-1.5 text-sm font-medium hover:bg-gray-100 rounded-md transition-colors cursor-pointer">
                   <span className="text-lg">{sourceLang.flag}</span>
                   <span>{sourceLang.name}</span>
-                  <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
+                  <ChevronDown className="w-3.5 h-3.5 text-pixel-text-muted" />
                 </PopoverTrigger>
                 <PopoverContent className="w-[160px] p-0" align="start">
                   <Command><CommandList><CommandGroup>
@@ -200,14 +200,14 @@ export default function DashboardPage() {
                   </CommandGroup></CommandList></Command>
                 </PopoverContent>
               </Popover>
-              <Button variant="ghost" size="icon" onClick={swapLangs} className="h-8 w-8 text-gray-400 hover:text-gray-600">
+              <Button variant="ghost" size="icon" onClick={swapLangs} className="h-8 w-8 text-pixel-text-muted hover:text-pixel-text-light">
                 <ArrowRightLeft className="w-4 h-4" />
               </Button>
               <Popover open={targetLangOpen} onOpenChange={setTargetLangOpen}>
                 <PopoverTrigger className="inline-flex items-center justify-center gap-2 px-3 py-1.5 text-sm font-medium hover:bg-gray-100 rounded-md transition-colors cursor-pointer">
                   <span className="text-lg">{targetLang.flag}</span>
                   <span>{targetLang.name}</span>
-                  <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
+                  <ChevronDown className="w-3.5 h-3.5 text-pixel-text-muted" />
                 </PopoverTrigger>
                 <PopoverContent className="w-[160px] p-0" align="end">
                   <Command><CommandList><CommandGroup>
@@ -226,28 +226,28 @@ export default function DashboardPage() {
               <div className="p-4">
                 <Textarea value={sourceText} onChange={(e) => setSourceText(e.target.value)} placeholder="在此输入文本..." className="w-full h-48 resize-none border-0 p-0 text-base focus-visible:ring-0 shadow-none bg-transparent" />
                 <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
-                  <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-600 gap-1.5" disabled>
+                  <Button variant="ghost" size="sm" className="text-pixel-text-muted hover:text-pixel-text-light gap-1.5" disabled>
                     <Mic className="w-3.5 h-3.5" /><span className="text-xs">语音输入（开发中）</span>
                   </Button>
-                  <span className="text-xs text-gray-400 font-mono tabular-nums">{sourceText.length} / 2000</span>
+                  <span className="text-xs text-pixel-text-muted font-mono tabular-nums">{sourceText.length} / 2000</span>
                 </div>
               </div>
               <div className="p-4 bg-gray-50/30">
                 {translating ? (
                   <div className="h-48 flex items-center justify-center">
                     <div className="flex flex-col items-center gap-2">
-                      <Loader2 className="w-6 h-6 text-gray-400 animate-spin" />
-                      <span className="text-sm text-gray-500">翻译中...</span>
+                      <Loader2 className="w-6 h-6 text-pixel-text-muted animate-spin" />
+                      <span className="text-sm text-pixel-text-light">翻译中...</span>
                     </div>
                   </div>
                 ) : targetText ? (
                   <div className="h-full">
-                    <div className="text-base leading-relaxed min-h-[12rem] text-gray-900">{targetText}</div>
+                    <div className="text-base leading-relaxed min-h-[12rem] text-pixel-text">{targetText}</div>
                     <div className="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100">
-                      <Button variant="ghost" size="icon" className={`h-8 w-8 ${copied ? "text-green-500" : "text-gray-400 hover:text-gray-600"}`} onClick={copyResult}>
+                      <Button variant="ghost" size="icon" className={`h-8 w-8 ${copied ? "text-green-500" : "text-pixel-text-muted hover:text-pixel-text-light"}`} onClick={copyResult}>
                         {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                       </Button>
-                      <Button variant="ghost" size="icon" className="h-8 w-8 text-gray-400 hover:text-gray-600" onClick={() => speakText(targetText)}>
+                      <Button variant="ghost" size="icon" className="h-8 w-8 text-pixel-text-muted hover:text-pixel-text-light" onClick={() => speakText(targetText)}>
                         <Volume2 className="w-3.5 h-3.5" />
                       </Button>
                       <AddToVocabularyButton word={sourceText.trim().toLowerCase()} meaning={targetText} source="translation" variant="icon" />
@@ -258,7 +258,7 @@ export default function DashboardPage() {
                     </div>
                   </div>
                 ) : (
-                  <div className="h-48 flex items-center justify-center text-gray-400 text-sm">翻译结果将显示在这里</div>
+                  <div className="h-48 flex items-center justify-center text-pixel-text-muted text-sm">翻译结果将显示在这里</div>
                 )}
               </div>
             </div>
@@ -279,7 +279,7 @@ export default function DashboardPage() {
 
         {/* Feature Cards */}
         <section className="mb-16 section-enter section-enter-1">
-          <h2 className="text-xl font-semibold text-gray-900 text-center mb-6 tracking-tight">一站式语言学习工具</h2>
+          <h2 className="text-xl font-semibold text-pixel-text text-center mb-6 tracking-tight">一站式语言学习工具</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { icon: BookOpen, title: "智能词典", desc: "单词释义、音标、例句，一键获取", href: "/dictionary", color: "text-blue-600", bg: "bg-blue-50" },
@@ -291,8 +291,8 @@ export default function DashboardPage() {
                 <div className={`w-10 h-10 ${item.bg} rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200`}>
                   <item.icon className={`w-5 h-5 ${item.color}`} />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-1 text-sm">{item.title}</h3>
-                <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
+                <h3 className="font-semibold text-pixel-text mb-1 text-sm">{item.title}</h3>
+                <p className="text-xs text-pixel-text-light leading-relaxed">{item.desc}</p>
               </a>
             ))}
           </div>
@@ -302,16 +302,16 @@ export default function DashboardPage() {
         <section className="mb-16 section-enter section-enter-2">
           <div className="bg-white rounded-2xl border border-gray-200 p-8 sm:p-10 shadow-sm">
             <div className="text-center mb-8">
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">支持多种 AI 模型</h2>
-              <p className="text-gray-500 text-sm">自由切换，找到最适合你的翻译引擎</p>
+              <h2 className="text-xl font-semibold text-pixel-text mb-2">支持多种 AI 模型</h2>
+              <p className="text-pixel-text-light text-sm">自由切换，找到最适合你的翻译引擎</p>
             </div>
             <div className="flex flex-wrap justify-center gap-3">
               {displayModels.map((m) => (
                 <div key={m.id} className="flex items-center gap-3 px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 hover:border-gray-300 transition-colors">
                   <div className={`w-2 h-2 rounded-full ${m.color}`} />
                   <div>
-                    <div className="text-sm font-medium text-gray-900">{m.name}</div>
-                    <div className="text-xs text-gray-500">{m.desc}</div>
+                    <div className="text-sm font-medium text-pixel-text">{m.name}</div>
+                    <div className="text-xs text-pixel-text-light">{m.desc}</div>
                   </div>
                 </div>
               ))}
@@ -321,7 +321,7 @@ export default function DashboardPage() {
 
         {/* Why Choose Us */}
         <section className="mb-16 section-enter section-enter-3">
-          <h2 className="text-xl font-semibold text-gray-900 text-center mb-6 tracking-tight">为什么选择 译界</h2>
+          <h2 className="text-xl font-semibold text-pixel-text text-center mb-6 tracking-tight">为什么选择 译界</h2>
           <div className="grid sm:grid-cols-3 gap-5">
             {[
               { icon: Zap, title: "极速响应", desc: "毫秒级翻译速度，流畅不卡顿" },
@@ -332,8 +332,8 @@ export default function DashboardPage() {
                 <div className="w-11 h-11 bg-slate-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <item.icon className="w-5 h-5 text-slate-600" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-1.5 text-sm">{item.title}</h3>
-                <p className="text-xs text-gray-500">{item.desc}</p>
+                <h3 className="font-semibold text-pixel-text mb-1.5 text-sm">{item.title}</h3>
+                <p className="text-xs text-pixel-text-light">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -341,8 +341,8 @@ export default function DashboardPage() {
 
         {/* Popular Language Pairs */}
         <section className="mb-16 section-enter section-enter-4">
-          <h2 className="text-xl font-semibold text-gray-900 text-center mb-2 tracking-tight">热门语言对</h2>
-          <p className="text-gray-500 text-center mb-6 text-sm">选择常用语言组合，快速开始翻译</p>
+          <h2 className="text-xl font-semibold text-pixel-text text-center mb-2 tracking-tight">热门语言对</h2>
+          <p className="text-pixel-text-light text-center mb-6 text-sm">选择常用语言组合，快速开始翻译</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             {[
               { from: "🇬🇧 英语", to: "🇨🇳 中文", pair: "en-zh" },
@@ -359,7 +359,7 @@ export default function DashboardPage() {
                 if (from && to) { setSourceLang(from); setTargetLang(to); setSourceText(""); setTargetText(""); }
               }} className="flex items-center justify-center gap-2 p-3 bg-white border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-sm transition-all text-sm spring-hover">
                 <span>{lp.from}</span>
-                <ArrowRightLeft className="w-3 h-3 text-gray-400" />
+                <ArrowRightLeft className="w-3 h-3 text-pixel-text-muted" />
                 <span>{lp.to}</span>
               </button>
             ))}
@@ -370,8 +370,8 @@ export default function DashboardPage() {
         {translationHistory.length > 0 && (
           <section className="mb-16 section-enter section-enter-5">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold text-gray-900 tracking-tight">最近翻译</h2>
-              <button onClick={clearTranslationHistory} className="text-sm text-gray-400 hover:text-gray-600 transition-colors">清空记录</button>
+              <h2 className="text-xl font-semibold text-pixel-text tracking-tight">最近翻译</h2>
+              <button onClick={clearTranslationHistory} className="text-sm text-pixel-text-muted hover:text-pixel-text-light transition-colors">清空记录</button>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {translationHistory.slice(0, 6).map((item, i) => (
@@ -381,10 +381,10 @@ export default function DashboardPage() {
                       {languages.find((l) => l.code === item.sourceLang)?.flag} {languages.find((l) => l.code === item.sourceLang)?.name}
                       → {languages.find((l) => l.code === item.targetLang)?.flag} {languages.find((l) => l.code === item.targetLang)?.name}
                     </Badge>
-                    <span className="text-xs text-gray-400 ml-auto font-mono">{item.model}</span>
+                    <span className="text-xs text-pixel-text-muted ml-auto font-mono">{item.model}</span>
                   </div>
-                  <p className="text-sm text-gray-900 line-clamp-1 mb-1">{item.sourceText}</p>
-                  <p className="text-sm text-gray-500 line-clamp-1">{item.targetText}</p>
+                  <p className="text-sm text-pixel-text line-clamp-1 mb-1">{item.sourceText}</p>
+                  <p className="text-sm text-pixel-text-light line-clamp-1">{item.targetText}</p>
                 </div>
               ))}
             </div>
@@ -393,8 +393,8 @@ export default function DashboardPage() {
 
         {/* How It Works */}
         <section className="mb-16 section-enter section-enter-7">
-          <h2 className="text-xl font-semibold text-gray-900 text-center mb-2 tracking-tight">如何使用</h2>
-          <p className="text-gray-500 text-center mb-8 text-sm">三步开始你的智能翻译之旅</p>
+          <h2 className="text-xl font-semibold text-pixel-text text-center mb-2 tracking-tight">如何使用</h2>
+          <p className="text-pixel-text-light text-center mb-8 text-sm">三步开始你的智能翻译之旅</p>
           <div className="grid sm:grid-cols-3 gap-8">
             {[
               { step: "01", title: "配置模型", desc: "在设置页面添加 API Key，支持多个国产大模型" },
@@ -405,8 +405,8 @@ export default function DashboardPage() {
                 <div className="w-10 h-10 text-white font-bold text-sm flex items-center justify-center mb-4 pixel-border" style={{ background: "var(--pixel-blue)" }}>
                   {item.step}
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2 text-sm">{item.title}</h3>
-                <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
+                <h3 className="font-semibold text-pixel-text mb-2 text-sm">{item.title}</h3>
+                <p className="text-xs text-pixel-text-light leading-relaxed">{item.desc}</p>
                 {i < 2 && <div className="hidden sm:block absolute top-5 left-full w-8 h-px bg-gray-200" />}
               </div>
             ))}
@@ -415,8 +415,8 @@ export default function DashboardPage() {
 
         {/* Scenarios */}
         <section className="mb-16 section-enter section-enter-8">
-          <h2 className="text-xl font-semibold text-gray-900 text-center mb-2 tracking-tight">适用场景</h2>
-          <p className="text-gray-500 text-center mb-6 text-sm">覆盖学习、工作、生活中的各种翻译需求</p>
+          <h2 className="text-xl font-semibold text-pixel-text text-center mb-2 tracking-tight">适用场景</h2>
+          <p className="text-pixel-text-light text-center mb-6 text-sm">覆盖学习、工作、生活中的各种翻译需求</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { title: "学术论文", desc: "精准翻译学术文献，保留专业术语", color: "bg-blue-50 text-blue-700" },
@@ -426,7 +426,7 @@ export default function DashboardPage() {
             ].map((item, i) => (
               <div key={item.title} className={`p-4 bg-white border border-gray-200 rounded-xl spring-hover animate-slide-up stagger-${i + 1}`}>
                 <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium mb-2 ${item.color}`}>{item.title}</span>
-                <p className="text-xs text-gray-600">{item.desc}</p>
+                <p className="text-xs text-pixel-text-light">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -443,8 +443,8 @@ export default function DashboardPage() {
                 { value: "60+", label: "AI 工具收录" },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <div className="text-3xl font-bold mb-1 tabular-nums" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "20px", color: "var(--pixel-text)" }}>{stat.value}</div>
-                  <div className="text-sm" style={{ color: "var(--pixel-text-light)" }}>{stat.label}</div>
+                  <div className="font-pixel font-bold mb-1 tabular-nums" style={{ fontSize: "20px", color: "var(--pixel-text)" }}>{stat.value}</div>
+                  <div className="font-pixel-body text-sm" style={{ fontSize: "18px", color: "var(--pixel-text-light)" }}>{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -459,8 +459,8 @@ export default function DashboardPage() {
                 <Gamepad2 className="w-6 h-6 text-amber-600" />
               </div>
               <div>
-                <h3 className="font-semibold mb-1 text-sm text-gray-900">休闲小游戏</h3>
-                <p className="text-xs text-gray-500">学习之余，来一局经典恐龙跑酷</p>
+                <h3 className="font-semibold mb-1 text-sm text-pixel-text">休闲小游戏</h3>
+                <p className="text-xs text-pixel-text-light">学习之余，来一局经典恐龙跑酷</p>
               </div>
             </a>
             <a href="/tools" className="flex items-center gap-5 p-6 bg-white border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-sm transition-all group spring-hover">
@@ -468,8 +468,8 @@ export default function DashboardPage() {
                 <Wrench className="w-6 h-6 text-slate-600" />
               </div>
               <div>
-                <h3 className="font-semibold mb-1 text-sm text-gray-900">AI 工具聚合</h3>
-                <p className="text-xs text-gray-500">发现更多 AI 工具，提升效率</p>
+                <h3 className="font-semibold mb-1 text-sm text-pixel-text">AI 工具聚合</h3>
+                <p className="text-xs text-pixel-text-light">发现更多 AI 工具，提升效率</p>
               </div>
             </a>
           </div>
@@ -483,10 +483,10 @@ export default function DashboardPage() {
               <div className="text-center mb-10">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 pixel-badge mb-4" style={{ background: "var(--pixel-bg-alt)", color: "var(--pixel-text-light)" }}>
                   <Sparkles className="w-3.5 h-3.5" />
-                  <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "8px" }}>ABOUT</span>
+                  <span className="font-pixel" style={{ fontSize: "8px" }}>ABOUT</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-bold mb-3 tracking-tight" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(10px, 2vw, 16px)", color: "var(--pixel-text)", lineHeight: "2" }}>译界 · 多语言智能聚合平台</h2>
-                <p className="text-gray-500 max-w-2xl mx-auto text-sm leading-relaxed">
+                <h2 className="font-pixel-heading mb-3" style={{ color: "var(--pixel-text)" }}>译界 · 多语言智能聚合平台</h2>
+                <p className="text-pixel-text-light max-w-2xl mx-auto text-sm leading-relaxed">
                   面向语言学习者的一站式智能平台，深度融合大语言模型技术，提供翻译、词汇、语法、写作、阅读五大核心模块的全方位学习支持。
                 </p>
               </div>
@@ -502,29 +502,29 @@ export default function DashboardPage() {
                     <div className={`w-9 h-9 ${item.color} rounded-lg flex items-center justify-center mb-3`}>
                       <item.icon className="w-4 h-4" />
                     </div>
-                    <h3 className="font-semibold text-sm mb-1.5 text-gray-900">{item.title}</h3>
-                    <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
+                    <h3 className="font-semibold text-sm mb-1.5 text-pixel-text">{item.title}</h3>
+                    <p className="text-xs text-pixel-text-light leading-relaxed">{item.desc}</p>
                   </div>
                 ))}
               </div>
 
               <div className="grid sm:grid-cols-3 gap-6 text-center mb-10">
                 <div>
-                  <div className="text-lg font-semibold mb-1" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px", color: "var(--pixel-text)" }}>OpenAI Compatible</div>
-                  <p className="text-xs" style={{ color: "var(--pixel-text-light)" }}>基于 OpenAI 兼容协议，无缝对接主流国产大模型</p>
+                  <div className="font-pixel-label mb-1" style={{ color: "var(--pixel-text)" }}>OpenAI Compatible</div>
+                  <p className="text-xs font-pixel-body" style={{ fontSize: "18px", color: "var(--pixel-text-light)" }}>基于 OpenAI 兼容协议，无缝对接主流国产大模型</p>
                 </div>
                 <div>
-                  <div className="text-lg font-semibold mb-1" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px", color: "var(--pixel-text)" }}>SM-2 Spaced Repetition</div>
-                  <p className="text-xs" style={{ color: "var(--pixel-text-light)" }}>经典间隔重复算法，科学规划词汇复习节奏</p>
+                  <div className="font-pixel-label mb-1" style={{ color: "var(--pixel-text)" }}>SM-2 Spaced Repetition</div>
+                  <p className="text-xs font-pixel-body" style={{ fontSize: "18px", color: "var(--pixel-text-light)" }}>经典间隔重复算法，科学规划词汇复习节奏</p>
                 </div>
                 <div>
-                  <div className="text-lg font-semibold mb-1" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px", color: "var(--pixel-text)" }}>Next.js 16 + TypeScript</div>
-                  <p className="text-xs" style={{ color: "var(--pixel-text-light)" }}>现代化技术栈，全栈类型安全</p>
+                  <div className="font-pixel-label mb-1" style={{ color: "var(--pixel-text)" }}>Next.js 16 + TypeScript</div>
+                  <p className="text-xs font-pixel-body" style={{ fontSize: "18px", color: "var(--pixel-text-light)" }}>现代化技术栈，全栈类型安全</p>
                 </div>
               </div>
 
               <div className="pt-8 border-t border-gray-200 text-center">
-                <p className="text-sm text-gray-500 leading-relaxed max-w-3xl mx-auto">
+                <p className="text-sm text-pixel-text-light leading-relaxed max-w-3xl mx-auto">
                   译界致力于让语言学习更高效、更智能。我们相信，AI 技术应当成为每一位学习者的私人导师——不是替代思考，而是激发潜能。从精准翻译到深度分析，从智能纠错到个性化练习，译界正在重新定义语言学习的体验。
                 </p>
               </div>
@@ -534,7 +534,7 @@ export default function DashboardPage() {
 
         {/* Footer */}
         <footer className="border-t-3 py-8" style={{ borderColor: "var(--pixel-border-light)" }}>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs" style={{ fontFamily: "'VT323', monospace", fontSize: "16px", color: "var(--pixel-text-muted)" }}>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-pixel-body" style={{ color: "var(--pixel-text-muted)" }}>
             <p>© 2025 译界 · 多语言智能聚合平台</p>
             <div className="flex items-center gap-4">
               <a href="/settings" className="hover:underline transition-colors">API 设置</a>

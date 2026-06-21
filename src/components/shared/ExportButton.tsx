@@ -26,7 +26,7 @@ export function ExportButton({ options, variant = "button", size = "sm", label =
     return (
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger
-          className="inline-flex items-center justify-center h-8 w-8 text-gray-400 hover:text-blue-600 rounded-md transition-colors cursor-pointer"
+          className="inline-flex items-center justify-center h-8 w-8 text-pixel-text-muted hover:text-blue-600 rounded-md transition-colors cursor-pointer"
           title={label}
         >
           <Download className="w-4 h-4" />
@@ -38,9 +38,9 @@ export function ExportButton({ options, variant = "button", size = "sm", label =
               <button
                 key={opt.format}
                 onClick={() => { opt.action(); setOpen(false); }}
-                className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
+                className="w-full flex items-center gap-2 px-3 py-2 text-sm text-pixel-text hover:bg-gray-100 rounded-md transition-colors"
               >
-                <Icon className="w-4 h-4 text-gray-400" />
+                <Icon className="w-4 h-4 text-pixel-text-muted" />
                 {opt.label}
               </button>
             );
@@ -63,9 +63,9 @@ export function ExportButton({ options, variant = "button", size = "sm", label =
             <button
               key={opt.format}
               onClick={() => { opt.action(); setOpen(false); }}
-              className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
+              className="w-full flex items-center gap-2 px-3 py-2 text-sm text-pixel-text hover:bg-gray-100 rounded-md transition-colors"
             >
-              <Icon className="w-4 h-4 text-gray-400" />
+              <Icon className="w-4 h-4 text-pixel-text-muted" />
               {opt.label}
             </button>
           );

@@ -79,9 +79,9 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/dashboard" className="flex items-center gap-2.5 shrink-0">
             <div className="w-9 h-9 flex items-center justify-center pixel-border" style={{ background: "var(--pixel-blue)" }}>
-              <span className="text-white" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "9px" }}>YJ</span>
+              <span className="text-white font-pixel-label">YJ</span>
             </div>
-            <span className="hidden sm:block tracking-tight font-bold" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "12px", color: "var(--pixel-text)" }}>
+            <span className="hidden sm:block tracking-tight font-pixel-heading font-bold" style={{ color: "var(--pixel-text)" }}>
               译界
             </span>
           </Link>
@@ -94,10 +94,8 @@ export default function Navbar() {
               return (
                 <Tooltip key={item.href}>
                   <TooltipTrigger
-                    className="relative flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors cursor-pointer"
+                    className="relative flex items-center gap-1.5 px-3 py-2 font-pixel-body font-medium transition-colors cursor-pointer"
                     style={{
-                      fontFamily: "'VT323', monospace",
-                      fontSize: "20px",
                       color: active ? "var(--pixel-text)" : "var(--pixel-text-light)",
                       background: active ? "var(--pixel-bg-alt)" : "transparent",
                     }}
@@ -159,9 +157,9 @@ export default function Navbar() {
                   <div className="p-4 border-b-3" style={{ borderColor: "var(--pixel-border-light)" }}>
                     <div className="flex items-center gap-2.5">
                       <div className="w-9 h-9 flex items-center justify-center pixel-border" style={{ background: "var(--pixel-blue)" }}>
-                        <span className="text-white" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "9px" }}>YJ</span>
+                        <span className="text-white font-pixel-label">YJ</span>
                       </div>
-                      <span className="font-bold" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "12px", color: "var(--pixel-text)" }}>译界</span>
+                      <span className="font-pixel-heading font-bold" style={{ color: "var(--pixel-text)" }}>译界</span>
                     </div>
                   </div>
                   <div className="flex-1 overflow-auto py-2">
@@ -173,10 +171,8 @@ export default function Navbar() {
                           key={item.href}
                           href={item.href}
                           onClick={() => setOpen(false)}
-                          className="flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors"
+                          className="flex items-center gap-3 px-4 py-3 font-pixel-body font-medium transition-colors"
                           style={{
-                            fontFamily: "'VT323', monospace",
-                            fontSize: "22px",
                             color: active ? "var(--pixel-text)" : "var(--pixel-text-light)",
                             background: active ? "var(--pixel-bg-alt)" : "transparent",
                             borderRight: active ? "3px solid var(--pixel-blue)" : "3px solid transparent",
@@ -191,8 +187,7 @@ export default function Navbar() {
                   <div className="p-4 border-t-3" style={{ borderColor: "var(--pixel-border-light)" }}>
                     <Button
                       variant="outline"
-                      className="w-full justify-start gap-2"
-                      style={{ fontFamily: "'VT323', monospace", fontSize: "18px" }}
+                      className="w-full justify-start gap-2 font-pixel-body"
                       onClick={() => {
                         router.push("/settings");
                         setOpen(false);
@@ -203,8 +198,8 @@ export default function Navbar() {
                     </Button>
                     <Button
                       variant="ghost"
-                      className="w-full justify-start gap-2 mt-2"
-                      style={{ fontFamily: "'VT323', monospace", fontSize: "18px", color: "var(--pixel-text-light)" }}
+                      className="w-full justify-start gap-2 mt-2 font-pixel-body"
+                      style={{ color: "var(--pixel-text-light)" }}
                       onClick={handleLogout}
                     >
                       <LogOut className="w-4 h-4" />

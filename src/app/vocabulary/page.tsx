@@ -144,13 +144,13 @@ export default function VocabularyPage() {
   return (
     <div className="min-h-screen pixel-grid" style={{ background: "var(--pixel-bg)" }}>
       <Navbar />
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
+      <main id="main-content" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         <PageHeader icon={BookText} title="生词本" subtitle="管理你的词汇，科学复习" color="blue" />
 
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8 section-enter section-enter-1">
           {[
-            { label: "总词数", value: stats.total, icon: BookText, color: "text-gray-700", bg: "bg-white" },
+            { label: "总词数", value: stats.total, icon: BookText, color: "text-pixel-text", bg: "bg-white" },
             { label: "生词", value: stats.new, icon: AlertCircle, color: "text-red-600", bg: "bg-red-50" },
             { label: "模糊", value: stats.fuzzy, icon: Clock, color: "text-amber-600", bg: "bg-amber-50" },
             { label: "已掌握", value: stats.mastered, icon: CheckCircle, color: "text-green-600", bg: "bg-green-50" },
@@ -159,7 +159,7 @@ export default function VocabularyPage() {
             <Card key={s.label} className={`${s.bg} border-gray-200 shadow-sm`}>
               <CardContent className="flex items-center gap-2 px-3 py-2.5">
                 <s.icon className={`w-4 h-4 ${s.color}`} />
-                <span className="text-xs text-gray-500">{s.label}:</span>
+                <span className="text-xs text-pixel-text-light">{s.label}:</span>
                 <span className={`font-bold text-sm ${s.color}`}>{s.value}</span>
               </CardContent>
             </Card>
@@ -186,7 +186,7 @@ export default function VocabularyPage() {
                 label={`导出 (${filteredWords.length})`}
               />
               <div className="relative flex-1 min-w-[200px]">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-pixel-text-muted" />
                 <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="搜索单词或释义..." className="pl-10 h-9 bg-white border-gray-200" />
               </div>
               <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value as any)} className="h-9 px-3 bg-white border border-gray-200 rounded-md text-sm">
@@ -209,9 +209,9 @@ export default function VocabularyPage() {
             {/* Word list */}
             {filteredWords.length === 0 ? (
               <div className="text-center py-16">
-                <BookText className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-                <p className="text-gray-500">还没有收藏的单词</p>
-                <p className="text-sm text-gray-400 mt-1">在翻译、词典、阅读等页面中添加生词</p>
+                <BookText className="w-12 h-12 text-pixel-text-muted mx-auto mb-4" />
+                <p className="text-pixel-text-light">还没有收藏的单词</p>
+                <p className="text-sm text-pixel-text-muted mt-1">在翻译、词典、阅读等页面中添加生词</p>
               </div>
             ) : (
               <div className="space-y-2">
@@ -223,36 +223,36 @@ export default function VocabularyPage() {
                       <div className="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-50/50 transition-colors" onClick={() => setExpandedWord(expanded ? null : w.word)}>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
-                            <span className="font-semibold text-gray-900">{w.word}</span>
-                            {w.phonetic && <span className="text-xs text-gray-400 font-mono">{w.phonetic}</span>}
+                            <span className="font-semibold text-pixel-text">{w.word}</span>
+                            {w.phonetic && <span className="text-xs text-pixel-text-muted font-mono">{w.phonetic}</span>}
                             {w.pos && <Badge variant="secondary" className="text-xs px-1.5 py-0">{w.pos}</Badge>}
                             <Badge variant="secondary" className={`text-xs px-1.5 py-0 ${st.bg} ${st.color}`}>{st.label}</Badge>
-                            <Badge variant="secondary" className="text-xs px-1.5 py-0 bg-gray-100 text-gray-500">{sourceLabels[w.source]}</Badge>
+                            <Badge variant="secondary" className="text-xs px-1.5 py-0 bg-gray-100 text-pixel-text-light">{sourceLabels[w.source]}</Badge>
                             {w.frequency && <Badge variant="secondary" className="text-xs px-1.5 py-0">{w.frequency}</Badge>}
                           </div>
-                          <p className="text-sm text-gray-500 mt-0.5 truncate">{w.meaning}</p>
+                          <p className="text-sm text-pixel-text-light mt-0.5 truncate">{w.meaning}</p>
                         </div>
                         <div className="flex items-center gap-1 shrink-0">
-                          <Button variant="ghost" size="icon" className="h-7 w-7 text-gray-400 hover:text-blue-600" onClick={(e) => { e.stopPropagation(); speak(w.word); }}>
+                          <Button variant="ghost" size="icon" className="h-7 w-7 text-pixel-text-muted hover:text-blue-600" onClick={(e) => { e.stopPropagation(); speak(w.word); }}>
                             <Volume2 className="w-3.5 h-3.5" />
                           </Button>
-                          <Button variant="ghost" size="icon" className="h-7 w-7 text-gray-400 hover:text-red-500" onClick={(e) => { e.stopPropagation(); removeWord(w.word); }}>
+                          <Button variant="ghost" size="icon" className="h-7 w-7 text-pixel-text-muted hover:text-red-500" onClick={(e) => { e.stopPropagation(); removeWord(w.word); }}>
                             <Trash2 className="w-3.5 h-3.5" />
                           </Button>
-                          <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${expanded ? "rotate-180" : ""}`} />
+                          <ChevronDown className={`w-4 h-4 text-pixel-text-muted transition-transform ${expanded ? "rotate-180" : ""}`} />
                         </div>
                       </div>
                       {expanded && (
                         <div className="px-4 pb-4 pt-2 border-t border-gray-100 space-y-3 animate-slide-up">
                           {w.etymology && (
                             <div>
-                              <span className="text-xs font-semibold text-gray-400 uppercase">词根词源</span>
-                              <p className="text-sm text-gray-600 mt-1">{w.etymology}</p>
+                              <span className="text-xs font-semibold text-pixel-text-muted uppercase">词根词源</span>
+                              <p className="text-sm text-pixel-text-light mt-1">{w.etymology}</p>
                             </div>
                           )}
                           {w.collocations && w.collocations.length > 0 && (
                             <div>
-                              <span className="text-xs font-semibold text-gray-400 uppercase">常用搭配</span>
+                              <span className="text-xs font-semibold text-pixel-text-muted uppercase">常用搭配</span>
                               <div className="flex flex-wrap gap-1.5 mt-1">
                                 {w.collocations.map((c) => <Badge key={c} variant="outline" className="text-xs">{c}</Badge>)}
                               </div>
@@ -260,34 +260,34 @@ export default function VocabularyPage() {
                           )}
                           {w.inflections && Object.keys(w.inflections).length > 0 && (
                             <div>
-                              <span className="text-xs font-semibold text-gray-400 uppercase">词形变化</span>
+                              <span className="text-xs font-semibold text-pixel-text-muted uppercase">词形变化</span>
                               <div className="flex flex-wrap gap-2 mt-1">
                                 {Object.entries(w.inflections).filter(([, v]) => v).map(([k, v]) => (
-                                  <span key={k} className="text-xs text-gray-600"><span className="text-gray-400">{k}:</span> {v}</span>
+                                  <span key={k} className="text-xs text-pixel-text-light"><span className="text-pixel-text-muted">{k}:</span> {v}</span>
                                 ))}
                               </div>
                             </div>
                           )}
                           {w.examples && w.examples.length > 0 && (
                             <div>
-                              <span className="text-xs font-semibold text-gray-400 uppercase">例句</span>
+                              <span className="text-xs font-semibold text-pixel-text-muted uppercase">例句</span>
                               {w.examples.map((ex, i) => (
                                 <div key={i} className="mt-1 text-sm">
-                                  <p className="text-gray-700">{ex.en}</p>
-                                  <p className="text-gray-400">{ex.zh}</p>
+                                  <p className="text-pixel-text">{ex.en}</p>
+                                  <p className="text-pixel-text-muted">{ex.zh}</p>
                                 </div>
                               ))}
                             </div>
                           )}
                           {w.synonyms && w.synonyms.length > 0 && (
                             <div className="flex items-center gap-2">
-                              <span className="text-xs text-gray-400">近义词:</span>
+                              <span className="text-xs text-pixel-text-muted">近义词:</span>
                               {w.synonyms.map((s) => <Badge key={s} variant="outline" className="text-xs">{s}</Badge>)}
                             </div>
                           )}
                           {/* Status actions */}
                           <div className="flex items-center gap-2 pt-2 border-t border-gray-100">
-                            <span className="text-xs text-gray-400 mr-2">标记为:</span>
+                            <span className="text-xs text-pixel-text-muted mr-2">标记为:</span>
                             {(Object.entries(statusConfig) as [LearningStatus, typeof statusConfig[LearningStatus]][]).map(([key, cfg]) => (
                               <Button key={key} variant={w.status === key ? "default" : "outline"} size="sm" className={`h-7 text-xs ${w.status === key ? "" : "bg-white"}`}
                                 onClick={() => updateWordStatus(w.word, key)}>
@@ -312,7 +312,7 @@ export default function VocabularyPage() {
           {/* ===== Groups Tab ===== */}
           <TabsContent value="groups">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-semibold text-gray-900">词汇分组</h2>
+              <h2 className="text-lg font-semibold text-pixel-text">词汇分组</h2>
               <Button variant="outline" size="sm" className="gap-1.5" onClick={() => setShowGroupForm(true)}>
                 <Plus className="w-3.5 h-3.5" /> 新建分组
               </Button>
@@ -339,11 +339,11 @@ export default function VocabularyPage() {
                 <CardContent className="p-4">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
-                      <Bookmark className="w-5 h-5 text-gray-500" />
+                      <Bookmark className="w-5 h-5 text-pixel-text-light" />
                     </div>
                     <div>
-                      <h3 className="font-medium text-gray-900">未分组</h3>
-                      <p className="text-xs text-gray-500">{savedWords.filter((w) => !w.groupId).length} 个单词</p>
+                      <h3 className="font-medium text-pixel-text">未分组</h3>
+                      <p className="text-xs text-pixel-text-light">{savedWords.filter((w) => !w.groupId).length} 个单词</p>
                     </div>
                   </div>
                 </CardContent>
@@ -358,10 +358,10 @@ export default function VocabularyPage() {
                           <BookText className="w-5 h-5 text-white" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="font-medium text-gray-900">{g.name}</h3>
-                          <p className="text-xs text-gray-500">{count} 个单词</p>
+                          <h3 className="font-medium text-pixel-text">{g.name}</h3>
+                          <p className="text-xs text-pixel-text-light">{count} 个单词</p>
                         </div>
-                        <Button variant="ghost" size="icon" className="h-7 w-7 text-gray-400 hover:text-red-500" onClick={(e) => { e.stopPropagation(); removeWordGroup(g.id); }}>
+                        <Button variant="ghost" size="icon" className="h-7 w-7 text-pixel-text-muted hover:text-red-500" onClick={(e) => { e.stopPropagation(); removeWordGroup(g.id); }}>
                           <Trash2 className="w-3.5 h-3.5" />
                         </Button>
                       </div>
@@ -377,8 +377,8 @@ export default function VocabularyPage() {
             {reviewWords.length === 0 ? (
               <div className="text-center py-16">
                 <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
-                <p className="text-gray-700 font-medium">暂无待复习的单词</p>
-                <p className="text-sm text-gray-400 mt-1">所有单词都已按时复习，继续保持！</p>
+                <p className="text-pixel-text font-medium">暂无待复习的单词</p>
+                <p className="text-sm text-pixel-text-muted mt-1">所有单词都已按时复习，继续保持！</p>
               </div>
             ) : (
               <div className="max-w-lg mx-auto">
@@ -390,19 +390,19 @@ export default function VocabularyPage() {
                 <Card className="bg-white border-gray-200 shadow-lg">
                   <CardContent className="p-8 text-center">
                     <div className="mb-6">
-                      <p className="text-3xl font-bold text-gray-900 mb-2">{reviewWords[reviewIndex].word}</p>
-                      {reviewWords[reviewIndex].phonetic && <p className="text-gray-400 font-mono">{reviewWords[reviewIndex].phonetic}</p>}
-                      <Button variant="ghost" size="icon" className="mt-2 text-gray-400 hover:text-blue-600" onClick={() => speak(reviewWords[reviewIndex].word)}>
+                      <p className="text-3xl font-bold text-pixel-text mb-2">{reviewWords[reviewIndex].word}</p>
+                      {reviewWords[reviewIndex].phonetic && <p className="text-pixel-text-muted font-mono">{reviewWords[reviewIndex].phonetic}</p>}
+                      <Button variant="ghost" size="icon" className="mt-2 text-pixel-text-muted hover:text-blue-600" onClick={() => speak(reviewWords[reviewIndex].word)}>
                         <Volume2 className="w-5 h-5" />
                       </Button>
                     </div>
                     {showAnswer ? (
                       <div className="space-y-3 animate-slide-up">
-                        <p className="text-lg text-gray-700">{reviewWords[reviewIndex].meaning}</p>
+                        <p className="text-lg text-pixel-text">{reviewWords[reviewIndex].meaning}</p>
                         {reviewWords[reviewIndex].examples?.[0] && (
-                          <div className="text-sm text-gray-500">
+                          <div className="text-sm text-pixel-text-light">
                             <p>{reviewWords[reviewIndex].examples![0].en}</p>
-                            <p className="text-gray-400">{reviewWords[reviewIndex].examples![0].zh}</p>
+                            <p className="text-pixel-text-muted">{reviewWords[reviewIndex].examples![0].zh}</p>
                           </div>
                         )}
                         <div className="flex justify-center gap-4 pt-4">
@@ -432,10 +432,10 @@ export default function VocabularyPage() {
             {!testActive && !testDone && (
               <div className="max-w-md mx-auto text-center">
                 <Target className="w-12 h-12 text-blue-500 mx-auto mb-4" />
-                <h2 className="text-xl font-bold text-gray-900 mb-2">拼写测试</h2>
-                <p className="text-gray-500 mb-6">看中文释义，拼写英文单词</p>
+                <h2 className="text-xl font-bold text-pixel-text mb-2">拼写测试</h2>
+                <p className="text-pixel-text-light mb-6">看中文释义，拼写英文单词</p>
                 {savedWords.length < 3 ? (
-                  <p className="text-gray-400">至少需要 3 个单词才能开始测试</p>
+                  <p className="text-pixel-text-muted">至少需要 3 个单词才能开始测试</p>
                 ) : (
                   <div className="space-y-3">
                     <div className="flex gap-2 justify-center">
@@ -464,8 +464,8 @@ export default function VocabularyPage() {
                 <Badge variant="secondary" className="mb-4">{testIndex + 1} / {testWords.length}</Badge>
                 <Card className="bg-white border-gray-200 shadow-lg">
                   <CardContent className="p-8">
-                    <p className="text-lg text-gray-700 mb-2">{testWords[testIndex].meaning}</p>
-                    {testWords[testIndex].phonetic && <p className="text-sm text-gray-400 font-mono mb-4">{testWords[testIndex].phonetic}</p>}
+                    <p className="text-lg text-pixel-text mb-2">{testWords[testIndex].meaning}</p>
+                    {testWords[testIndex].phonetic && <p className="text-sm text-pixel-text-muted font-mono mb-4">{testWords[testIndex].phonetic}</p>}
                     <Input
                       value={testAnswer}
                       onChange={(e) => setTestAnswer(e.target.value)}
@@ -483,14 +483,14 @@ export default function VocabularyPage() {
             {testDone && (
               <div className="max-w-md mx-auto text-center">
                 <TrendingUp className="w-12 h-12 text-green-500 mx-auto mb-4" />
-                <h2 className="text-xl font-bold text-gray-900 mb-2">测试完成</h2>
-                <p className="text-3xl font-bold text-gray-900 mb-4">
+                <h2 className="text-xl font-bold text-pixel-text mb-2">测试完成</h2>
+                <p className="text-3xl font-bold text-pixel-text mb-4">
                   {testResults.filter((r) => r.correct).length} / {testResults.length}
                 </p>
                 <div className="space-y-2 mb-6">
                   {testResults.map((r, i) => (
                     <div key={i} className={`flex items-center justify-between p-2 rounded-lg ${r.correct ? "bg-green-50" : "bg-red-50"}`}>
-                      <span className="text-sm text-gray-700">{testWords[i]?.meaning}</span>
+                      <span className="text-sm text-pixel-text">{testWords[i]?.meaning}</span>
                       <div className="flex items-center gap-2">
                         {r.correct ? (
                           <CheckCircle className="w-4 h-4 text-green-500" />

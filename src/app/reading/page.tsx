@@ -241,13 +241,13 @@ export default function ReadingPage() {
   return (
     <div className="min-h-screen pixel-grid" style={{ background: "var(--pixel-bg)" }}>
       <Navbar />
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
+      <main id="main-content" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         <div className="text-center mb-8 section-enter">
           <div className="w-14 h-14 bg-rose-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <BookMarked className="w-7 h-7 text-rose-600" />
           </div>
-          <h1 className="text-3xl font-bold mb-2 tracking-tight" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(12px, 3vw, 18px)", color: "var(--pixel-text)", lineHeight: "2" }}>智能阅读</h1>
-          <p className="text-gray-500">
+          <h1 className="font-pixel-title" style={{ color: "var(--pixel-text)" }}>智能阅读</h1>
+          <p className="text-pixel-text-light">
             {isConfigured ? "AI 驱动的阅读助手，智能标注与讲解" : "导入文章，获取词汇标注与翻译"}
           </p>
         </div>
@@ -257,11 +257,11 @@ export default function ReadingPage() {
             <Card className="bg-white border-gray-200 shadow-sm">
               <CardContent className="p-6">
                 <div className="flex gap-2 mb-4">
-                  <Button variant="outline" size="sm" className="gap-2 text-gray-400" disabled>
+                  <Button variant="outline" size="sm" className="gap-2 text-pixel-text-muted" disabled>
                     <Upload className="w-4 h-4" />
                     上传文档（开发中）
                   </Button>
-                  <Button variant="outline" size="sm" className="gap-2 text-gray-400" disabled>
+                  <Button variant="outline" size="sm" className="gap-2 text-pixel-text-muted" disabled>
                     <Globe className="w-4 h-4" />
                     输入 URL（开发中）
                   </Button>
@@ -287,7 +287,7 @@ export default function ReadingPage() {
 
             {/* Built-in materials */}
             <div className="section-enter section-enter-2">
-              <h3 className="text-sm font-semibold text-gray-500 mb-3 text-center">内置阅读材料</h3>
+              <h3 className="text-sm font-semibold text-pixel-text-light mb-3 text-center">内置阅读材料</h3>
               <div className="grid sm:grid-cols-2 gap-3">
                 {builtInMaterials.map((m) => (
                   <button
@@ -296,13 +296,13 @@ export default function ReadingPage() {
                     className="text-left p-4 bg-white border border-gray-200 rounded-xl hover:border-blue-300 hover:shadow-sm transition-all"
                   >
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="font-medium text-gray-900 text-sm">{m.title}</span>
+                      <span className="font-medium text-pixel-text text-sm">{m.title}</span>
                       <Badge variant="secondary" className={`text-xs ${levelColors[m.level]}`}>{m.cefrLevel}</Badge>
                     </div>
-                    <p className="text-xs text-gray-500 line-clamp-2">{m.content.substring(0, 80)}...</p>
+                    <p className="text-xs text-pixel-text-light line-clamp-2">{m.content.substring(0, 80)}...</p>
                     <div className="flex items-center gap-2 mt-2">
                       <Badge variant="outline" className="text-xs">{m.category}</Badge>
-                      <span className="text-xs text-gray-400">{m.content.split(/\s+/).length} 词</span>
+                      <span className="text-xs text-pixel-text-muted">{m.content.split(/\s+/).length} 词</span>
                     </div>
                   </button>
                 ))}
@@ -316,7 +316,7 @@ export default function ReadingPage() {
               <Card className="bg-white border-gray-200 shadow-sm">
                 <CardHeader className="pb-4">
                   <div className="flex items-center justify-between">
-                    <h2 className="text-lg font-semibold text-gray-900">文章内容</h2>
+                    <h2 className="text-lg font-semibold text-pixel-text">文章内容</h2>
                     <div className="flex items-center gap-2">
                       {analysis?.difficulty && (
                         <Badge variant="secondary" className={cefrColors[analysis.difficulty.cefrLevel] || ""}>
@@ -359,7 +359,7 @@ export default function ReadingPage() {
                 </CardHeader>
                 <Separator />
                 <CardContent className="pt-6">
-                  <div className="text-base leading-relaxed text-gray-900">
+                  <div className="text-base leading-relaxed text-pixel-text">
                     {words.map((word, i) => {
                       if (isVocab(word)) {
                         const vocab = getVocab(word);
@@ -377,18 +377,18 @@ export default function ReadingPage() {
                             {selectedWord === word && vocab && (
                               <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg p-4 z-10">
                                 <div className="flex items-center justify-between mb-2">
-                                  <span className="font-semibold text-gray-900">{vocab.word}</span>
+                                  <span className="font-semibold text-pixel-text">{vocab.word}</span>
                                   <Button
                                     variant="ghost"
                                     size="icon"
                                     className="h-7 w-7"
                                     onClick={(e) => { e.stopPropagation(); toggleSave(word); }}
                                   >
-                                    <Bookmark className={`w-4 h-4 ${hasWord(clean) ? "fill-blue-600 text-blue-600" : "text-gray-400"}`} />
+                                    <Bookmark className={`w-4 h-4 ${hasWord(clean) ? "fill-blue-600 text-blue-600" : "text-pixel-text-muted"}`} />
                                   </Button>
                                 </div>
-                                <span className="block text-xs text-gray-400 font-mono mb-1">{vocab.phonetic}</span>
-                                <span className="block text-sm text-gray-600">{vocab.meaning}</span>
+                                <span className="block text-xs text-pixel-text-muted font-mono mb-1">{vocab.phonetic}</span>
+                                <span className="block text-sm text-pixel-text-light">{vocab.meaning}</span>
                                 {vocab.difficulty && (
                                   <Badge variant="secondary" className={`mt-2 text-xs ${cefrColors[vocab.difficulty] || ""}`}>{vocab.difficulty}</Badge>
                                 )}
@@ -403,7 +403,7 @@ export default function ReadingPage() {
 
                   {/* Sentence selector */}
                   <div className="mt-6 pt-4 border-t border-gray-100">
-                    <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">点击句子进行深度分析</h3>
+                    <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-2">点击句子进行深度分析</h3>
                     <div className="space-y-1.5">
                       {sentences.map((s, i) => (
                         <button
@@ -468,8 +468,8 @@ export default function ReadingPage() {
 
                   {/* Translation */}
                   <div className="mt-8 pt-6 border-t border-gray-100">
-                    <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">段落翻译</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-3">段落翻译</h3>
+                    <p className="text-pixel-text-light text-sm leading-relaxed">
                       {analysis?.translation || "那只敏捷的棕色狐狸跳过了懒惰的狗。这个全字母句包含了英语字母表中的每一个字母至少一次。全字母句常被用来展示字体样本和测试键盘。"}
                     </p>
                   </div>
@@ -477,7 +477,7 @@ export default function ReadingPage() {
                   {/* Grammar Points */}
                   {analysis?.grammar_points && analysis.grammar_points.length > 0 && (
                     <div className="mt-6 pt-6 border-t border-gray-100">
-                      <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">语法要点</h3>
+                      <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-3">语法要点</h3>
                       <div className="space-y-3">
                         {analysis.grammar_points.map((point, i) => (
                           <div key={i} className="p-3 bg-blue-50 rounded-lg border border-blue-100">
@@ -553,7 +553,7 @@ export default function ReadingPage() {
               <Card className="bg-white border-gray-200 shadow-sm sticky top-20">
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">词汇表</h3>
+                    <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider">词汇表</h3>
                     {savedWordsList.some((w) => hasWord(w)) && (
                       <Button variant="ghost" size="sm" className="h-7 text-xs text-blue-600 hover:text-blue-700 gap-1">
                         <Download className="w-3 h-3" />
@@ -577,11 +577,11 @@ export default function ReadingPage() {
                           onClick={() => toggleSave(w)}
                         >
                           <div className="flex items-center justify-between">
-                            <span className="font-medium text-gray-900 text-sm">{vocab.word}</span>
-                            <Bookmark className={`w-3.5 h-3.5 ${saved ? "fill-blue-600 text-blue-600" : "text-gray-400"}`} />
+                            <span className="font-medium text-pixel-text text-sm">{vocab.word}</span>
+                            <Bookmark className={`w-3.5 h-3.5 ${saved ? "fill-blue-600 text-blue-600" : "text-pixel-text-muted"}`} />
                           </div>
-                          <span className="text-xs text-gray-400 font-mono">{vocab.phonetic}</span>
-                          <span className="block text-xs text-gray-500 mt-0.5">{vocab.meaning}</span>
+                          <span className="text-xs text-pixel-text-muted font-mono">{vocab.phonetic}</span>
+                          <span className="block text-xs text-pixel-text-light mt-0.5">{vocab.meaning}</span>
                           {vocab.difficulty && (
                             <Badge variant="secondary" className={`mt-1 text-xs ${cefrColors[vocab.difficulty] || ""}`}>{vocab.difficulty}</Badge>
                           )}

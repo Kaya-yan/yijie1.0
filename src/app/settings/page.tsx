@@ -91,13 +91,13 @@ export default function SettingsPage() {
   return (
     <div className="min-h-screen pixel-grid" style={{ background: "var(--pixel-bg)" }}>
       <Navbar />
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
+      <main id="main-content" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         <div className="text-center mb-8 section-enter">
           <div className="w-14 h-14 flex items-center justify-center mx-auto mb-4 pixel-border" style={{ background: "var(--pixel-blue)" }}>
             <Settings className="w-7 h-7 text-white" />
           </div>
-          <h1 className="text-3xl font-bold mb-2 tracking-tight" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(12px, 3vw, 18px)", color: "var(--pixel-text)", lineHeight: "2" }}>API 设置</h1>
-          <p className="text-gray-500">配置大模型 API，连接 AI 服务</p>
+          <h1 className="font-pixel-title mb-2" style={{ color: "var(--pixel-text)" }}>API 设置</h1>
+          <p className="text-pixel-text-light">配置大模型 API，连接 AI 服务</p>
           <div className="flex items-center justify-center gap-2 mt-2">
             <Badge variant="secondary" className={configuredCount > 0 ? "bg-green-50 text-green-700" : "bg-amber-50 text-amber-700"}>
               {configuredCount > 0 ? (
@@ -141,8 +141,8 @@ export default function SettingsPage() {
                           <Cpu className="w-5 h-5 text-slate-600" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900">{model.name}</h3>
-                          <p className="text-sm text-gray-500">{model.provider}</p>
+                          <h3 className="font-semibold text-pixel-text">{model.name}</h3>
+                          <p className="text-sm text-pixel-text-light">{model.provider}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
@@ -171,7 +171,7 @@ export default function SettingsPage() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-8 w-8 text-gray-400 hover:text-red-500"
+                          className="h-8 w-8 text-pixel-text-muted hover:text-red-500"
                           onClick={() => handleRemoveModel(model.id)}
                         >
                           <Trash2 className="w-4 h-4" />
@@ -181,7 +181,7 @@ export default function SettingsPage() {
 
                     <div className="space-y-3">
                       <div>
-                        <label className="block text-xs font-medium text-gray-500 mb-1.5">API 地址</label>
+                        <label className="block text-xs font-medium text-pixel-text-light mb-1.5">API 地址</label>
                         <Input
                           value={model.baseUrl}
                           onChange={(e) => handleUpdateModel(model.id, "baseUrl", e.target.value)}
@@ -190,7 +190,7 @@ export default function SettingsPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-medium text-gray-500 mb-1.5">API Key</label>
+                        <label className="block text-xs font-medium text-pixel-text-light mb-1.5">API Key</label>
                         <div className="relative">
                           <Input
                             type={showApiKey[model.id] ? "text" : "password"}
@@ -202,7 +202,7 @@ export default function SettingsPage() {
                           <Button
                             variant="ghost"
                             size="icon"
-                            className="absolute right-0 top-0 h-10 w-10 text-gray-400"
+                            className="absolute right-0 top-0 h-10 w-10 text-pixel-text-muted"
                             onClick={() =>
                               setShowApiKey((prev) => ({ ...prev, [model.id]: !prev[model.id] }))
                             }
@@ -265,7 +265,7 @@ export default function SettingsPage() {
               <CardContent className="space-y-4">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-medium text-gray-500 mb-1.5">模型名称</label>
+                    <label className="block text-xs font-medium text-pixel-text-light mb-1.5">模型名称</label>
                     <Input
                       value={customModel.name}
                       onChange={(e) => setCustomModel((prev) => ({ ...prev, name: e.target.value }))}
@@ -274,7 +274,7 @@ export default function SettingsPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium text-gray-500 mb-1.5">提供商</label>
+                    <label className="block text-xs font-medium text-pixel-text-light mb-1.5">提供商</label>
                     <Input
                       value={customModel.provider}
                       onChange={(e) => setCustomModel((prev) => ({ ...prev, provider: e.target.value }))}
@@ -284,7 +284,7 @@ export default function SettingsPage() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-gray-500 mb-1.5">API 地址</label>
+                  <label className="block text-xs font-medium text-pixel-text-light mb-1.5">API 地址</label>
                   <Input
                     value={customModel.baseUrl}
                     onChange={(e) => setCustomModel((prev) => ({ ...prev, baseUrl: e.target.value }))}
@@ -293,7 +293,7 @@ export default function SettingsPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-gray-500 mb-1.5">API Key</label>
+                  <label className="block text-xs font-medium text-pixel-text-light mb-1.5">API Key</label>
                   <Input
                     type="password"
                     value={customModel.apiKey}
@@ -332,7 +332,7 @@ export default function SettingsPage() {
         </Card>
 
         {/* Security Notice */}
-        <div className="mt-4 flex items-center gap-2 text-xs text-gray-400 justify-center">
+        <div className="mt-4 flex items-center gap-2 text-xs text-pixel-text-muted justify-center">
           <AlertCircle className="w-3 h-3" />
           <span>API Key 存储在浏览器本地，不会上传到任何服务器。请勿在公共设备上保存敏感密钥。</span>
         </div>

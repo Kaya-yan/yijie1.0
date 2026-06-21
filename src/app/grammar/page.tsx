@@ -197,13 +197,13 @@ export default function GrammarPage() {
   return (
     <div className="min-h-screen pixel-grid" style={{ background: "var(--pixel-bg)" }}>
       <Navbar />
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
+      <main id="main-content" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         <div className="text-center mb-8 section-enter">
           <div className="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <Lightbulb className="w-7 h-7 text-amber-600" />
           </div>
-          <h1 className="text-3xl font-bold mb-2 tracking-tight" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(12px, 3vw, 18px)", color: "var(--pixel-text)", lineHeight: "2" }}>AI 语法知识点</h1>
-          <p className="text-gray-500">
+          <h1 className="font-pixel-title" style={{ color: "var(--pixel-text)" }}>AI 语法知识点</h1>
+          <p className="text-pixel-text-light">
             {isConfigured ? "AI 驱动的语法分析，深度讲解语法要点" : "输入句子，分析语法结构并提供讲解"}
           </p>
         </div>
@@ -218,8 +218,8 @@ export default function GrammarPage() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                   activeTab === tab.id
-                    ? "bg-white text-gray-900 shadow-sm"
-                    : "text-gray-500 hover:text-gray-700"
+                    ? "bg-white text-pixel-text shadow-sm"
+                    : "text-pixel-text-light hover:text-pixel-text"
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -272,7 +272,7 @@ export default function GrammarPage() {
               <div className="flex items-center justify-center py-16">
                 <div className="flex flex-col items-center gap-2">
                   <Loader2 className="w-6 h-6 text-blue-500 animate-spin" />
-                  <span className="text-sm text-gray-500">AI 分析中...</span>
+                  <span className="text-sm text-pixel-text-light">AI 分析中...</span>
                 </div>
               </div>
             )}
@@ -287,7 +287,7 @@ export default function GrammarPage() {
             {analyzed && !loading && !error && (
               <div className="space-y-4">
                 <div className="flex items-center justify-between mb-2">
-                  <h2 className="text-lg font-semibold text-gray-900">分析结果</h2>
+                  <h2 className="text-lg font-semibold text-pixel-text">分析结果</h2>
                   <Badge variant="secondary">{results.length} 项发现</Badge>
                 </div>
                 {results.map((item, i) => {
@@ -316,8 +316,8 @@ export default function GrammarPage() {
                         <div className="mb-3">
                           <Badge variant="secondary" className="bg-blue-50 text-blue-700 font-mono">{item.highlight}</Badge>
                         </div>
-                        <p className="font-medium text-gray-900 mb-2">{item.message}</p>
-                        <p className="text-sm text-gray-500">{item.explanation}</p>
+                        <p className="font-medium text-pixel-text mb-2">{item.message}</p>
+                        <p className="text-sm text-pixel-text-light">{item.explanation}</p>
                       </CardContent>
                     </Card>
                   );
@@ -330,8 +330,8 @@ export default function GrammarPage() {
                 <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-8 h-8 text-green-500" />
                 </div>
-                <p className="text-gray-900 font-medium mb-1">句子语法正确</p>
-                <p className="text-sm text-gray-500">暂无发现错误</p>
+                <p className="text-pixel-text font-medium mb-1">句子语法正确</p>
+                <p className="text-sm text-pixel-text-light">暂无发现错误</p>
               </div>
             )}
           </>
@@ -343,15 +343,15 @@ export default function GrammarPage() {
             {grammarMistakes.length === 0 ? (
               <div className="text-center py-16">
                 <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <BookX className="w-6 h-6 text-gray-400" />
+                  <BookX className="w-6 h-6 text-pixel-text-muted" />
                 </div>
-                <p className="text-gray-900 font-medium mb-1">错题本为空</p>
-                <p className="text-sm text-gray-500">在句子分析中发现错误时，点击"保存到错题本"</p>
+                <p className="text-pixel-text font-medium mb-1">错题本为空</p>
+                <p className="text-sm text-pixel-text-light">在句子分析中发现错误时，点击"保存到错题本"</p>
               </div>
             ) : (
               <>
                 <div className="flex items-center justify-between">
-                  <h2 className="text-lg font-semibold text-gray-900">错题记录</h2>
+                  <h2 className="text-lg font-semibold text-pixel-text">错题记录</h2>
                   <div className="flex items-center gap-2">
                     <Badge variant="secondary">{grammarMistakes.length} 条</Badge>
                     <Badge variant="secondary" className="bg-green-50 text-green-700">
@@ -378,17 +378,17 @@ export default function GrammarPage() {
                               <Badge variant="secondary" className="bg-green-50 text-green-700 text-xs">已掌握</Badge>
                             )}
                           </div>
-                          <p className="text-gray-900 font-mono text-sm mb-2">{mistake.sentence}</p>
+                          <p className="text-pixel-text font-mono text-sm mb-2">{mistake.sentence}</p>
                           {mistake.errorHighlight && (
                             <Badge variant="outline" className="font-mono text-xs mb-2">{mistake.errorHighlight}</Badge>
                           )}
-                          <p className="text-sm text-gray-500">{mistake.explanation}</p>
+                          <p className="text-sm text-pixel-text-light">{mistake.explanation}</p>
                         </div>
                         <div className="flex items-center gap-1 shrink-0">
                           <Button
                             variant="ghost"
                             size="icon"
-                            className="h-8 w-8 text-gray-400 hover:text-green-600"
+                            className="h-8 w-8 text-pixel-text-muted hover:text-green-600"
                             onClick={() => markMistakeMastered(mistake.id, !mistake.mastered)}
                             title={mistake.mastered ? "标记为未掌握" : "标记为已掌握"}
                           >
@@ -397,7 +397,7 @@ export default function GrammarPage() {
                           <Button
                             variant="ghost"
                             size="icon"
-                            className="h-8 w-8 text-gray-400 hover:text-red-600"
+                            className="h-8 w-8 text-pixel-text-muted hover:text-red-600"
                             onClick={() => removeGrammarMistake(mistake.id)}
                             title="删除"
                           >
@@ -420,8 +420,8 @@ export default function GrammarPage() {
               <>
                 <Card className="bg-white border-gray-200 shadow-sm">
                   <CardHeader>
-                    <h3 className="text-lg font-semibold text-gray-900">语法练习</h3>
-                    <p className="text-sm text-gray-500">
+                    <h3 className="text-lg font-semibold text-pixel-text">语法练习</h3>
+                    <p className="text-sm text-pixel-text-light">
                       {getUnmasteredMistakes().length > 0
                         ? `基于你的 ${getUnmasteredMistakes().length} 条错题生成针对性练习`
                         : "生成通用语法练习题，巩固语法知识"}
@@ -458,7 +458,7 @@ export default function GrammarPage() {
                 {grammarPracticeHistory.length > 0 && (
                   <Card className="bg-white border-gray-200 shadow-sm">
                     <CardHeader>
-                      <h3 className="text-sm font-semibold text-gray-900">最近练习记录</h3>
+                      <h3 className="text-sm font-semibold text-pixel-text">最近练习记录</h3>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-2">
@@ -469,7 +469,7 @@ export default function GrammarPage() {
                             ) : (
                               <AlertCircle className="w-4 h-4 text-red-500 shrink-0" />
                             )}
-                            <p className="text-sm text-gray-700 line-clamp-1 flex-1">{record.question}</p>
+                            <p className="text-sm text-pixel-text line-clamp-1 flex-1">{record.question}</p>
                             <Badge variant="secondary" className="text-xs shrink-0">
                               {record.type === "fill-blank" ? "填空" : "选择"}
                             </Badge>
@@ -488,7 +488,7 @@ export default function GrammarPage() {
                       <RotateCcw className="w-3.5 h-3.5" />
                       返回
                     </Button>
-                    <h2 className="text-lg font-semibold text-gray-900">
+                    <h2 className="text-lg font-semibold text-pixel-text">
                       第 {currentQ + 1} / {practiceQuestions.length} 题
                     </h2>
                   </div>
@@ -499,7 +499,7 @@ export default function GrammarPage() {
 
                 <Card className="bg-white border-gray-200 shadow-sm">
                   <CardContent className="p-6">
-                    <p className="text-lg text-gray-900 mb-6 font-medium">
+                    <p className="text-lg text-pixel-text mb-6 font-medium">
                       {practiceQuestions[currentQ].question}
                     </p>
 
@@ -553,7 +553,7 @@ export default function GrammarPage() {
                             {userAnswer.trim().toUpperCase() === practiceQuestions[currentQ].answer.toUpperCase() ? "回答正确!" : `正确答案: ${practiceQuestions[currentQ].answer}`}
                           </span>
                         </div>
-                        <p className="text-sm text-gray-600">{practiceQuestions[currentQ].explanation}</p>
+                        <p className="text-sm text-pixel-text-light">{practiceQuestions[currentQ].explanation}</p>
                       </div>
                     )}
 
@@ -575,8 +575,8 @@ export default function GrammarPage() {
                           ) : (
                             <div className="text-center w-full">
                               <Separator className="mb-4" />
-                              <p className="text-lg font-semibold text-gray-900 mb-2">练习完成!</p>
-                              <p className="text-gray-500 mb-4">
+                              <p className="text-lg font-semibold text-pixel-text mb-2">练习完成!</p>
+                              <p className="text-pixel-text-light mb-4">
                                 正确率: {practiceScore.correct}/{practiceScore.total} ({Math.round((practiceScore.correct / practiceScore.total) * 100)}%)
                               </p>
                               <Button onClick={handleGeneratePractice} className="gap-2">

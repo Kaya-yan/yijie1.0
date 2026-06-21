@@ -551,27 +551,27 @@ export default function GamePage() {
   return (
     <div className="min-h-screen pixel-grid" style={{ background: "var(--pixel-bg)" }}>
       <Navbar />
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
+      <main id="main-content" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         <div className="text-center mb-8">
           <div className="w-14 h-14 flex items-center justify-center mx-auto mb-4 pixel-border" style={{ background: "var(--pixel-blue)" }}>
             <Gamepad2 className="w-7 h-7 text-white" />
           </div>
-          <h1 className="text-3xl font-bold mb-2 tracking-tight" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(12px, 3vw, 18px)", color: "var(--pixel-text)", lineHeight: "2" }}>恐龙跑酷</h1>
-          <p style={{ fontFamily: "'VT323', monospace", fontSize: "20px", color: "var(--pixel-text-light)" }}>按空格键跳跃，躲避障碍物！</p>
+          <h1 className="font-pixel-title mb-2" style={{ color: "var(--pixel-text)" }}>恐龙跑酷</h1>
+          <p className="font-pixel-body" style={{ fontSize: "20px", color: "var(--pixel-text-light)" }}>按空格键跳跃，躲避障碍物！</p>
         </div>
 
         <div className="flex items-center justify-center gap-4 mb-6">
           <Card className="bg-white border-gray-200 shadow-sm">
             <CardContent className="flex items-center gap-2 px-4 py-2.5">
               <Trophy className="w-4 h-4 text-amber-500" />
-              <span className="text-sm text-gray-500">最高分:</span>
-              <span className="font-bold text-gray-900">{highScore}</span>
+              <span className="text-sm text-pixel-text-light">最高分:</span>
+              <span className="font-bold text-pixel-text">{highScore}</span>
             </CardContent>
           </Card>
           <Card className="bg-white border-gray-200 shadow-sm">
             <CardContent className="flex items-center gap-2 px-4 py-2.5">
-              <span className="text-sm text-gray-500">当前:</span>
-              <span className="font-bold text-gray-900">{score}</span>
+              <span className="text-sm text-pixel-text-light">当前:</span>
+              <span className="font-bold text-pixel-text">{score}</span>
             </CardContent>
           </Card>
           <Button variant="outline" size="icon" onClick={toggleSound} className="h-10 w-10">
@@ -590,7 +590,7 @@ export default function GamePage() {
         </div>
 
         <div className="text-center mt-4">
-          <Badge variant="secondary" className="text-gray-500">
+          <Badge variant="secondary" className="text-pixel-text-light">
             {!started && !gameOver && "点击画面或按空格键开始游戏"}
             {gameOver && "游戏结束！点击画面或按空格键重新开始"}
             {started && !gameOver && "游戏中..."}
@@ -600,8 +600,8 @@ export default function GamePage() {
         <div className="mt-8 max-w-md mx-auto">
           <Card className="bg-white border-gray-200 shadow-sm">
             <CardContent className="p-4">
-              <h3 className="text-sm font-semibold text-gray-700 mb-3">操作说明</h3>
-              <div className="grid grid-cols-2 gap-2 text-sm text-gray-600">
+              <h3 className="text-sm font-semibold text-pixel-text mb-3">操作说明</h3>
+              <div className="grid grid-cols-2 gap-2 text-sm text-pixel-text-light">
                 <div className="flex items-center gap-2">
                   <kbd className="px-2 py-1 bg-gray-100 rounded text-xs font-mono">空格</kbd>
                   <span>/ ↑ 跳跃</span>

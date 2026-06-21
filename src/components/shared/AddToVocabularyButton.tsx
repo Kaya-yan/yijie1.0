@@ -63,7 +63,7 @@ export function AddToVocabularyButton({
       <Button
         variant="ghost"
         size="icon"
-        className={`h-8 w-8 ${saved ? "text-blue-600" : "text-gray-400 hover:text-blue-600"}`}
+        className={`h-8 w-8 ${saved ? "text-blue-600" : "text-pixel-text-muted hover:text-blue-600"}`}
         onClick={handleClick}
         title={saved ? "从生词本移除" : "添加到生词本"}
       >
@@ -77,7 +77,7 @@ export function AddToVocabularyButton({
       <button
         onClick={handleClick}
         className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium transition-colors ${
-          saved ? "bg-blue-100 text-blue-700" : "bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600"
+          saved ? "bg-blue-100 text-blue-700" : "bg-gray-100 text-pixel-text-light hover:bg-blue-50 hover:text-blue-600"
         }`}
       >
         {justAdded ? <Check className="w-3 h-3" /> : saved ? <Bookmark className="w-3 h-3 fill-current" /> : <Plus className="w-3 h-3" />}
