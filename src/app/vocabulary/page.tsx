@@ -142,7 +142,7 @@ export default function VocabularyPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50/50">
+    <div className="min-h-screen pixel-grid" style={{ background: "var(--pixel-bg)" }}>
       <Navbar />
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         <PageHeader icon={BookText} title="生词本" subtitle="管理你的词汇，科学复习" color="blue" />

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Lock, ArrowRight, Sparkles, Languages, BookOpen, Brain } from "lucide-react";
+import { Languages, BookOpen, Brain, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -36,67 +36,66 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden bg-slate-950">
-      {/* Background decorations */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-slate-800/40 rounded-full blur-[100px]" />
-        <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-slate-800/30 rounded-full blur-[100px]" />
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
+    <div className="min-h-screen flex flex-col relative overflow-hidden pixel-grid scanlines" style={{ background: "var(--pixel-bg)" }}>
+      {/* Pixel corner decorations */}
+      <div className="absolute top-4 left-4 w-4 h-4" style={{ background: "var(--pixel-border)" }} />
+      <div className="absolute top-4 right-4 w-4 h-4" style={{ background: "var(--pixel-border)" }} />
+      <div className="absolute bottom-4 left-4 w-4 h-4" style={{ background: "var(--pixel-border)" }} />
+      <div className="absolute bottom-4 right-4 w-4 h-4" style={{ background: "var(--pixel-border)" }} />
 
       {/* Header */}
       <header className="relative z-10 flex items-center justify-between px-8 py-6">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm border border-white/10">
-            <Languages className="w-5 h-5 text-white" strokeWidth={1.8} />
+          <div className="w-10 h-10 flex items-center justify-center pixel-border" style={{ background: "var(--pixel-blue)" }}>
+            <span className="text-white text-xs" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px" }}>YJ</span>
           </div>
-          <span className="text-xl font-bold text-white tracking-tight">译界</span>
+          <span className="text-xl font-bold tracking-tight" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "14px", color: "var(--pixel-text)" }}>
+            译界
+          </span>
         </div>
-        <div className="flex items-center gap-2 text-slate-400 text-sm">
-          <Sparkles className="w-4 h-4" />
-          <span>多语言智能聚合平台</span>
+        <div className="flex items-center gap-2 text-sm" style={{ color: "var(--pixel-text-light)" }}>
+          <span style={{ fontFamily: "'VT323', monospace", fontSize: "18px" }}>v1.0</span>
         </div>
       </header>
 
       {/* Main login card */}
       <main className="flex-1 flex items-center justify-center relative z-10 px-4">
         <div className="w-full max-w-md animate-scale-in">
-          <Card className="bg-white/[0.97] backdrop-blur-xl border-white/20 shadow-2xl shadow-black/20">
+          <Card className="pixel-card bg-white">
             <CardContent className="p-8">
               <div className="text-center mb-8">
-                <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-slate-900/20 animate-float">
-                  <Languages className="w-8 h-8 text-white" strokeWidth={1.5} />
+                {/* Pixel art logo */}
+                <div className="mx-auto mb-5 animate-float" style={{ fontFamily: "'Press Start 2P', monospace" }}>
+                  <div className="text-4xl mb-1" style={{ color: "var(--pixel-blue)", letterSpacing: "4px" }}>YI JIE</div>
+                  <div className="text-xs" style={{ color: "var(--pixel-text-muted)" }}>[ 译 界 ]</div>
                 </div>
-                <h1 className="text-2xl font-bold text-gray-900 mb-2">欢迎回来</h1>
-                <p className="text-gray-500 text-sm">请输入密码以进入平台</p>
+                <h1 className="text-2xl font-bold mb-2" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "14px", color: "var(--pixel-text)" }}>
+                  WELCOME
+                </h1>
+                <p style={{ fontFamily: "'VT323', monospace", fontSize: "20px", color: "var(--pixel-text-light)" }}>
+                  输入密码以进入平台
+                </p>
               </div>
 
               <form onSubmit={handleLogin} className="space-y-5">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    访问密码
+                  <label className="block text-sm font-medium mb-2" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "9px", color: "var(--pixel-text-light)" }}>
+                    PASSWORD
                   </label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2" style={{ fontFamily: "'VT323', monospace", fontSize: "20px", color: "var(--pixel-text-muted)" }}>{">"}</span>
                     <Input
                       type="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="请输入密码"
-                      className="pl-10 h-11 bg-gray-50 border-gray-200 focus:bg-white transition-colors"
+                      className="pl-10 h-12 pixel-input"
                       autoFocus
                     />
                   </div>
                   {error && (
-                    <p className="mt-2 text-sm text-red-500 flex items-center gap-1">
-                      <span className="inline-block w-1 h-1 bg-red-500 rounded-full" />
+                    <p className="mt-2 text-sm flex items-center gap-1" style={{ fontFamily: "'VT323', monospace", fontSize: "18px", color: "var(--pixel-red)" }}>
+                      <span className="inline-block w-2 h-2" style={{ background: "var(--pixel-red)" }} />
                       {error}
                     </p>
                   )}
@@ -105,13 +104,13 @@ export default function LoginPage() {
                 <Button
                   type="submit"
                   disabled={loading || !password}
-                  className="w-full h-11 bg-gray-900 hover:bg-gray-800 text-white font-medium shadow-sm btn-press transition-all duration-200"
+                  className="pixel-btn w-full h-12"
                 >
                   {loading ? (
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px" }} className="animate-pulse">LOADING...</span>
                   ) : (
                     <>
-                      进入平台
+                      <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px" }}>START</span>
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </>
                   )}
@@ -119,26 +118,26 @@ export default function LoginPage() {
               </form>
 
               {/* Features preview */}
-              <div className="mt-8 pt-6 border-t border-gray-100">
-                <div className="flex items-center justify-center gap-6 text-gray-400">
-                  <div className="flex items-center gap-1.5 text-xs">
-                    <Languages className="w-3.5 h-3.5" />
-                    <span>翻译</span>
+              <div className="mt-8 pt-6 pixel-divider">
+                <div className="flex items-center justify-center gap-6" style={{ color: "var(--pixel-text-muted)" }}>
+                  <div className="flex items-center gap-1.5">
+                    <Languages className="w-4 h-4" />
+                    <span style={{ fontFamily: "'VT323', monospace", fontSize: "18px" }}>翻译</span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-xs">
-                    <BookOpen className="w-3.5 h-3.5" />
-                    <span>词典</span>
+                  <div className="flex items-center gap-1.5">
+                    <BookOpen className="w-4 h-4" />
+                    <span style={{ fontFamily: "'VT323', monospace", fontSize: "18px" }}>词典</span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-xs">
-                    <Brain className="w-3.5 h-3.5" />
-                    <span>AI</span>
+                  <div className="flex items-center gap-1.5">
+                    <Brain className="w-4 h-4" />
+                    <span style={{ fontFamily: "'VT323', monospace", fontSize: "18px" }}>AI</span>
                   </div>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <p className="text-center text-blue-200/40 text-xs mt-6">
+          <p className="text-center text-xs mt-6" style={{ fontFamily: "'VT323', monospace", fontSize: "16px", color: "var(--pixel-text-muted)" }}>
             译界 - 多语言智能聚合平台
           </p>
         </div>

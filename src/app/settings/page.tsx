@@ -89,14 +89,14 @@ export default function SettingsPage() {
   const configuredCount = models.filter((m) => m.apiKey).length;
 
   return (
-    <div className="min-h-screen bg-gray-50/50">
+    <div className="min-h-screen pixel-grid" style={{ background: "var(--pixel-bg)" }}>
       <Navbar />
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         <div className="text-center mb-8 section-enter">
-          <div className="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <div className="w-14 h-14 flex items-center justify-center mx-auto mb-4 pixel-border" style={{ background: "var(--pixel-blue)" }}>
             <Settings className="w-7 h-7 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">API 设置</h1>
+          <h1 className="text-3xl font-bold mb-2 tracking-tight" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(12px, 3vw, 18px)", color: "var(--pixel-text)", lineHeight: "2" }}>API 设置</h1>
           <p className="text-gray-500">配置大模型 API，连接 AI 服务</p>
           <div className="flex items-center justify-center gap-2 mt-2">
             <Badge variant="secondary" className={configuredCount > 0 ? "bg-green-50 text-green-700" : "bg-amber-50 text-amber-700"}>

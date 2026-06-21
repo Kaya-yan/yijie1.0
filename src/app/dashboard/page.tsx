@@ -123,7 +123,7 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50/50">
+    <div className="min-h-screen pixel-grid" style={{ background: "var(--pixel-bg)" }}>
       <Navbar />
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
@@ -133,7 +133,7 @@ export default function DashboardPage() {
             <Badge variant="secondary" className="mb-4 bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium">
               多语言智能聚合平台
             </Badge>
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 tracking-tight text-balance">
+            <h1 className="text-3xl sm:text-4xl font-bold mb-3 tracking-tight text-balance" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(14px, 3vw, 22px)", color: "var(--pixel-text)", lineHeight: "1.8" }}>
               多模型聚合，精准翻译
             </h1>
             <p className="text-gray-500 max-w-xl mx-auto leading-relaxed">
@@ -271,7 +271,7 @@ export default function DashboardPage() {
           )}
 
           <div className="flex justify-center mt-6">
-            <Button onClick={handleTranslate} disabled={translating || !sourceText.trim()} className="h-11 px-10 bg-gray-900 hover:bg-gray-800 text-white font-medium shadow-sm gap-2 btn-press">
+            <Button onClick={handleTranslate} disabled={translating || !sourceText.trim()} className="pixel-btn h-12 px-10 gap-2">
               {translating ? <><Loader2 className="w-4 h-4 animate-spin" />翻译中...</> : "翻译"}
             </Button>
           </div>
@@ -402,7 +402,7 @@ export default function DashboardPage() {
               { step: "03", title: "获取结果", desc: "即时返回高质量翻译，支持复制、朗读、导出" },
             ].map((item, i) => (
               <div key={item.step} className={`relative animate-slide-up stagger-${i + 1}`}>
-                <div className="w-10 h-10 rounded-full bg-slate-900 text-white font-bold text-sm flex items-center justify-center mb-4">
+                <div className="w-10 h-10 text-white font-bold text-sm flex items-center justify-center mb-4 pixel-border" style={{ background: "var(--pixel-blue)" }}>
                   {item.step}
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-2 text-sm">{item.title}</h3>
@@ -443,8 +443,8 @@ export default function DashboardPage() {
                 { value: "60+", label: "AI 工具收录" },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <div className="text-3xl font-bold mb-1 text-gray-900 font-mono tabular-nums">{stat.value}</div>
-                  <div className="text-sm text-gray-500">{stat.label}</div>
+                  <div className="text-3xl font-bold mb-1 tabular-nums" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "20px", color: "var(--pixel-text)" }}>{stat.value}</div>
+                  <div className="text-sm" style={{ color: "var(--pixel-text-light)" }}>{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -481,11 +481,11 @@ export default function DashboardPage() {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(148,163,184,0.06),transparent_60%)]" />
             <div className="relative">
               <div className="text-center mb-10">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gray-100 rounded-full text-sm text-gray-600 mb-4">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 pixel-badge mb-4" style={{ background: "var(--pixel-bg-alt)", color: "var(--pixel-text-light)" }}>
                   <Sparkles className="w-3.5 h-3.5" />
-                  About 译界
+                  <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "8px" }}>ABOUT</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-bold mb-3 tracking-tight text-gray-900">译界 · 多语言智能聚合平台</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-3 tracking-tight" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(10px, 2vw, 16px)", color: "var(--pixel-text)", lineHeight: "2" }}>译界 · 多语言智能聚合平台</h2>
                 <p className="text-gray-500 max-w-2xl mx-auto text-sm leading-relaxed">
                   面向语言学习者的一站式智能平台，深度融合大语言模型技术，提供翻译、词汇、语法、写作、阅读五大核心模块的全方位学习支持。
                 </p>
@@ -510,16 +510,16 @@ export default function DashboardPage() {
 
               <div className="grid sm:grid-cols-3 gap-6 text-center mb-10">
                 <div>
-                  <div className="text-lg font-semibold text-gray-900 mb-1 font-mono">OpenAI Compatible</div>
-                  <p className="text-xs text-gray-500">基于 OpenAI 兼容协议，无缝对接主流国产大模型</p>
+                  <div className="text-lg font-semibold mb-1" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px", color: "var(--pixel-text)" }}>OpenAI Compatible</div>
+                  <p className="text-xs" style={{ color: "var(--pixel-text-light)" }}>基于 OpenAI 兼容协议，无缝对接主流国产大模型</p>
                 </div>
                 <div>
-                  <div className="text-lg font-semibold text-gray-900 mb-1 font-mono">SM-2 Spaced Repetition</div>
-                  <p className="text-xs text-gray-500">经典间隔重复算法，科学规划词汇复习节奏</p>
+                  <div className="text-lg font-semibold mb-1" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px", color: "var(--pixel-text)" }}>SM-2 Spaced Repetition</div>
+                  <p className="text-xs" style={{ color: "var(--pixel-text-light)" }}>经典间隔重复算法，科学规划词汇复习节奏</p>
                 </div>
                 <div>
-                  <div className="text-lg font-semibold text-gray-900 mb-1 font-mono">Next.js 16 + TypeScript</div>
-                  <p className="text-xs text-gray-500">现代化技术栈，全栈类型安全</p>
+                  <div className="text-lg font-semibold mb-1" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px", color: "var(--pixel-text)" }}>Next.js 16 + TypeScript</div>
+                  <p className="text-xs" style={{ color: "var(--pixel-text-light)" }}>现代化技术栈，全栈类型安全</p>
                 </div>
               </div>
 
@@ -533,13 +533,13 @@ export default function DashboardPage() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-gray-200 py-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-400">
+        <footer className="border-t-3 py-8" style={{ borderColor: "var(--pixel-border-light)" }}>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs" style={{ fontFamily: "'VT323', monospace", fontSize: "16px", color: "var(--pixel-text-muted)" }}>
             <p>© 2025 译界 · 多语言智能聚合平台</p>
             <div className="flex items-center gap-4">
-              <a href="/settings" className="hover:text-gray-600 transition-colors">API 设置</a>
-              <a href="/tools" className="hover:text-gray-600 transition-colors">AI 工具</a>
-              <span className="text-gray-300">Next.js 16 + TypeScript</span>
+              <a href="/settings" className="hover:underline transition-colors">API 设置</a>
+              <a href="/tools" className="hover:underline transition-colors">AI 工具</a>
+              <span>Next.js 16 + TypeScript</span>
             </div>
           </div>
         </footer>

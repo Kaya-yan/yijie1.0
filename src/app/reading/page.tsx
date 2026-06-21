@@ -239,14 +239,14 @@ export default function ReadingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50/50">
+    <div className="min-h-screen pixel-grid" style={{ background: "var(--pixel-bg)" }}>
       <Navbar />
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         <div className="text-center mb-8 section-enter">
           <div className="w-14 h-14 bg-rose-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <BookMarked className="w-7 h-7 text-rose-600" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">智能阅读</h1>
+          <h1 className="text-3xl font-bold mb-2 tracking-tight" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(12px, 3vw, 18px)", color: "var(--pixel-text)", lineHeight: "2" }}>智能阅读</h1>
           <p className="text-gray-500">
             {isConfigured ? "AI 驱动的阅读助手，智能标注与讲解" : "导入文章，获取词汇标注与翻译"}
           </p>

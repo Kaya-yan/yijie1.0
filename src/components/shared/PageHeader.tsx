@@ -1,14 +1,5 @@
 import { LucideIcon } from "lucide-react";
 
-const colorMap: Record<string, { bg: string; text: string }> = {
-  blue: { bg: "bg-blue-50", text: "text-blue-600" },
-  amber: { bg: "bg-amber-50", text: "text-amber-600" },
-  emerald: { bg: "bg-emerald-50", text: "text-emerald-600" },
-  rose: { bg: "bg-rose-50", text: "text-rose-600" },
-  purple: { bg: "bg-purple-50", text: "text-purple-600" },
-  gray: { bg: "bg-gray-100", text: "text-gray-600" },
-};
-
 interface PageHeaderProps {
   icon: LucideIcon;
   title: string;
@@ -16,15 +7,14 @@ interface PageHeaderProps {
   color?: string;
 }
 
-export function PageHeader({ icon: Icon, title, subtitle, color = "blue" }: PageHeaderProps) {
-  const colors = colorMap[color] || colorMap.blue;
+export function PageHeader({ icon: Icon, title, subtitle }: PageHeaderProps) {
   return (
     <div className="text-center mb-8">
-      <div className={`w-14 h-14 ${colors.bg} rounded-2xl flex items-center justify-center mx-auto mb-4`}>
-        <Icon className={`w-7 h-7 ${colors.text}`} />
+      <div className="w-14 h-14 flex items-center justify-center mx-auto mb-4 pixel-border" style={{ background: "var(--pixel-blue)" }}>
+        <Icon className="w-7 h-7 text-white" />
       </div>
-      <h1 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">{title}</h1>
-      <p className="text-gray-500">{subtitle}</p>
+      <h1 className="text-3xl font-bold mb-2 tracking-tight" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(12px, 3vw, 18px)", color: "var(--pixel-text)", lineHeight: "2" }}>{title}</h1>
+      <p style={{ fontFamily: "'VT323', monospace", fontSize: "20px", color: "var(--pixel-text-light)" }}>{subtitle}</p>
     </div>
   );
 }

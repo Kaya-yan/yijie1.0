@@ -549,15 +549,15 @@ export default function GamePage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50/50">
+    <div className="min-h-screen pixel-grid" style={{ background: "var(--pixel-bg)" }}>
       <Navbar />
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         <div className="text-center mb-8">
-          <div className="w-14 h-14 bg-gray-900 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <div className="w-14 h-14 flex items-center justify-center mx-auto mb-4 pixel-border" style={{ background: "var(--pixel-blue)" }}>
             <Gamepad2 className="w-7 h-7 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">恐龙跑酷</h1>
-          <p className="text-gray-500">按空格键跳跃，躲避障碍物！</p>
+          <h1 className="text-3xl font-bold mb-2 tracking-tight" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(12px, 3vw, 18px)", color: "var(--pixel-text)", lineHeight: "2" }}>恐龙跑酷</h1>
+          <p style={{ fontFamily: "'VT323', monospace", fontSize: "20px", color: "var(--pixel-text-light)" }}>按空格键跳跃，躲避障碍物！</p>
         </div>
 
         <div className="flex items-center justify-center gap-4 mb-6">

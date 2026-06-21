@@ -66,41 +66,47 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b transition-all duration-200 ${
-        scrolled ? "border-gray-200 shadow-sm" : "border-transparent"
+      className={`sticky top-0 z-50 border-b-3 transition-all duration-100 ${
+        scrolled ? "shadow-sm" : ""
       }`}
+      style={{
+        background: "var(--pixel-surface)",
+        borderColor: scrolled ? "var(--pixel-border)" : "var(--pixel-border-light)",
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-14">
           {/* Logo */}
           <Link href="/dashboard" className="flex items-center gap-2.5 shrink-0">
-            <div className="w-9 h-9 bg-slate-900 rounded-xl flex items-center justify-center shadow-sm shadow-slate-900/20">
-              <Languages className="w-5 h-5 text-white" strokeWidth={1.8} />
+            <div className="w-9 h-9 flex items-center justify-center pixel-border" style={{ background: "var(--pixel-blue)" }}>
+              <span className="text-white" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "9px" }}>YJ</span>
             </div>
-            <span className="text-lg font-bold text-gray-900 hidden sm:block tracking-tight">
+            <span className="hidden sm:block tracking-tight font-bold" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "12px", color: "var(--pixel-text)" }}>
               译界
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-0.5">
             {navItems.map((item) => {
               const Icon = item.icon;
               const active = pathname === item.href;
               return (
                 <Tooltip key={item.href}>
                   <TooltipTrigger
-                    className={`relative flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                      active
-                        ? "text-gray-900 bg-gray-100"
-                        : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"
-                    }`}
+                    className="relative flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors cursor-pointer"
+                    style={{
+                      fontFamily: "'VT323', monospace",
+                      fontSize: "20px",
+                      color: active ? "var(--pixel-text)" : "var(--pixel-text-light)",
+                      background: active ? "var(--pixel-bg-alt)" : "transparent",
+                    }}
                     onClick={() => router.push(item.href)}
                   >
                     <Icon className="w-4 h-4" />
                     <span>{item.label}</span>
                     {active && (
-                      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-gray-900 rounded-full" />
+                      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5" style={{ background: "var(--pixel-blue)" }} />
                     )}
                   </TooltipTrigger>
                   <TooltipContent>
@@ -115,7 +121,8 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             <Tooltip>
               <TooltipTrigger
-                className="inline-flex items-center justify-center w-9 h-9 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors cursor-pointer"
+                className="inline-flex items-center justify-center w-9 h-9 transition-colors cursor-pointer"
+                style={{ color: "var(--pixel-text-light)" }}
                 onClick={() => router.push("/settings")}
               >
                 <Settings className="w-4 h-4" />
@@ -129,7 +136,8 @@ export default function Navbar() {
 
             <Tooltip>
               <TooltipTrigger
-                className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors cursor-pointer"
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-sm transition-colors cursor-pointer"
+                style={{ color: "var(--pixel-text-light)" }}
                 onClick={handleLogout}
               >
                 <User className="w-4 h-4" />
@@ -142,18 +150,18 @@ export default function Navbar() {
 
             {/* Mobile menu */}
             <Sheet open={open} onOpenChange={setOpen}>
-              <SheetTrigger className="md:hidden inline-flex items-center justify-center w-9 h-9 text-gray-500 hover:bg-gray-100 rounded-md transition-colors cursor-pointer">
+              <SheetTrigger className="md:hidden inline-flex items-center justify-center w-9 h-9 transition-colors cursor-pointer" style={{ color: "var(--pixel-text-light)" }}>
                 <Menu className="w-5 h-5" />
               </SheetTrigger>
               <SheetContent side="right" className="w-[280px] p-0">
                 <SheetTitle className="sr-only">导航菜单</SheetTitle>
                 <div className="flex flex-col h-full">
-                  <div className="p-4 border-b">
+                  <div className="p-4 border-b-3" style={{ borderColor: "var(--pixel-border-light)" }}>
                     <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 bg-slate-900 rounded-xl flex items-center justify-center shadow-sm shadow-slate-900/20">
-                        <Languages className="w-5 h-5 text-white" strokeWidth={1.8} />
+                      <div className="w-9 h-9 flex items-center justify-center pixel-border" style={{ background: "var(--pixel-blue)" }}>
+                        <span className="text-white" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "9px" }}>YJ</span>
                       </div>
-                      <span className="text-lg font-bold text-gray-900">译界</span>
+                      <span className="font-bold" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "12px", color: "var(--pixel-text)" }}>译界</span>
                     </div>
                   </div>
                   <div className="flex-1 overflow-auto py-2">
@@ -165,11 +173,14 @@ export default function Navbar() {
                           key={item.href}
                           href={item.href}
                           onClick={() => setOpen(false)}
-                          className={`flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors ${
-                            active
-                              ? "text-gray-900 bg-gray-100 border-r-2 border-gray-900"
-                              : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"
-                          }`}
+                          className="flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors"
+                          style={{
+                            fontFamily: "'VT323', monospace",
+                            fontSize: "22px",
+                            color: active ? "var(--pixel-text)" : "var(--pixel-text-light)",
+                            background: active ? "var(--pixel-bg-alt)" : "transparent",
+                            borderRight: active ? "3px solid var(--pixel-blue)" : "3px solid transparent",
+                          }}
                         >
                           <Icon className="w-5 h-5" />
                           <span>{item.label}</span>
@@ -177,10 +188,11 @@ export default function Navbar() {
                       );
                     })}
                   </div>
-                  <div className="p-4 border-t">
+                  <div className="p-4 border-t-3" style={{ borderColor: "var(--pixel-border-light)" }}>
                     <Button
                       variant="outline"
-                      className="w-full justify-start gap-2 text-gray-600"
+                      className="w-full justify-start gap-2"
+                      style={{ fontFamily: "'VT323', monospace", fontSize: "18px" }}
                       onClick={() => {
                         router.push("/settings");
                         setOpen(false);
@@ -191,7 +203,8 @@ export default function Navbar() {
                     </Button>
                     <Button
                       variant="ghost"
-                      className="w-full justify-start gap-2 mt-2 text-gray-500"
+                      className="w-full justify-start gap-2 mt-2"
+                      style={{ fontFamily: "'VT323', monospace", fontSize: "18px", color: "var(--pixel-text-light)" }}
                       onClick={handleLogout}
                     >
                       <LogOut className="w-4 h-4" />
