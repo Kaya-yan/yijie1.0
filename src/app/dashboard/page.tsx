@@ -5,10 +5,13 @@ import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import {
   ArrowRightLeft, Copy, Volume2, Mic, Sparkles, Zap, Shield,
-  BookOpen, BookMarked, Lightbulb, PenTool, Gamepad2, Wrench,
   Check, ChevronDown, Loader2, AlertCircle,
-  FileText, FileCode, Languages, Brain, ShieldCheck, Layers,
+  FileText, FileCode,
 } from "lucide-react";
+import {
+  BookOpen, Lightbulb, PenSquare, Bookmark, Languages, Gamepad, ToolCase,
+  AiAppMac, Grid3x3, Shield as PixelShield,
+} from "pixelarticons/react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
@@ -284,8 +287,8 @@ export default function DashboardPage() {
             {[
               { icon: BookOpen, title: "智能词典", desc: "单词释义、音标、例句，一键获取", href: "/dictionary", color: "text-blue-600", bg: "bg-blue-50" },
               { icon: Lightbulb, title: "语法知识点", desc: "AI 分析句子结构，讲解语法要点", href: "/grammar", color: "text-amber-600", bg: "bg-amber-50" },
-              { icon: PenTool, title: "写作训练", desc: "多场景写作辅助，AI 实时建议", href: "/writing", color: "text-emerald-600", bg: "bg-emerald-50" },
-              { icon: BookMarked, title: "智能阅读", desc: "词汇标注、段落翻译、AI 讲解", href: "/reading", color: "text-rose-600", bg: "bg-rose-50" },
+              { icon: PenSquare, title: "写作训练", desc: "多场景写作辅助，AI 实时建议", href: "/writing", color: "text-emerald-600", bg: "bg-emerald-50" },
+              { icon: Bookmark, title: "智能阅读", desc: "词汇标注、段落翻译、AI 讲解", href: "/reading", color: "text-rose-600", bg: "bg-rose-50" },
             ].map((item, i) => (
               <a key={item.title} href={item.href} className={`group p-5 bg-white border border-gray-200 rounded-xl spring-hover animate-slide-up stagger-${i + 1}`}>
                 <div className={`w-10 h-10 ${item.bg} rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200`}>
@@ -325,7 +328,7 @@ export default function DashboardPage() {
           <div className="grid sm:grid-cols-3 gap-5">
             {[
               { icon: Zap, title: "极速响应", desc: "毫秒级翻译速度，流畅不卡顿" },
-              { icon: Shield, title: "隐私安全", desc: "数据本地存储，不上传不泄露" },
+              { icon: PixelShield, title: "隐私安全", desc: "数据本地存储，不上传不泄露" },
               { icon: Languages, title: "多语言覆盖", desc: "支持 8+ 种语言互译" },
             ].map((item) => (
               <div key={item.title} className="text-center p-6 bg-white rounded-xl border border-gray-100 spring-hover">
@@ -456,7 +459,7 @@ export default function DashboardPage() {
           <div className="grid sm:grid-cols-2 gap-4">
             <a href="/game" className="flex items-center gap-5 p-6 bg-white border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-sm transition-all group spring-hover">
               <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-200">
-                <Gamepad2 className="w-6 h-6 text-amber-600" />
+                <Gamepad className="w-6 h-6 text-amber-600" />
               </div>
               <div>
                 <h3 className="font-semibold mb-1 text-sm text-pixel-text">休闲小游戏</h3>
@@ -465,7 +468,7 @@ export default function DashboardPage() {
             </a>
             <a href="/tools" className="flex items-center gap-5 p-6 bg-white border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-sm transition-all group spring-hover">
               <div className="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-200">
-                <Wrench className="w-6 h-6 text-slate-600" />
+                <ToolCase className="w-6 h-6 text-slate-600" />
               </div>
               <div>
                 <h3 className="font-semibold mb-1 text-sm text-pixel-text">AI 工具聚合</h3>
@@ -493,9 +496,9 @@ export default function DashboardPage() {
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
                 {[
-                  { icon: Brain, title: "AI 驱动", desc: "集成 Kimi、DeepSeek、通义千问等国内顶级大模型", color: "bg-blue-50 text-blue-600" },
-                  { icon: Layers, title: "五大模块", desc: "翻译、生词本、语法、写作、阅读，覆盖全链路", color: "bg-emerald-50 text-emerald-600" },
-                  { icon: ShieldCheck, title: "隐私优先", desc: "数据本地存储，API Key 仅用于请求，不上传不泄露", color: "bg-amber-50 text-amber-600" },
+                  { icon: AiAppMac, title: "AI 驱动", desc: "集成 Kimi、DeepSeek、通义千问等国内顶级大模型", color: "bg-blue-50 text-blue-600" },
+                  { icon: Grid3x3, title: "五大模块", desc: "翻译、生词本、语法、写作、阅读，覆盖全链路", color: "bg-emerald-50 text-emerald-600" },
+                  { icon: PixelShield, title: "隐私优先", desc: "数据本地存储，API Key 仅用于请求，不上传不泄露", color: "bg-amber-50 text-amber-600" },
                   { icon: Languages, title: "多语言", desc: "中英日韩法德西俄 8+ 种语言互译", color: "bg-rose-50 text-rose-600" },
                 ].map((item) => (
                   <div key={item.title} className="p-4 bg-gray-50 border border-gray-200 rounded-xl spring-hover">

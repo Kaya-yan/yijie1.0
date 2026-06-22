@@ -4,19 +4,21 @@ import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import { useAuth } from "@/hooks/useAuth";
 import {
-  Settings,
-  Key,
-  Cpu,
   CheckCircle,
   XCircle,
   Loader2,
-  Plus,
-  Trash2,
-  TestTube,
-  Eye,
-  EyeOff,
   AlertCircle,
 } from "lucide-react";
+import {
+  SettingsCog,
+  Lock,
+  Cpu,
+  Plus,
+  Trash,
+  Eye,
+  EyeOff,
+  TestTube,
+} from "pixelarticons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -94,7 +96,7 @@ export default function SettingsPage() {
       <main id="main-content" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         <div className="text-center mb-8 section-enter">
           <div className="w-14 h-14 flex items-center justify-center mx-auto mb-4 pixel-border" style={{ background: "var(--pixel-blue)" }}>
-            <Settings className="w-7 h-7 text-white" />
+            <SettingsCog className="w-7 h-7 text-white" />
           </div>
           <h1 className="font-pixel-title mb-2" style={{ color: "var(--pixel-text)" }}>API 设置</h1>
           <p className="text-pixel-text-light">配置大模型 API，连接 AI 服务</p>
@@ -118,7 +120,7 @@ export default function SettingsPage() {
         <Tabs defaultValue="models" className="space-y-6 section-enter section-enter-1">
           <TabsList className="bg-white border border-gray-200 shadow-sm">
             <TabsTrigger value="models" className="gap-2">
-              <Key className="w-4 h-4" />
+              <Lock className="w-4 h-4" />
               模型配置
             </TabsTrigger>
             <TabsTrigger value="custom" className="gap-2">
@@ -174,7 +176,7 @@ export default function SettingsPage() {
                           className="h-8 w-8 text-pixel-text-muted hover:text-red-500"
                           onClick={() => handleRemoveModel(model.id)}
                         >
-                          <Trash2 className="w-4 h-4" />
+                          <Trash className="w-4 h-4" />
                         </Button>
                       </div>
                     </div>
@@ -319,7 +321,7 @@ export default function SettingsPage() {
         <Card className="mt-8 bg-blue-50 border-blue-200 section-enter section-enter-2">
           <CardContent className="p-6">
             <h3 className="font-semibold text-blue-900 mb-3 flex items-center gap-2">
-              <Key className="w-4 h-4" />
+              <Lock className="w-4 h-4" />
               快速配置指南
             </h3>
             <div className="space-y-2 text-sm text-blue-800">

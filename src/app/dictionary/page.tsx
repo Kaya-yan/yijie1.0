@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
-import { Search, Volume2, Star, BookOpen, Loader2, AlertCircle, Bookmark } from "lucide-react";
+import { Loader2, AlertCircle } from "lucide-react";
+import { Search, Volume2, BookOpen, Bookmark } from "pixelarticons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";

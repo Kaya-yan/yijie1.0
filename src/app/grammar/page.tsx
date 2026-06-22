@@ -3,9 +3,12 @@
 import { useState, useCallback } from "react";
 import Navbar from "@/components/Navbar";
 import {
-  Search, Lightbulb, AlertTriangle, CheckCircle, Info, Loader2, AlertCircle,
-  BookX, Target, Trash2, ChevronRight, RotateCcw, Save,
+  AlertTriangle, CheckCircle, Info, Loader2, AlertCircle,
+  ChevronRight, RotateCcw,
 } from "lucide-react";
+import {
+  Search, Lightbulb, Trash, Save, BookOpen, Target,
+} from "pixelarticons/react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -48,7 +51,7 @@ type TabId = "analysis" | "mistakes" | "practice";
 
 const tabs: { id: TabId; label: string; icon: typeof Lightbulb }[] = [
   { id: "analysis", label: "句子分析", icon: Search },
-  { id: "mistakes", label: "错题本", icon: BookX },
+  { id: "mistakes", label: "错题本", icon: BookOpen },
   { id: "practice", label: "语法练习", icon: Target },
 ];
 
@@ -343,7 +346,7 @@ export default function GrammarPage() {
             {grammarMistakes.length === 0 ? (
               <div className="text-center py-16">
                 <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <BookX className="w-6 h-6 text-pixel-text-muted" />
+                  <BookOpen className="w-6 h-6 text-pixel-text-muted" />
                 </div>
                 <p className="text-pixel-text font-medium mb-1">错题本为空</p>
                 <p className="text-sm text-pixel-text-light">在句子分析中发现错误时，点击"保存到错题本"</p>
@@ -401,7 +404,7 @@ export default function GrammarPage() {
                             onClick={() => removeGrammarMistake(mistake.id)}
                             title="删除"
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash className="w-4 h-4" />
                           </Button>
                         </div>
                       </div>

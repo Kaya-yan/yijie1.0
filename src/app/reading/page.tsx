@@ -4,9 +4,12 @@ import { useState, useMemo, useCallback } from "react";
 import Navbar from "@/components/Navbar";
 import { useAuth } from "@/hooks/useAuth";
 import {
-  BookMarked, Upload, Globe, FileText, Lightbulb, Download, Bookmark,
-  Loader2, AlertCircle, ChevronRight, BarChart3, BookOpen, RotateCcw,
+  Upload, Globe, FileText, Download,
+  Loader2, AlertCircle, ChevronRight, BarChart3, RotateCcw,
 } from "lucide-react";
+import {
+  Bookmark, Lightbulb, BookOpen,
+} from "pixelarticons/react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -244,7 +247,7 @@ export default function ReadingPage() {
       <main id="main-content" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         <div className="text-center mb-8 section-enter">
           <div className="w-14 h-14 bg-rose-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <BookMarked className="w-7 h-7 text-rose-600" />
+            <Bookmark className="w-7 h-7 text-rose-600" />
           </div>
           <h1 className="font-pixel-title" style={{ color: "var(--pixel-text)" }}>智能阅读</h1>
           <p className="text-pixel-text-light">

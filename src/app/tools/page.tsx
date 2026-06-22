@@ -5,9 +5,12 @@ import Navbar from "@/components/Navbar";
 import { useAuth } from "@/hooks/useAuth";
 import {
   Search, ExternalLink, Sparkles, Image, Code, Video, Music, MessageSquare,
-  FileText, Cpu, PenTool, Wrench, TrendingUp, Zap, Languages,
+  FileText, Cpu, TrendingUp, Zap, Languages,
   Calculator, GitCompare, ArrowRightLeft, Copy, Check, Type, Hash, AlignLeft, RotateCcw,
 } from "lucide-react";
+import {
+  PenSquare, ToolCase,
+} from "pixelarticons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -205,9 +208,9 @@ function FormatConverterTool() {
 
 const categories = [
   { id: "all", name: "全部", icon: Sparkles, color: "bg-gray-100 text-pixel-text" },
-  { id: "builtin", name: "内置工具", icon: Wrench, color: "bg-emerald-100 text-emerald-700" },
+  { id: "builtin", name: "内置工具", icon: ToolCase, color: "bg-emerald-100 text-emerald-700" },
   { id: "llm", name: "大模型", icon: Cpu, color: "bg-blue-100 text-blue-700" },
-  { id: "writing", name: "写作", icon: PenTool, color: "bg-emerald-100 text-emerald-700" },
+  { id: "writing", name: "写作", icon: PenSquare, color: "bg-emerald-100 text-emerald-700" },
   { id: "image", name: "图像", icon: Image, color: "bg-purple-100 text-purple-700" },
   { id: "code", name: "编程", icon: Code, color: "bg-orange-100 text-orange-700" },
   { id: "video", name: "视频", icon: Video, color: "bg-red-100 text-red-700" },
@@ -216,9 +219,9 @@ const categories = [
   { id: "productivity", name: "效率", icon: Zap, color: "bg-amber-100 text-amber-700" },
 ];
 
-const categoryIconMap: Record<string, typeof Sparkles> = {
+const categoryIconMap: Record<string, React.ComponentType<any>> = {
   llm: Cpu,
-  writing: PenTool,
+  writing: PenSquare,
   image: Image,
   code: Code,
   video: Video,
@@ -342,7 +345,7 @@ export default function ToolsPage() {
       <main id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         <div className="text-center mb-8 section-enter">
           <div className="w-14 h-14 flex items-center justify-center mx-auto mb-4 pixel-border" style={{ background: "var(--pixel-blue)" }}>
-            <Wrench className="w-7 h-7 text-white" />
+            <ToolCase className="w-7 h-7 text-white" />
           </div>
           <h1 className="font-pixel-title mb-2" style={{ color: "var(--pixel-text)" }}>AI 工具聚合</h1>
           <p className="text-pixel-text-light">发现最好用的 AI 工具，提升你的效率</p>

@@ -7,10 +7,13 @@ import { PageHeader, ExportButton } from "@/components/shared";
 import { exportVocabulary, exportVocabularyAsWord } from "@/lib/export";
 import { FileText, FileCode } from "lucide-react";
 import {
-  BookText, Search, Filter, Plus, Trash2, CheckCircle, Circle,
-  RotateCcw, Volume2, ChevronDown, X, Edit3, Shuffle, Target,
-  TrendingUp, Bookmark, AlertCircle, Clock,
+  CheckCircle, Circle,
+  RotateCcw, ChevronDown, X, Shuffle, Target,
+  TrendingUp, AlertCircle, Clock,
 } from "lucide-react";
+import {
+  BookOpen, Search, Plus, Trash, Volume2, Bookmark, PenSquare, Filter,
+} from "pixelarticons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -145,12 +148,12 @@ export default function VocabularyPage() {
     <div className="min-h-screen pixel-grid" style={{ background: "var(--pixel-bg)" }}>
       <Navbar />
       <main id="main-content" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
-        <PageHeader icon={BookText} title="生词本" subtitle="管理你的词汇，科学复习" color="blue" />
+        <PageHeader icon={BookOpen} title="生词本" subtitle="管理你的词汇，科学复习" color="blue" />
 
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-8 section-enter section-enter-1">
           {[
-            { label: "总词数", value: stats.total, icon: BookText, color: "text-pixel-text", bg: "bg-white" },
+            { label: "总词数", value: stats.total, icon: BookOpen, color: "text-pixel-text", bg: "bg-white" },
             { label: "生词", value: stats.new, icon: AlertCircle, color: "text-red-600", bg: "bg-red-50" },
             { label: "模糊", value: stats.fuzzy, icon: Clock, color: "text-amber-600", bg: "bg-amber-50" },
             { label: "已掌握", value: stats.mastered, icon: CheckCircle, color: "text-green-600", bg: "bg-green-50" },
@@ -209,7 +212,7 @@ export default function VocabularyPage() {
             {/* Word list */}
             {filteredWords.length === 0 ? (
               <div className="text-center py-16">
-                <BookText className="w-12 h-12 text-pixel-text-muted mx-auto mb-4" />
+                <BookOpen className="w-12 h-12 text-pixel-text-muted mx-auto mb-4" />
                 <p className="text-pixel-text-light">还没有收藏的单词</p>
                 <p className="text-sm text-pixel-text-muted mt-1">在翻译、词典、阅读等页面中添加生词</p>
               </div>
@@ -237,7 +240,7 @@ export default function VocabularyPage() {
                             <Volume2 className="w-3.5 h-3.5" />
                           </Button>
                           <Button variant="ghost" size="icon" className="h-7 w-7 text-pixel-text-muted hover:text-red-500" onClick={(e) => { e.stopPropagation(); removeWord(w.word); }}>
-                            <Trash2 className="w-3.5 h-3.5" />
+                            <Trash className="w-3.5 h-3.5" />
                           </Button>
                           <ChevronDown className={`w-4 h-4 text-pixel-text-muted transition-transform ${expanded ? "rotate-180" : ""}`} />
                         </div>
@@ -355,14 +358,14 @@ export default function VocabularyPage() {
                     <CardContent className="p-4">
                       <div className="flex items-center gap-3">
                         <div className={`w-10 h-10 ${g.color} rounded-lg flex items-center justify-center`}>
-                          <BookText className="w-5 h-5 text-white" />
+                          <BookOpen className="w-5 h-5 text-white" />
                         </div>
                         <div className="flex-1">
                           <h3 className="font-medium text-pixel-text">{g.name}</h3>
                           <p className="text-xs text-pixel-text-light">{count} 个单词</p>
                         </div>
                         <Button variant="ghost" size="icon" className="h-7 w-7 text-pixel-text-muted hover:text-red-500" onClick={(e) => { e.stopPropagation(); removeWordGroup(g.id); }}>
-                          <Trash2 className="w-3.5 h-3.5" />
+                          <Trash className="w-3.5 h-3.5" />
                         </Button>
                       </div>
                     </CardContent>

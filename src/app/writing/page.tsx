@@ -4,10 +4,13 @@ import { useState, useEffect, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import { useAuth } from "@/hooks/useAuth";
 import {
-  PenTool, Mail, GraduationCap, FileText, Palette, Briefcase, Sparkles,
-  CheckCircle, Loader2, AlertCircle, Save, BookOpen, ArrowRight, RotateCcw,
-  Calendar, BookMarked, Mic, FileEdit, PenLine, Settings,
+  Mail, GraduationCap, FileText, Palette, Briefcase, Sparkles,
+  CheckCircle, Loader2, AlertCircle, ArrowRight, RotateCcw,
+  Calendar, Mic, FileEdit, PenLine,
 } from "lucide-react";
+import {
+  PenSquare, Save, BookOpen, Bookmark,
+} from "pixelarticons/react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -19,14 +22,14 @@ import { ExportButton } from "@/components/shared";
 import { exportWritingAnalysis, exportWritingAnalysisAsWord } from "@/lib/export";
 import { FileCode } from "lucide-react";
 
-const sceneIcons: Record<string, typeof Mail> = {
+const sceneIcons: Record<string, React.ComponentType<any>> = {
   email: Mail,
   essay: GraduationCap,
   resume: FileText,
   creative: Palette,
   business: Briefcase,
   diary: Calendar,
-  book_review: BookMarked,
+  book_review: Bookmark,
   movie_review: BookOpen,
   speech: Mic,
   application: FileEdit,
@@ -36,7 +39,7 @@ const sceneIcons: Record<string, typeof Mail> = {
 const scenes = Object.entries(sceneMap).map(([id, name]) => ({
   id,
   name,
-  icon: sceneIcons[id] || PenTool,
+  icon: sceneIcons[id] || PenSquare,
 }));
 
 interface DimensionScores {
@@ -215,7 +218,7 @@ export default function WritingPage() {
       <main id="main-content" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         <div className="text-center mb-8 section-enter">
           <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <PenTool className="w-7 h-7 text-emerald-600" />
+            <PenSquare className="w-7 h-7 text-emerald-600" />
           </div>
           <h1 className="font-pixel-title" style={{ color: "var(--pixel-text)" }}>AI 写作训练</h1>
           <p className="text-pixel-text-light">

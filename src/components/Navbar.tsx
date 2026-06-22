@@ -4,20 +4,21 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
+  LogOut,
+  X,
+} from "lucide-react";
+import {
   Languages,
   BookOpen,
   Lightbulb,
-  PenTool,
-  BookMarked,
-  Gamepad2,
-  Wrench,
-  LogOut,
+  PenSquare,
+  Bookmark,
+  Gamepad,
+  ToolCase,
   User,
   Menu,
-  X,
-  Settings,
-  BookText,
-} from "lucide-react";
+  SettingsCog,
+} from "pixelarticons/react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
@@ -30,12 +31,12 @@ import {
 const navItems = [
   { href: "/dashboard", label: "翻译", icon: Languages },
   { href: "/dictionary", label: "词典", icon: BookOpen },
-  { href: "/vocabulary", label: "生词本", icon: BookText },
+  { href: "/vocabulary", label: "生词本", icon: BookOpen },
   { href: "/grammar", label: "知识点", icon: Lightbulb },
-  { href: "/writing", label: "训练", icon: PenTool },
-  { href: "/reading", label: "阅读", icon: BookMarked },
-  { href: "/game", label: "休闲", icon: Gamepad2 },
-  { href: "/tools", label: "工具", icon: Wrench },
+  { href: "/writing", label: "训练", icon: PenSquare },
+  { href: "/reading", label: "阅读", icon: Bookmark },
+  { href: "/game", label: "休闲", icon: Gamepad },
+  { href: "/tools", label: "工具", icon: ToolCase },
 ];
 
 export default function Navbar() {
@@ -123,7 +124,7 @@ export default function Navbar() {
                 style={{ color: "var(--pixel-text-light)" }}
                 onClick={() => router.push("/settings")}
               >
-                <Settings className="w-4 h-4" />
+                <SettingsCog className="w-4 h-4" />
               </TooltipTrigger>
               <TooltipContent>
                 <p>API 设置</p>
@@ -193,7 +194,7 @@ export default function Navbar() {
                         setOpen(false);
                       }}
                     >
-                      <Settings className="w-4 h-4" />
+                      <SettingsCog className="w-4 h-4" />
                       API 设置
                     </Button>
                     <Button

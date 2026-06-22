@@ -2,7 +2,9 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import Navbar from "@/components/Navbar";
-import { RotateCcw, Trophy, Gamepad2, Volume2, VolumeX } from "lucide-react";
+import { RotateCcw, Trophy } from "lucide-react";
+import { Gamepad, Volume2, Volume } from "pixelarticons/react";
+import { Icon } from "@iconify/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -554,10 +556,18 @@ export default function GamePage() {
       <main id="main-content" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-enter">
         <div className="text-center mb-8">
           <div className="w-14 h-14 flex items-center justify-center mx-auto mb-4 pixel-border" style={{ background: "var(--pixel-blue)" }}>
-            <Gamepad2 className="w-7 h-7 text-white" />
+            <Gamepad className="w-7 h-7 text-white" />
           </div>
           <h1 className="font-pixel-title mb-2" style={{ color: "var(--pixel-text)" }}>恐龙跑酷</h1>
           <p className="font-pixel-body" style={{ fontSize: "20px", color: "var(--pixel-text-light)" }}>按空格键跳跃，躲避障碍物！</p>
+          {/* Minecraft-style decorative icons */}
+          <div className="flex items-center justify-center gap-4 mt-3 opacity-40">
+            <Icon icon="game-icons:crossed-swords" width="20" height="20" style={{ color: "var(--pixel-text-muted)" }} />
+            <Icon icon="game-icons:cut-diamond" width="20" height="20" style={{ color: "var(--pixel-blue)" }} />
+            <Icon icon="game-icons:potion-ball" width="20" height="20" style={{ color: "var(--pixel-green)" }} />
+            <Icon icon="game-icons:gold-stack" width="20" height="20" style={{ color: "var(--pixel-yellow)" }} />
+            <Icon icon="game-icons:crystal-shine" width="20" height="20" style={{ color: "var(--pixel-purple)" }} />
+          </div>
         </div>
 
         <div className="flex items-center justify-center gap-4 mb-6">
@@ -575,7 +585,7 @@ export default function GamePage() {
             </CardContent>
           </Card>
           <Button variant="outline" size="icon" onClick={toggleSound} className="h-10 w-10">
-            {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+            {soundEnabled ? <Volume2 className="w-4 h-4" /> : <Volume className="w-4 h-4" />}
           </Button>
           <Button onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { code: "Space" }))} variant="outline" className="gap-2">
             <RotateCcw className="w-4 h-4" />

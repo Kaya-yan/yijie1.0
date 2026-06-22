@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Languages, BookOpen, Brain, ArrowRight } from "lucide-react";
+import { Languages, BookOpen, ArrowRight, AiAppMac } from "pixelarticons/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -129,7 +129,7 @@ export default function LoginPage() {
                     <span className="font-pixel-body">词典</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Brain className="w-4 h-4" />
+                    <AiAppMac className="w-4 h-4" />
                     <span className="font-pixel-body">AI</span>
                   </div>
                 </div>

@@ -1,7 +1,5 @@
-import { LucideIcon } from "lucide-react";
-
 interface PageHeaderProps {
-  icon: LucideIcon;
+  icon: React.ComponentType<any>;
   title: string;
   subtitle: string;
   color?: string;
