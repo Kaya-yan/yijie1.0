@@ -47,7 +47,7 @@ export default function LoginPage() {
       <header className="relative z-10 flex items-center justify-between px-8 py-6">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 flex items-center justify-center pixel-border" style={{ background: "var(--pixel-blue)" }}>
-            <span className="text-white font-pixel" style={{ fontSize: "10px" }}>YJ</span>
+            <span className="text-white font-pixel text-[10px]">YJ</span>
           </div>
           <span className="font-pixel-heading font-bold tracking-tight" style={{ color: "var(--pixel-text)" }}>
             译界
@@ -107,10 +107,10 @@ export default function LoginPage() {
                   className="pixel-btn w-full h-12"
                 >
                   {loading ? (
-                    <span className="font-pixel animate-pulse" style={{ fontSize: "10px" }}>LOADING...</span>
+                    <span className="font-pixel animate-pulse text-[10px]">LOADING...</span>
                   ) : (
                     <>
-                      <span className="font-pixel" style={{ fontSize: "10px" }}>START</span>
+                      <span className="font-pixel text-[10px]">START</span>
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </>
                   )}

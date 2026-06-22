@@ -37,7 +37,7 @@ export default function NotFound() {
 
         <Link href="/dashboard">
           <Button className="pixel-btn gap-2">
-            <span className="font-pixel" style={{ fontSize: "10px" }}>RETURN</span>
+            <span className="font-pixel text-[10px]">RETURN</span>
           </Button>
         </Link>
       </div>

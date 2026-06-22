@@ -139,7 +139,7 @@ export default function DashboardPage() {
             <h1 className="font-pixel-title mb-3 text-balance" style={{ color: "var(--pixel-text)" }}>
               多模型聚合，精准翻译
             </h1>
-            <p className="font-pixel-body max-w-xl mx-auto leading-relaxed" style={{ fontSize: "20px", color: "var(--pixel-text-light)" }}>
+            <p className="font-pixel-body max-w-xl mx-auto leading-relaxed text-[20px]" style={{ color: "var(--pixel-text-light)" }}>
               一次接入 Kimi、DeepSeek、通义千问等国内主流大模型，支持中英日韩法德西俄 8 种语言互译
             </p>
           </div>
@@ -446,8 +446,8 @@ export default function DashboardPage() {
                 { value: "60+", label: "AI 工具收录" },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <div className="font-pixel font-bold mb-1 tabular-nums" style={{ fontSize: "20px", color: "var(--pixel-text)" }}>{stat.value}</div>
-                  <div className="font-pixel-body text-sm" style={{ fontSize: "18px", color: "var(--pixel-text-light)" }}>{stat.label}</div>
+                  <div className="font-pixel font-bold mb-1 tabular-nums text-[20px]" style={{ color: "var(--pixel-text)" }}>{stat.value}</div>
+                  <div className="font-pixel-body text-sm text-[18px]" style={{ color: "var(--pixel-text-light)" }}>{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -486,7 +486,7 @@ export default function DashboardPage() {
               <div className="text-center mb-10">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 pixel-badge mb-4" style={{ background: "var(--pixel-bg-alt)", color: "var(--pixel-text-light)" }}>
                   <Sparkles className="w-3.5 h-3.5" />
-                  <span className="font-pixel" style={{ fontSize: "8px" }}>ABOUT</span>
+                  <span className="font-pixel text-[8px]">ABOUT</span>
                 </div>
                 <h2 className="font-pixel-heading mb-3" style={{ color: "var(--pixel-text)" }}>译界 · 多语言智能聚合平台</h2>
                 <p className="text-pixel-text-light max-w-2xl mx-auto text-sm leading-relaxed">
@@ -514,15 +514,15 @@ export default function DashboardPage() {
               <div className="grid sm:grid-cols-3 gap-6 text-center mb-10">
                 <div>
                   <div className="font-pixel-label mb-1" style={{ color: "var(--pixel-text)" }}>OpenAI Compatible</div>
-                  <p className="text-xs font-pixel-body" style={{ fontSize: "18px", color: "var(--pixel-text-light)" }}>基于 OpenAI 兼容协议，无缝对接主流国产大模型</p>
+                  <p className="text-xs font-pixel-body text-[18px]" style={{ color: "var(--pixel-text-light)" }}>基于 OpenAI 兼容协议，无缝对接主流国产大模型</p>
                 </div>
                 <div>
                   <div className="font-pixel-label mb-1" style={{ color: "var(--pixel-text)" }}>SM-2 Spaced Repetition</div>
-                  <p className="text-xs font-pixel-body" style={{ fontSize: "18px", color: "var(--pixel-text-light)" }}>经典间隔重复算法，科学规划词汇复习节奏</p>
+                  <p className="text-xs font-pixel-body text-[18px]" style={{ color: "var(--pixel-text-light)" }}>经典间隔重复算法，科学规划词汇复习节奏</p>
                 </div>
                 <div>
                   <div className="font-pixel-label mb-1" style={{ color: "var(--pixel-text)" }}>Next.js 16 + TypeScript</div>
-                  <p className="text-xs font-pixel-body" style={{ fontSize: "18px", color: "var(--pixel-text-light)" }}>现代化技术栈，全栈类型安全</p>
+                  <p className="text-xs font-pixel-body text-[18px]" style={{ color: "var(--pixel-text-light)" }}>现代化技术栈，全栈类型安全</p>
                 </div>
               </div>
 

@@ -559,7 +559,7 @@ export default function GamePage() {
             <Gamepad className="w-7 h-7 text-white" />
           </div>
           <h1 className="font-pixel-title mb-2" style={{ color: "var(--pixel-text)" }}>恐龙跑酷</h1>
-          <p className="font-pixel-body" style={{ fontSize: "20px", color: "var(--pixel-text-light)" }}>按空格键跳跃，躲避障碍物！</p>
+          <p className="font-pixel-body text-[20px]" style={{ color: "var(--pixel-text-light)" }}>按空格键跳跃，躲避障碍物！</p>
           {/* Minecraft-style decorative icons */}
           <div className="flex items-center justify-center gap-4 mt-3 opacity-40">
             <Icon icon="game-icons:crossed-swords" width="20" height="20" style={{ color: "var(--pixel-text-muted)" }} />

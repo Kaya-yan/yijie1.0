@@ -366,10 +366,10 @@ export default function WritingPage() {
                 <div className="flex items-center justify-center">
                   <div className="relative w-24 h-24">
                     <svg className="w-24 h-24 -rotate-90" viewBox="0 0 80 80">
-                      <circle cx="40" cy="40" r="36" fill="none" stroke="#e5e7eb" strokeWidth="6" />
+                      <circle cx="40" cy="40" r="36" fill="none" stroke="var(--pixel-border-light)" strokeWidth="6" />
                       <circle
                         cx="40" cy="40" r="36" fill="none"
-                        stroke={score >= 80 ? "#10b981" : score >= 60 ? "#f59e0b" : score > 0 ? "#ef4444" : "#e5e7eb"}
+                        stroke={score >= 80 ? "var(--pixel-green)" : score >= 60 ? "var(--pixel-yellow)" : score > 0 ? "var(--pixel-red)" : "var(--pixel-border-light)"}
                         strokeWidth="6"
                         strokeDasharray={circumference}
                         strokeDashoffset={offset}
@@ -411,29 +411,29 @@ export default function WritingPage() {
                             return `${80 + 60 * scale * Math.cos(angle)},${80 + 60 * scale * Math.sin(angle)}`;
                           }).join(" ")}
                           fill="none"
-                          stroke="#e5e7eb"
+                          stroke="var(--pixel-border-light)"
                           strokeWidth="0.5"
                         />
                       ))}
                       {/* Axes */}
                       {radarAxes.map((a, i) => (
-                        <line key={i} x1="80" y1="80" x2={a.lx} y2={a.ly} stroke="#e5e7eb" strokeWidth="0.5" />
+                        <line key={i} x1="80" y1="80" x2={a.lx} y2={a.ly} stroke="var(--pixel-border-light)" strokeWidth="0.5" />
                       ))}
                       {/* Data polygon */}
                       <polygon
                         points={radarPoints}
-                        fill="rgba(16, 185, 129, 0.15)"
-                        stroke="#10b981"
+                        fill="rgba(76, 175, 80, 0.15)"
+                        stroke="var(--pixel-green)"
                         strokeWidth="1.5"
                       />
                       {/* Data points */}
                       {radarPoints.split(" ").map((p, i) => {
                         const [x, y] = p.split(",");
-                        return <circle key={i} cx={x} cy={y} r="3" fill="#10b981" />;
+                        return <circle key={i} cx={x} cy={y} r="3" fill="var(--pixel-green)" />;
                       })}
                       {/* Labels */}
                       {radarAxes.map((a, i) => (
-                        <text key={i} x={a.x} y={a.y} textAnchor="middle" dominantBaseline="middle" className="text-[9px] fill-gray-500">
+                        <text key={i} x={a.x} y={a.y} textAnchor="middle" dominantBaseline="middle" className="text-[9px] fill-pixel-text-light">
                           {a.label}
                         </text>
                       ))}
