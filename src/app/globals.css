@@ -60,7 +60,7 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-primary-dark: var(--pixel-blue-dark);
-  --color-primary-light: #e3f2fd;
+  --color-primary-light: #d4e6f9;
   --color-surface: var(--pixel-surface);
   --color-surface-alt: var(--pixel-bg-alt);
   --color-border: var(--pixel-border-light);
@@ -197,7 +197,7 @@ body {
 
 .pixel-btn-danger {
   background: var(--pixel-red);
-  border-color: #b71c1c;
+  border-color: #c62828;
 }
 
 .pixel-btn-success {
@@ -287,6 +287,19 @@ body {
 .text-pixel-text { color: var(--pixel-text); }
 .text-pixel-text-light { color: var(--pixel-text-light); }
 .text-pixel-text-muted { color: var(--pixel-text-muted); }
+
+/* === Pixel Background Utilities === */
+.bg-pixel-surface { background-color: var(--pixel-surface); }
+.bg-pixel-surface-alt { background-color: var(--pixel-bg-alt); }
+.bg-pixel-blue { background-color: var(--pixel-blue); }
+.bg-pixel-blue-dark { background-color: var(--pixel-blue-dark); }
+.bg-pixel-green { background-color: var(--pixel-green); }
+.bg-pixel-red { background-color: var(--pixel-red); }
+.bg-pixel-yellow { background-color: var(--pixel-yellow); }
+
+/* === Pixel Border Utilities === */
+.border-pixel-border { border-color: var(--pixel-border); }
+.border-pixel-border-light { border-color: var(--pixel-border-light); }
 
 /* === Pixel Loading Spinner === */
 @keyframes pixel-spin {

@@ -212,7 +212,7 @@ export default function GrammarPage() {
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex justify-center gap-1 mb-6 bg-gray-100 p-1 rounded-lg w-fit mx-auto section-enter section-enter-1">
+        <div className="flex justify-center gap-1 mb-6 bg-pixel-surface-alt p-1 rounded-lg w-fit mx-auto section-enter section-enter-1">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             return (
@@ -238,13 +238,13 @@ export default function GrammarPage() {
         {/* Analysis Tab */}
         {activeTab === "analysis" && (
           <>
-            <Card className="bg-white border-gray-200 shadow-sm mb-6 section-enter section-enter-2">
+            <Card className="bg-white border-pixel-border-light shadow-sm mb-6 section-enter section-enter-2">
               <CardContent className="p-6">
                 <Textarea
                   value={sentence}
                   onChange={(e) => setSentence(e.target.value)}
                   placeholder="输入英文句子，例如：The quick brown fox jumps over the lazy dog"
-                  className="w-full h-32 resize-none border-gray-200 focus-visible:ring-blue-500"
+                  className="w-full h-32 resize-none border-pixel-border-light focus-visible:ring-blue-500"
                 />
                 <div className="flex items-center justify-between mt-4">
                   <div className="flex gap-2">
@@ -262,7 +262,7 @@ export default function GrammarPage() {
                   <Button
                     onClick={handleAnalyze}
                     disabled={!sentence.trim() || loading}
-                    className="bg-gray-900 hover:bg-gray-800 shadow-sm gap-2 btn-press"
+                    className="bg-pixel-blue-dark hover:opacity-90 shadow-sm gap-2 btn-press"
                   >
                     {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
                     分析句子
@@ -345,7 +345,7 @@ export default function GrammarPage() {
           <div className="space-y-4">
             {grammarMistakes.length === 0 ? (
               <div className="text-center py-16">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-pixel-surface-alt rounded-full flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="w-6 h-6 text-pixel-text-muted" />
                 </div>
                 <p className="text-pixel-text font-medium mb-1">错题本为空</p>
@@ -371,7 +371,7 @@ export default function GrammarPage() {
                   </div>
                 </div>
                 {grammarMistakes.map((mistake) => (
-                  <Card key={mistake.id} className={`bg-white border-gray-200 shadow-sm ${mistake.mastered ? "opacity-60" : ""}`}>
+                  <Card key={mistake.id} className={`bg-white border-pixel-border-light shadow-sm ${mistake.mastered ? "opacity-60" : ""}`}>
                     <CardContent className="p-5">
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex-1">
@@ -421,7 +421,7 @@ export default function GrammarPage() {
           <div className="space-y-4">
             {practiceQuestions.length === 0 ? (
               <>
-                <Card className="bg-white border-gray-200 shadow-sm">
+                <Card className="bg-white border-pixel-border-light shadow-sm">
                   <CardHeader>
                     <h3 className="text-lg font-semibold text-pixel-text">语法练习</h3>
                     <p className="text-sm text-pixel-text-light">
@@ -435,14 +435,14 @@ export default function GrammarPage() {
                       <Button
                         variant={practiceType === "multiple-choice" ? "default" : "outline"}
                         onClick={() => setPracticeType("multiple-choice")}
-                        className={practiceType === "multiple-choice" ? "bg-gray-900" : ""}
+                        className={practiceType === "multiple-choice" ? "bg-pixel-blue-dark" : ""}
                       >
                         选择题
                       </Button>
                       <Button
                         variant={practiceType === "fill-blank" ? "default" : "outline"}
                         onClick={() => setPracticeType("fill-blank")}
-                        className={practiceType === "fill-blank" ? "bg-gray-900" : ""}
+                        className={practiceType === "fill-blank" ? "bg-pixel-blue-dark" : ""}
                       >
                         填空题
                       </Button>
@@ -450,7 +450,7 @@ export default function GrammarPage() {
                     <Button
                       onClick={handleGeneratePractice}
                       disabled={practiceLoading}
-                      className="w-full bg-gray-900 hover:bg-gray-800 shadow-sm gap-2 btn-press"
+                      className="w-full bg-pixel-blue-dark hover:opacity-90 shadow-sm gap-2 btn-press"
                     >
                       {practiceLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Target className="w-4 h-4" />}
                       生成练习题
@@ -459,14 +459,14 @@ export default function GrammarPage() {
                 </Card>
 
                 {grammarPracticeHistory.length > 0 && (
-                  <Card className="bg-white border-gray-200 shadow-sm">
+                  <Card className="bg-white border-pixel-border-light shadow-sm">
                     <CardHeader>
                       <h3 className="text-sm font-semibold text-pixel-text">最近练习记录</h3>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-2">
                         {grammarPracticeHistory.slice(0, 5).map((record) => (
-                          <div key={record.id} className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg">
+                          <div key={record.id} className="flex items-center gap-3 p-2 bg-pixel-surface rounded-lg">
                             {record.correct ? (
                               <CheckCircle className="w-4 h-4 text-green-500 shrink-0" />
                             ) : (
@@ -500,7 +500,7 @@ export default function GrammarPage() {
                   </Badge>
                 </div>
 
-                <Card className="bg-white border-gray-200 shadow-sm">
+                <Card className="bg-white border-pixel-border-light shadow-sm">
                   <CardContent className="p-6">
                     <p className="text-lg text-pixel-text mb-6 font-medium">
                       {practiceQuestions[currentQ].question}
@@ -520,7 +520,7 @@ export default function GrammarPage() {
                                 ? "bg-red-50 border-red-300 text-red-700"
                                 : userAnswer.toUpperCase() === opt.charAt(0).toUpperCase()
                                 ? "bg-blue-50 border-blue-300"
-                                : "bg-gray-50 border-gray-200 hover:bg-gray-100"
+                                : "bg-pixel-surface border-pixel-border-light hover:bg-pixel-surface-alt"
                             }`}
                           >
                             {opt}
@@ -535,7 +535,7 @@ export default function GrammarPage() {
                           value={userAnswer}
                           onChange={(e) => setUserAnswer(e.target.value)}
                           placeholder="输入你的答案..."
-                          className="w-full h-20 resize-none border-gray-200"
+                          className="w-full h-20 resize-none border-pixel-border-light"
                         />
                       </div>
                     )}
@@ -565,7 +565,7 @@ export default function GrammarPage() {
                         <Button
                           onClick={handleAnswer}
                           disabled={!userAnswer.trim()}
-                          className="bg-gray-900 hover:bg-gray-800 gap-2 btn-press"
+                          className="bg-pixel-blue-dark hover:opacity-90 gap-2 btn-press"
                         >
                           提交答案
                         </Button>

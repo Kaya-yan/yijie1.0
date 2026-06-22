@@ -237,8 +237,8 @@ export default function WritingPage() {
                 onClick={() => { setScene(s.id); setGuide(null); setShowGuide(false); }}
                 className={`gap-2 ${
                   scene === s.id
-                    ? "bg-gray-900 shadow-sm"
-                    : "bg-white border-gray-200 hover:bg-gray-50"
+                    ? "bg-pixel-blue-dark shadow-sm"
+                    : "bg-white border-pixel-border-light hover:bg-pixel-surface"
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -251,8 +251,8 @@ export default function WritingPage() {
         <div className="grid lg:grid-cols-3 gap-6 section-enter section-enter-2">
           {/* Writing area */}
           <div className="lg:col-span-2 space-y-4">
-            <Card className="bg-white border-gray-200 shadow-sm overflow-hidden">
-              <div className="px-4 py-3 border-b bg-gray-50/50 flex items-center justify-between">
+            <Card className="bg-white border-pixel-border-light shadow-sm overflow-hidden">
+              <div className="px-4 py-3 border-b bg-pixel-surface/50 flex items-center justify-between">
                 <span className="text-sm font-medium text-pixel-text">
                   {scenes.find((s) => s.id === scene)?.name}写作
                 </span>
@@ -321,7 +321,7 @@ export default function WritingPage() {
                   {guide.template && (
                     <div>
                       <h4 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-2">模板框架</h4>
-                      <pre className="text-sm text-pixel-text-light bg-gray-50 p-3 rounded-lg whitespace-pre-wrap font-mono">{guide.template}</pre>
+                      <pre className="text-sm text-pixel-text-light bg-pixel-surface p-3 rounded-lg whitespace-pre-wrap font-mono">{guide.template}</pre>
                     </div>
                   )}
                   {guide.usefulSentences.length > 0 && (
@@ -358,7 +358,7 @@ export default function WritingPage() {
           {/* AI sidebar */}
           <div className="space-y-4">
             {/* Score */}
-            <Card className="bg-white border-gray-200 shadow-sm">
+            <Card className="bg-white border-pixel-border-light shadow-sm">
               <CardHeader className="pb-2">
                 <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider">写作评分</h3>
               </CardHeader>
@@ -395,7 +395,7 @@ export default function WritingPage() {
 
             {/* Dimension Scores Radar */}
             {dimensionScores && (
-              <Card className="bg-white border-gray-200 shadow-sm">
+              <Card className="bg-white border-pixel-border-light shadow-sm">
                 <CardHeader className="pb-2">
                   <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider">维度评分</h3>
                 </CardHeader>
@@ -455,7 +455,7 @@ export default function WritingPage() {
             )}
 
             {/* Suggestions */}
-            <Card className="bg-white border-gray-200 shadow-sm">
+            <Card className="bg-white border-pixel-border-light shadow-sm">
               <CardHeader className="pb-2">
                 <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider flex items-center gap-2">
                   <Sparkles className="w-3.5 h-3.5" />
@@ -526,14 +526,14 @@ export default function WritingPage() {
 
             {/* History */}
             {writingHistory.length > 0 && (
-              <Card className="bg-white border-gray-200 shadow-sm">
+              <Card className="bg-white border-pixel-border-light shadow-sm">
                 <CardHeader className="pb-2">
                   <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider">历史记录</h3>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
                     {writingHistory.slice(0, 3).map((item) => (
-                      <div key={item.id} className="p-2 bg-gray-50 rounded-lg">
+                      <div key={item.id} className="p-2 bg-pixel-surface rounded-lg">
                         <div className="flex items-center justify-between mb-1">
                           <Badge variant="secondary" className="text-xs">
                             {sceneMap[item.scene] || item.scene}

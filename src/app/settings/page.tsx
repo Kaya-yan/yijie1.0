@@ -118,7 +118,7 @@ export default function SettingsPage() {
         </div>
 
         <Tabs defaultValue="models" className="space-y-6 section-enter section-enter-1">
-          <TabsList className="bg-white border border-gray-200 shadow-sm">
+          <TabsList className="bg-white border border-pixel-border-light shadow-sm">
             <TabsTrigger value="models" className="gap-2">
               <Lock className="w-4 h-4" />
               模型配置
@@ -135,7 +135,7 @@ export default function SettingsPage() {
               const isTesting = testing[model.id];
 
               return (
-                <Card key={model.id} className="bg-white border-gray-200 shadow-sm">
+                <Card key={model.id} className="bg-white border-pixel-border-light shadow-sm">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center gap-3">
@@ -188,7 +188,7 @@ export default function SettingsPage() {
                           value={model.baseUrl}
                           onChange={(e) => handleUpdateModel(model.id, "baseUrl", e.target.value)}
                           placeholder="https://api.example.com/v1"
-                          className="h-10 bg-gray-50 border-gray-200 font-mono text-sm"
+                          className="h-10 bg-pixel-surface border-pixel-border-light font-mono text-sm"
                         />
                       </div>
                       <div>
@@ -199,7 +199,7 @@ export default function SettingsPage() {
                             value={model.apiKey}
                             onChange={(e) => handleUpdateModel(model.id, "apiKey", e.target.value)}
                             placeholder="sk-..."
-                            className="h-10 bg-gray-50 border-gray-200 font-mono text-sm pr-10"
+                            className="h-10 bg-pixel-surface border-pixel-border-light font-mono text-sm pr-10"
                           />
                           <Button
                             variant="ghost"
@@ -259,7 +259,7 @@ export default function SettingsPage() {
           </TabsContent>
 
           <TabsContent value="custom">
-            <Card className="bg-white border-gray-200 shadow-sm">
+            <Card className="bg-white border-pixel-border-light shadow-sm">
               <CardHeader>
                 <CardTitle className="text-lg">添加自定义模型</CardTitle>
                 <CardDescription>接入任何兼容 OpenAI API 格式的模型服务</CardDescription>
@@ -272,7 +272,7 @@ export default function SettingsPage() {
                       value={customModel.name}
                       onChange={(e) => setCustomModel((prev) => ({ ...prev, name: e.target.value }))}
                       placeholder="My Custom Model"
-                      className="h-10 bg-gray-50 border-gray-200"
+                      className="h-10 bg-pixel-surface border-pixel-border-light"
                     />
                   </div>
                   <div>
@@ -281,7 +281,7 @@ export default function SettingsPage() {
                       value={customModel.provider}
                       onChange={(e) => setCustomModel((prev) => ({ ...prev, provider: e.target.value }))}
                       placeholder="自定义"
-                      className="h-10 bg-gray-50 border-gray-200"
+                      className="h-10 bg-pixel-surface border-pixel-border-light"
                     />
                   </div>
                 </div>
@@ -291,7 +291,7 @@ export default function SettingsPage() {
                     value={customModel.baseUrl}
                     onChange={(e) => setCustomModel((prev) => ({ ...prev, baseUrl: e.target.value }))}
                     placeholder="https://api.example.com/v1"
-                    className="h-10 bg-gray-50 border-gray-200 font-mono text-sm"
+                    className="h-10 bg-pixel-surface border-pixel-border-light font-mono text-sm"
                   />
                 </div>
                 <div>
@@ -301,13 +301,13 @@ export default function SettingsPage() {
                     value={customModel.apiKey}
                     onChange={(e) => setCustomModel((prev) => ({ ...prev, apiKey: e.target.value }))}
                     placeholder="sk-..."
-                    className="h-10 bg-gray-50 border-gray-200 font-mono text-sm"
+                    className="h-10 bg-pixel-surface border-pixel-border-light font-mono text-sm"
                   />
                 </div>
                 <Button
                   onClick={handleAddCustomModel}
                   disabled={!customModel.name || !customModel.baseUrl}
-                  className="bg-gray-900 hover:bg-gray-800 shadow-sm gap-2 btn-press"
+                  className="bg-pixel-blue-dark hover:opacity-90 shadow-sm gap-2 btn-press"
                 >
                   <Plus className="w-4 h-4" />
                   添加模型

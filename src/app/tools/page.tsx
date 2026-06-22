@@ -43,7 +43,7 @@ function TextStatsTool() {
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="粘贴或输入文本..."
-        className="w-full h-32 resize-none border-gray-200"
+        className="w-full h-32 resize-none border-pixel-border-light"
       />
       {stats && (
         <div className="grid grid-cols-3 gap-3">
@@ -58,7 +58,7 @@ function TextStatsTool() {
             { label: "英文单词", value: stats.englishWords },
             { label: "数字个数", value: stats.numbers },
           ].map((s) => (
-            <div key={s.label} className="text-center p-3 bg-gray-50 rounded-lg">
+            <div key={s.label} className="text-center p-3 bg-pixel-surface rounded-lg">
               <div className="text-xl font-bold text-pixel-text">{s.value}</div>
               <div className="text-xs text-pixel-text-light mt-1">{s.label}</div>
             </div>
@@ -97,7 +97,7 @@ function TextDiffTool() {
             value={text1}
             onChange={(e) => { setText1(e.target.value); setShowDiff(false); }}
             placeholder="输入第一段文本..."
-            className="w-full h-32 resize-none border-gray-200"
+            className="w-full h-32 resize-none border-pixel-border-light"
           />
         </div>
         <div>
@@ -106,14 +106,14 @@ function TextDiffTool() {
             value={text2}
             onChange={(e) => { setText2(e.target.value); setShowDiff(false); }}
             placeholder="输入第二段文本..."
-            className="w-full h-32 resize-none border-gray-200"
+            className="w-full h-32 resize-none border-pixel-border-light"
           />
         </div>
       </div>
       <Button
         onClick={() => setShowDiff(true)}
         disabled={!text1.trim() || !text2.trim()}
-        className="gap-2 bg-gray-900"
+        className="gap-2 bg-pixel-blue-dark"
       >
         <GitCompare className="w-4 h-4" />
         对比差异
@@ -127,7 +127,7 @@ function TextDiffTool() {
           <div className="border rounded-lg overflow-hidden">
             <div className="grid grid-cols-2 divide-x">
               <div className="p-1">
-                <div className="text-xs font-medium text-pixel-text-muted px-2 py-1 bg-gray-50">文本 A</div>
+                <div className="text-xs font-medium text-pixel-text-muted px-2 py-1 bg-pixel-surface">文本 A</div>
                 {diffResult.map((d, i) => (
                   <div key={i} className={`px-2 py-0.5 text-sm font-mono ${d.same ? "text-pixel-text-light" : "bg-red-50 text-red-700"}`}>
                     {d.line1 || <span className="text-pixel-text-muted">(空行)</span>}
@@ -135,7 +135,7 @@ function TextDiffTool() {
                 ))}
               </div>
               <div className="p-1">
-                <div className="text-xs font-medium text-pixel-text-muted px-2 py-1 bg-gray-50">文本 B</div>
+                <div className="text-xs font-medium text-pixel-text-muted px-2 py-1 bg-pixel-surface">文本 B</div>
                 {diffResult.map((d, i) => (
                   <div key={i} className={`px-2 py-0.5 text-sm font-mono ${d.same ? "text-pixel-text-light" : "bg-green-50 text-green-700"}`}>
                     {d.line2 || <span className="text-pixel-text-muted">(空行)</span>}
@@ -180,12 +180,12 @@ function FormatConverterTool() {
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="输入要转换的文本..."
-        className="w-full h-24 resize-none border-gray-200"
+        className="w-full h-24 resize-none border-pixel-border-light"
       />
       {conversions.length > 0 && (
         <div className="space-y-2">
           {conversions.map((c) => (
-            <div key={c.label} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+            <div key={c.label} className="flex items-center gap-3 p-3 bg-pixel-surface rounded-lg">
               <span className="text-xs font-medium text-pixel-text-light w-20 shrink-0">{c.label}</span>
               <span className="text-sm text-pixel-text flex-1 truncate font-mono">{c.value}</span>
               <Button
@@ -207,7 +207,7 @@ function FormatConverterTool() {
 // ============ External Tools Data ============
 
 const categories = [
-  { id: "all", name: "全部", icon: Sparkles, color: "bg-gray-100 text-pixel-text" },
+  { id: "all", name: "全部", icon: Sparkles, color: "bg-pixel-surface-alt text-pixel-text" },
   { id: "builtin", name: "内置工具", icon: ToolCase, color: "bg-emerald-100 text-emerald-700" },
   { id: "llm", name: "大模型", icon: Cpu, color: "bg-blue-100 text-blue-700" },
   { id: "writing", name: "写作", icon: PenSquare, color: "bg-emerald-100 text-emerald-700" },
@@ -244,7 +244,7 @@ const tools: Tool[] = [
   { name: "ChatGPT", category: "llm", desc: "OpenAI 最强对话模型", url: "https://chat.openai.com", color: "bg-green-500", hot: true },
   { name: "Claude", category: "llm", desc: "Anthropic 长文本处理专家", url: "https://claude.ai", color: "bg-amber-500", hot: true },
   { name: "Gemini", category: "llm", desc: "Google 多模态 AI", url: "https://gemini.google.com", color: "bg-blue-500" },
-  { name: "Kimi", category: "llm", desc: "月之暗面超长上下文模型", url: "https://kimi.moonshot.cn", color: "bg-gray-800", hot: true },
+  { name: "Kimi", category: "llm", desc: "月之暗面超长上下文模型", url: "https://kimi.moonshot.cn", color: "bg-slate-800", hot: true },
   { name: "DeepSeek", category: "llm", desc: "深度求索高性能模型", url: "https://chat.deepseek.com", color: "bg-blue-600", hot: true },
   { name: "文心一言", category: "llm", desc: "百度中文大模型", url: "https://yiyan.baidu.com", color: "bg-red-500" },
   { name: "通义千问", category: "llm", desc: "阿里云大语言模型", url: "https://tongyi.aliyun.com", color: "bg-orange-500" },
@@ -255,12 +255,12 @@ const tools: Tool[] = [
   { name: "MiniMax", category: "llm", desc: "MiniMax 海螺AI", url: "https://hailuoai.com", color: "bg-violet-500" },
   { name: "零一万物", category: "llm", desc: "Yi 大模型", url: "https://www.lingyiwanwu.com", color: "bg-indigo-500" },
   { name: "Jasper", category: "writing", desc: "营销文案 AI 写作", url: "https://www.jasper.ai", color: "bg-red-500" },
-  { name: "Copy.ai", category: "writing", desc: "多场景 AI 写作助手", url: "https://www.copy.ai", color: "bg-gray-800" },
+  { name: "Copy.ai", category: "writing", desc: "多场景 AI 写作助手", url: "https://www.copy.ai", color: "bg-slate-800" },
   { name: "Grammarly", category: "writing", desc: "语法检查与写作增强", url: "https://www.grammarly.com", color: "bg-green-600" },
   { name: "QuillBot", category: "writing", desc: "改写、润色、摘要", url: "https://quillbot.com", color: "bg-emerald-500" },
   { name: "秘塔写作猫", category: "writing", desc: "中文 AI 写作助手", url: "https://xiezuocat.com", color: "bg-sky-500" },
   { name: "火山写作", category: "writing", desc: "字节跳动写作助手", url: "https://writingo.net", color: "bg-orange-500" },
-  { name: "Notion AI", category: "writing", desc: "笔记与知识管理 AI", url: "https://www.notion.so/product/ai", color: "bg-gray-900" },
+  { name: "Notion AI", category: "writing", desc: "笔记与知识管理 AI", url: "https://www.notion.so/product/ai", color: "bg-slate-900" },
   { name: "Midjourney", category: "image", desc: "顶级 AI 绘画工具", url: "https://www.midjourney.com", color: "bg-indigo-600", hot: true },
   { name: "DALL-E", category: "image", desc: "OpenAI 图像生成", url: "https://openai.com/dall-e-3", color: "bg-green-600" },
   { name: "Stable Diffusion", category: "image", desc: "开源文生图模型", url: "https://stability.ai", color: "bg-violet-600" },
@@ -270,23 +270,23 @@ const tools: Tool[] = [
   { name: "通义万相", category: "image", desc: "阿里 AI 绘画", url: "https://tongyi.aliyun.com/wanxiang", color: "bg-orange-500" },
   { name: "文心一格", category: "image", desc: "百度 AI 绘画", url: "https://yige.baidu.com", color: "bg-red-500" },
   { name: "可图", category: "image", desc: "快手 AI 绘画", url: "https://kolors.kuaishou.com", color: "bg-yellow-500" },
-  { name: "GitHub Copilot", category: "code", desc: "AI 代码补全助手", url: "https://github.com/features/copilot", color: "bg-gray-900", hot: true },
+  { name: "GitHub Copilot", category: "code", desc: "AI 代码补全助手", url: "https://github.com/features/copilot", color: "bg-slate-900", hot: true },
   { name: "Cursor", category: "code", desc: "AI 驱动的代码编辑器", url: "https://cursor.sh", color: "bg-violet-600", hot: true },
   { name: "Codeium", category: "code", desc: "免费的 AI 编程助手", url: "https://codeium.com", color: "bg-blue-500" },
   { name: "Replit", category: "code", desc: "在线编程与 AI 助手", url: "https://replit.com", color: "bg-orange-500" },
   { name: "通义灵码", category: "code", desc: "阿里 AI 编程助手", url: "https://tongyi.aliyun.com/lingma", color: "bg-orange-600" },
   { name: "CodeGeeX", category: "code", desc: "智谱 AI 编程助手", url: "https://codegeex.cn", color: "bg-teal-500" },
   { name: "Bolt.new", category: "code", desc: "AI 全栈开发", url: "https://bolt.new", color: "bg-sky-500", new: true },
-  { name: "v0", category: "code", desc: "Vercel AI 生成 UI", url: "https://v0.dev", color: "bg-gray-900", new: true },
-  { name: "Sora", category: "video", desc: "OpenAI 文本生成视频", url: "https://openai.com/sora", color: "bg-gray-900", hot: true },
+  { name: "v0", category: "code", desc: "Vercel AI 生成 UI", url: "https://v0.dev", color: "bg-slate-900", new: true },
+  { name: "Sora", category: "video", desc: "OpenAI 文本生成视频", url: "https://openai.com/sora", color: "bg-slate-900", hot: true },
   { name: "Runway", category: "video", desc: "AI 视频编辑与生成", url: "https://runwayml.com", color: "bg-violet-600" },
   { name: "Pika", category: "video", desc: "快速 AI 视频生成", url: "https://pika.art", color: "bg-pink-500" },
   { name: "HeyGen", category: "video", desc: "AI 数字人视频", url: "https://www.heygen.com", color: "bg-blue-600" },
-  { name: "剪映", category: "video", desc: "字节跳动视频编辑", url: "https://www.capcut.cn", color: "bg-gray-900" },
+  { name: "剪映", category: "video", desc: "字节跳动视频编辑", url: "https://www.capcut.cn", color: "bg-slate-900" },
   { name: "可灵AI", category: "video", desc: "快手 AI 视频生成", url: "https://klingai.kuaishou.com", color: "bg-yellow-500" },
   { name: "即梦AI视频", category: "video", desc: "字节跳动 AI 视频", url: "https://jimeng.jianying.com", color: "bg-pink-600" },
   { name: "Vidu", category: "video", desc: "生数科技 AI 视频", url: "https://www.vidu.cn", color: "bg-blue-500", new: true },
-  { name: "ElevenLabs", category: "audio", desc: "AI 语音合成与克隆", url: "https://elevenlabs.io", color: "bg-gray-900" },
+  { name: "ElevenLabs", category: "audio", desc: "AI 语音合成与克隆", url: "https://elevenlabs.io", color: "bg-slate-900" },
   { name: "Whisper", category: "audio", desc: "OpenAI 语音识别", url: "https://openai.com/research/whisper", color: "bg-green-600" },
   { name: "Suno", category: "audio", desc: "AI 音乐生成", url: "https://suno.ai", color: "bg-violet-600", hot: true },
   { name: "Udio", category: "audio", desc: "AI 音乐创作", url: "https://www.udio.com", color: "bg-indigo-600" },
@@ -302,7 +302,7 @@ const tools: Tool[] = [
   { name: "飞书智能伙伴", category: "productivity", desc: "字节跳动办公 AI", url: "https://www.feishu.cn", color: "bg-blue-500" },
   { name: "WPS AI", category: "productivity", desc: "金山办公 AI 助手", url: "https://ai.wps.cn", color: "bg-red-600" },
   { name: "通义智文", category: "productivity", desc: "AI 文档阅读", url: "https://zhiwen.aliyun.com", color: "bg-orange-500" },
-  { name: "Kimi 浏览器助手", category: "productivity", desc: "月之暗面浏览器插件", url: "https://kimi.moonshot.cn", color: "bg-gray-800" },
+  { name: "Kimi 浏览器助手", category: "productivity", desc: "月之暗面浏览器插件", url: "https://kimi.moonshot.cn", color: "bg-slate-800" },
 ];
 
 const builtInToolsList = [
@@ -368,7 +368,7 @@ export default function ToolsPage() {
                     className={`flex items-center gap-3 p-4 rounded-xl border transition-all ${
                       activeBuiltinTool === tool.id
                         ? "bg-blue-50 border-blue-300 shadow-sm"
-                        : "bg-white border-gray-200 hover:border-blue-300 hover:shadow-sm"
+                        : "bg-white border-pixel-border-light hover:border-blue-300 hover:shadow-sm"
                     }`}
                   >
                     <div className={`w-10 h-10 ${tool.color} rounded-lg flex items-center justify-center text-white`}>
@@ -385,7 +385,7 @@ export default function ToolsPage() {
 
             {/* Built-in tool content */}
             {activeBuiltinTool && (
-              <Card className="bg-white border-gray-200 shadow-sm">
+              <Card className="bg-white border-pixel-border-light shadow-sm">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
                     <h3 className="font-semibold text-pixel-text">
@@ -442,7 +442,7 @@ export default function ToolsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="搜索工具..."
-              className="pl-10 h-11 bg-white border-gray-200"
+              className="pl-10 h-11 bg-white border-pixel-border-light"
             />
           </div>
         </div>
@@ -459,8 +459,8 @@ export default function ToolsPage() {
                 onClick={() => { setActiveCategory(cat.id); setActiveBuiltinTool(null); }}
                 className={`gap-1.5 h-9 ${
                   activeCategory === cat.id
-                    ? "bg-gray-900 shadow-sm"
-                    : "bg-white border-gray-200 hover:bg-gray-50"
+                    ? "bg-pixel-blue-dark shadow-sm"
+                    : "bg-white border-pixel-border-light hover:bg-pixel-surface"
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -468,7 +468,7 @@ export default function ToolsPage() {
                 <Badge
                   variant="secondary"
                   className={`ml-1 text-xs ${
-                    activeCategory === cat.id ? "bg-white/20 text-white" : "bg-gray-100 text-pixel-text-light"
+                    activeCategory === cat.id ? "bg-white/20 text-white" : "bg-pixel-surface-alt text-pixel-text-light"
                   }`}
                 >
                   {count}
@@ -491,7 +491,7 @@ export default function ToolsPage() {
                     className={`flex items-center gap-3 p-4 rounded-xl border transition-all ${
                       activeBuiltinTool === tool.id
                         ? "bg-blue-50 border-blue-300 shadow-sm"
-                        : "bg-white border-gray-200 hover:border-blue-300 hover:shadow-sm"
+                        : "bg-white border-pixel-border-light hover:border-blue-300 hover:shadow-sm"
                     }`}
                   >
                     <div className={`w-10 h-10 ${tool.color} rounded-lg flex items-center justify-center text-white`}>
@@ -506,7 +506,7 @@ export default function ToolsPage() {
               })}
             </div>
             {activeBuiltinTool && (
-              <Card className="bg-white border-gray-200 shadow-sm">
+              <Card className="bg-white border-pixel-border-light shadow-sm">
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
                     <h3 className="font-semibold text-pixel-text">
@@ -533,7 +533,7 @@ export default function ToolsPage() {
                 href={tool.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex items-start gap-4 p-4 bg-white border border-gray-200 rounded-xl card-hover animate-scale-in"
+                className="group relative flex items-start gap-4 p-4 bg-white border border-pixel-border-light rounded-xl card-hover animate-scale-in"
                 style={{ animationDelay: `${Math.min(i * 0.03, 0.3)}s` }}
               >
                 <div className="absolute top-3 right-3 flex gap-1">
@@ -557,7 +557,7 @@ export default function ToolsPage() {
 
         {activeCategory !== "builtin" && filtered.length === 0 && (
           <div className="text-center py-16">
-            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-pixel-surface-alt rounded-full flex items-center justify-center mx-auto mb-4">
               <Search className="w-6 h-6 text-pixel-text-muted" />
             </div>
             <p className="text-pixel-text-light mb-1">没有找到匹配的工具</p>

@@ -257,7 +257,7 @@ export default function ReadingPage() {
 
         {!submitted ? (
           <div className="max-w-2xl mx-auto space-y-6 section-enter section-enter-1">
-            <Card className="bg-white border-gray-200 shadow-sm">
+            <Card className="bg-white border-pixel-border-light shadow-sm">
               <CardContent className="p-6">
                 <div className="flex gap-2 mb-4">
                   <Button variant="outline" size="sm" className="gap-2 text-pixel-text-muted" disabled>
@@ -273,13 +273,13 @@ export default function ReadingPage() {
                   value={article}
                   onChange={(e) => setArticle(e.target.value)}
                   placeholder="粘贴文章到这里，或选择下方内置文章..."
-                  className="w-full h-48 resize-none border-gray-200 focus-visible:ring-blue-500"
+                  className="w-full h-48 resize-none border-pixel-border-light focus-visible:ring-blue-500"
                 />
                 <div className="flex justify-end mt-4">
                   <Button
                     onClick={() => handleSubmit()}
                     disabled={loading}
-                    className="bg-gray-900 hover:bg-gray-800 shadow-sm gap-2 btn-press"
+                    className="bg-pixel-blue-dark hover:opacity-90 shadow-sm gap-2 btn-press"
                   >
                     {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <FileText className="w-4 h-4" />}
                     开始阅读
@@ -296,7 +296,7 @@ export default function ReadingPage() {
                   <button
                     key={m.id}
                     onClick={() => handleLoadMaterial(m)}
-                    className="text-left p-4 bg-white border border-gray-200 rounded-xl hover:border-blue-300 hover:shadow-sm transition-all"
+                    className="text-left p-4 bg-white border border-pixel-border-light rounded-xl hover:border-blue-300 hover:shadow-sm transition-all"
                   >
                     <div className="flex items-center gap-2 mb-1.5">
                       <span className="font-medium text-pixel-text text-sm">{m.title}</span>
@@ -316,7 +316,7 @@ export default function ReadingPage() {
           <div className="grid lg:grid-cols-3 gap-6">
             {/* Reading area */}
             <div className="lg:col-span-2 space-y-4">
-              <Card className="bg-white border-gray-200 shadow-sm">
+              <Card className="bg-white border-pixel-border-light shadow-sm">
                 <CardHeader className="pb-4">
                   <div className="flex items-center justify-between">
                     <h2 className="text-lg font-semibold text-pixel-text">文章内容</h2>
@@ -378,7 +378,7 @@ export default function ReadingPage() {
                               {word}
                             </span>
                             {selectedWord === word && vocab && (
-                              <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg p-4 z-10">
+                              <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 bg-white border border-pixel-border-light rounded-xl shadow-lg p-4 z-10">
                                 <div className="flex items-center justify-between mb-2">
                                   <span className="font-semibold text-pixel-text">{vocab.word}</span>
                                   <Button
@@ -405,7 +405,7 @@ export default function ReadingPage() {
                   </div>
 
                   {/* Sentence selector */}
-                  <div className="mt-6 pt-4 border-t border-gray-100">
+                  <div className="mt-6 pt-4 border-t border-pixel-border-light">
                     <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-2">点击句子进行深度分析</h3>
                     <div className="space-y-1.5">
                       {sentences.map((s, i) => (
@@ -413,7 +413,7 @@ export default function ReadingPage() {
                           key={i}
                           onClick={() => handleAnalyzeSentence(s.trim())}
                           className={`w-full text-left p-2 rounded-lg text-sm transition-colors ${
-                            selectedSentence === s.trim() ? "bg-blue-50 border border-blue-200" : "hover:bg-gray-50"
+                            selectedSentence === s.trim() ? "bg-blue-50 border border-blue-200" : "hover:bg-pixel-surface"
                           }`}
                         >
                           {s.trim()}
@@ -470,7 +470,7 @@ export default function ReadingPage() {
                   )}
 
                   {/* Translation */}
-                  <div className="mt-8 pt-6 border-t border-gray-100">
+                  <div className="mt-8 pt-6 border-t border-pixel-border-light">
                     <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-3">段落翻译</h3>
                     <p className="text-pixel-text-light text-sm leading-relaxed">
                       {analysis?.translation || "那只敏捷的棕色狐狸跳过了懒惰的狗。这个全字母句包含了英语字母表中的每一个字母至少一次。全字母句常被用来展示字体样本和测试键盘。"}
@@ -479,7 +479,7 @@ export default function ReadingPage() {
 
                   {/* Grammar Points */}
                   {analysis?.grammar_points && analysis.grammar_points.length > 0 && (
-                    <div className="mt-6 pt-6 border-t border-gray-100">
+                    <div className="mt-6 pt-6 border-t border-pixel-border-light">
                       <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-3">语法要点</h3>
                       <div className="space-y-3">
                         {analysis.grammar_points.map((point, i) => (
@@ -553,7 +553,7 @@ export default function ReadingPage() {
 
             {/* Vocab list */}
             <div>
-              <Card className="bg-white border-gray-200 shadow-sm sticky top-20">
+              <Card className="bg-white border-pixel-border-light shadow-sm sticky top-20">
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
                     <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider">词汇表</h3>
@@ -575,7 +575,7 @@ export default function ReadingPage() {
                         <div
                           key={w}
                           className={`p-3 rounded-lg cursor-pointer transition-colors ${
-                            saved ? "bg-blue-50 border border-blue-200" : "bg-gray-50 hover:bg-gray-100"
+                            saved ? "bg-blue-50 border border-blue-200" : "bg-pixel-surface hover:bg-pixel-surface-alt"
                           }`}
                           onClick={() => toggleSave(w)}
                         >

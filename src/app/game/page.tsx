@@ -571,14 +571,14 @@ export default function GamePage() {
         </div>
 
         <div className="flex items-center justify-center gap-4 mb-6">
-          <Card className="bg-white border-gray-200 shadow-sm">
+          <Card className="bg-white border-pixel-border-light shadow-sm">
             <CardContent className="flex items-center gap-2 px-4 py-2.5">
               <Trophy className="w-4 h-4 text-amber-500" />
               <span className="text-sm text-pixel-text-light">最高分:</span>
               <span className="font-bold text-pixel-text">{highScore}</span>
             </CardContent>
           </Card>
-          <Card className="bg-white border-gray-200 shadow-sm">
+          <Card className="bg-white border-pixel-border-light shadow-sm">
             <CardContent className="flex items-center gap-2 px-4 py-2.5">
               <span className="text-sm text-pixel-text-light">当前:</span>
               <span className="font-bold text-pixel-text">{score}</span>
@@ -594,7 +594,7 @@ export default function GamePage() {
         </div>
 
         <div className="flex justify-center">
-          <Card className="bg-white border-gray-200 shadow-lg overflow-hidden w-full" style={{ maxWidth: 960 }}>
+          <Card className="bg-white border-pixel-border-light shadow-lg overflow-hidden w-full" style={{ maxWidth: 960 }}>
             <canvas ref={canvasRef} className="cursor-pointer touch-none w-full block" style={{ aspectRatio: "960/400" }} />
           </Card>
         </div>
@@ -608,24 +608,24 @@ export default function GamePage() {
         </div>
 
         <div className="mt-8 max-w-md mx-auto">
-          <Card className="bg-white border-gray-200 shadow-sm">
+          <Card className="bg-white border-pixel-border-light shadow-sm">
             <CardContent className="p-4">
               <h3 className="text-sm font-semibold text-pixel-text mb-3">操作说明</h3>
               <div className="grid grid-cols-2 gap-2 text-sm text-pixel-text-light">
                 <div className="flex items-center gap-2">
-                  <kbd className="px-2 py-1 bg-gray-100 rounded text-xs font-mono">空格</kbd>
+                  <kbd className="px-2 py-1 bg-pixel-surface-alt rounded text-xs font-mono">空格</kbd>
                   <span>/ ↑ 跳跃</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <kbd className="px-2 py-1 bg-gray-100 rounded text-xs font-mono">↓</kbd>
+                  <kbd className="px-2 py-1 bg-pixel-surface-alt rounded text-xs font-mono">↓</kbd>
                   <span>下蹲</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <kbd className="px-2 py-1 bg-gray-100 rounded text-xs font-mono">点击</kbd>
+                  <kbd className="px-2 py-1 bg-pixel-surface-alt rounded text-xs font-mono">点击</kbd>
                   <span>跳跃</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <kbd className="px-2 py-1 bg-gray-100 rounded text-xs font-mono">下滑</kbd>
+                  <kbd className="px-2 py-1 bg-pixel-surface-alt rounded text-xs font-mono">下滑</kbd>
                   <span>下蹲</span>
                 </div>
               </div>

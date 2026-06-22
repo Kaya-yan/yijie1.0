@@ -178,13 +178,13 @@ export default function DictionaryPage() {
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                 placeholder="输入单词或短语..."
-                className="pl-10 h-11 bg-white border-gray-200"
+                className="pl-10 h-11 bg-white border-pixel-border-light"
               />
             </div>
             <Button
               onClick={handleSearch}
               disabled={loading || !query.trim()}
-              className="h-11 px-6 bg-gray-900 hover:bg-gray-800 shadow-sm btn-press"
+              className="h-11 px-6 bg-pixel-blue-dark hover:opacity-90 shadow-sm btn-press"
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "搜索"}
             </Button>
@@ -223,7 +223,7 @@ export default function DictionaryPage() {
         )}
 
         {searched && !loading && !error && result && (
-          <Card className="bg-white border-gray-200 shadow-sm overflow-hidden">
+          <Card className="bg-white border-pixel-border-light shadow-sm overflow-hidden">
             <CardHeader className="pb-4">
               <div className="flex items-start justify-between">
                 <div>
@@ -233,7 +233,7 @@ export default function DictionaryPage() {
                       <span className="font-mono text-pixel-text-light">{result.phonetic}</span>
                     )}
                     {result.pos && (
-                      <Badge variant="secondary" className="bg-gray-100 text-pixel-text-light">{result.pos}</Badge>
+                      <Badge variant="secondary" className="bg-pixel-surface-alt text-pixel-text-light">{result.pos}</Badge>
                     )}
                   </div>
                 </div>
@@ -270,7 +270,7 @@ export default function DictionaryPage() {
                     result.frequency === "common" ? "bg-green-50 text-green-700" :
                     result.frequency === "medium" ? "bg-blue-50 text-blue-700" :
                     result.frequency === "academic" ? "bg-purple-50 text-purple-700" :
-                    "bg-gray-100 text-pixel-text-light"
+                    "bg-pixel-surface-alt text-pixel-text-light"
                   }`}>
                     {result.frequency === "common" ? "高频" : result.frequency === "medium" ? "中频" : result.frequency === "academic" ? "学术" : "低频"}
                   </Badge>
@@ -334,7 +334,7 @@ export default function DictionaryPage() {
                   <h3 className="text-xs font-semibold text-pixel-text-muted uppercase tracking-wider mb-3">例句</h3>
                   <div className="space-y-3">
                     {result.examples.map((ex, i) => (
-                      <div key={i} className="p-4 bg-gray-50 rounded-lg">
+                      <div key={i} className="p-4 bg-pixel-surface rounded-lg">
                         <p className="text-pixel-text mb-1">{ex.en}</p>
                         <p className="text-pixel-text-light text-sm">{ex.zh}</p>
                       </div>
@@ -382,7 +382,7 @@ export default function DictionaryPage() {
 
         {searched && !loading && !error && !result && (
           <div className="text-center py-16">
-            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-pixel-surface-alt rounded-full flex items-center justify-center mx-auto mb-4">
               <Search className="w-6 h-6 text-pixel-text-muted" />
             </div>
             <p className="text-pixel-text-light mb-2">未找到该单词</p>

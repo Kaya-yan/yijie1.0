@@ -66,7 +66,7 @@ export default function DashboardPage() {
   const isConfigured = mounted && storeModels.some((m) => m.enabled && m.apiKey);
 
   const displayModels = useMemo(() => storeModels.map((m) => ({
-    ...m, desc: m.provider, color: modelColors[m.id] || "bg-gray-500",
+    ...m, desc: m.provider, color: modelColors[m.id] || "bg-pixel-surface0",
   })), [storeModels]);
 
   const [selectedModel, setSelectedModel] = useState<typeof displayModels[0] | null>(null);
@@ -147,8 +147,8 @@ export default function DashboardPage() {
           {/* Model Selector */}
           <div className="flex justify-center mb-6">
             <Popover open={modelOpen} onOpenChange={setModelOpen}>
-              <PopoverTrigger className="inline-flex items-center justify-center h-10 px-4 gap-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
-                <div className={`w-2 h-2 rounded-full ${selectedModel?.color || "bg-gray-400"}`} />
+              <PopoverTrigger className="inline-flex items-center justify-center h-10 px-4 gap-2 bg-white border border-pixel-border-light rounded-lg hover:bg-pixel-surface transition-colors cursor-pointer">
+                <div className={`w-2 h-2 rounded-full ${selectedModel?.color || "bg-pixel-text-muted"}`} />
                 <span className="font-medium text-sm">{selectedModel?.name || "选择模型"}</span>
                 <span className="text-pixel-text-muted text-xs">({selectedModel?.desc || ""})</span>
                 <ChevronDown className={`w-4 h-4 text-pixel-text-muted transition-transform ${modelOpen ? "rotate-180" : ""}`} />
@@ -184,10 +184,10 @@ export default function DashboardPage() {
           )}
 
           {/* Translation Workbench */}
-          <Card className="bg-white border-gray-200 shadow-sm overflow-hidden">
-            <div className="flex items-center justify-between px-4 py-3 border-b bg-gray-50/50">
+          <Card className="bg-white border-pixel-border-light shadow-sm overflow-hidden">
+            <div className="flex items-center justify-between px-4 py-3 border-b bg-pixel-surface/50">
               <Popover open={sourceLangOpen} onOpenChange={setSourceLangOpen}>
-                <PopoverTrigger className="inline-flex items-center justify-center gap-2 px-3 py-1.5 text-sm font-medium hover:bg-gray-100 rounded-md transition-colors cursor-pointer">
+                <PopoverTrigger className="inline-flex items-center justify-center gap-2 px-3 py-1.5 text-sm font-medium hover:bg-pixel-surface-alt rounded-md transition-colors cursor-pointer">
                   <span className="text-lg">{sourceLang.flag}</span>
                   <span>{sourceLang.name}</span>
                   <ChevronDown className="w-3.5 h-3.5 text-pixel-text-muted" />
@@ -207,7 +207,7 @@ export default function DashboardPage() {
                 <ArrowRightLeft className="w-4 h-4" />
               </Button>
               <Popover open={targetLangOpen} onOpenChange={setTargetLangOpen}>
-                <PopoverTrigger className="inline-flex items-center justify-center gap-2 px-3 py-1.5 text-sm font-medium hover:bg-gray-100 rounded-md transition-colors cursor-pointer">
+                <PopoverTrigger className="inline-flex items-center justify-center gap-2 px-3 py-1.5 text-sm font-medium hover:bg-pixel-surface-alt rounded-md transition-colors cursor-pointer">
                   <span className="text-lg">{targetLang.flag}</span>
                   <span>{targetLang.name}</span>
                   <ChevronDown className="w-3.5 h-3.5 text-pixel-text-muted" />
@@ -228,14 +228,14 @@ export default function DashboardPage() {
             <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-100">
               <div className="p-4">
                 <Textarea value={sourceText} onChange={(e) => setSourceText(e.target.value)} placeholder="在此输入文本..." className="w-full h-48 resize-none border-0 p-0 text-base focus-visible:ring-0 shadow-none bg-transparent" />
-                <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+                <div className="flex items-center justify-between mt-3 pt-3 border-t border-pixel-border-light">
                   <Button variant="ghost" size="sm" className="text-pixel-text-muted hover:text-pixel-text-light gap-1.5" disabled>
                     <Mic className="w-3.5 h-3.5" /><span className="text-xs">语音输入（开发中）</span>
                   </Button>
                   <span className="text-xs text-pixel-text-muted font-mono tabular-nums">{sourceText.length} / 2000</span>
                 </div>
               </div>
-              <div className="p-4 bg-gray-50/30">
+              <div className="p-4 bg-pixel-surface/30">
                 {translating ? (
                   <div className="h-48 flex items-center justify-center">
                     <div className="flex flex-col items-center gap-2">
@@ -246,7 +246,7 @@ export default function DashboardPage() {
                 ) : targetText ? (
                   <div className="h-full">
                     <div className="text-base leading-relaxed min-h-[12rem] text-pixel-text">{targetText}</div>
-                    <div className="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100">
+                    <div className="flex items-center gap-2 mt-3 pt-3 border-t border-pixel-border-light">
                       <Button variant="ghost" size="icon" className={`h-8 w-8 ${copied ? "text-green-500" : "text-pixel-text-muted hover:text-pixel-text-light"}`} onClick={copyResult}>
                         {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                       </Button>
@@ -290,7 +290,7 @@ export default function DashboardPage() {
               { icon: PenSquare, title: "写作训练", desc: "多场景写作辅助，AI 实时建议", href: "/writing", color: "text-emerald-600", bg: "bg-emerald-50" },
               { icon: Bookmark, title: "智能阅读", desc: "词汇标注、段落翻译、AI 讲解", href: "/reading", color: "text-rose-600", bg: "bg-rose-50" },
             ].map((item, i) => (
-              <a key={item.title} href={item.href} className={`group p-5 bg-white border border-gray-200 rounded-xl spring-hover animate-slide-up stagger-${i + 1}`}>
+              <a key={item.title} href={item.href} className={`group p-5 bg-white border border-pixel-border-light rounded-xl spring-hover animate-slide-up stagger-${i + 1}`}>
                 <div className={`w-10 h-10 ${item.bg} rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200`}>
                   <item.icon className={`w-5 h-5 ${item.color}`} />
                 </div>
@@ -303,14 +303,14 @@ export default function DashboardPage() {
 
         {/* Supported Models */}
         <section className="mb-16 section-enter section-enter-2">
-          <div className="bg-white rounded-2xl border border-gray-200 p-8 sm:p-10 shadow-sm">
+          <div className="bg-white rounded-2xl border border-pixel-border-light p-8 sm:p-10 shadow-sm">
             <div className="text-center mb-8">
               <h2 className="text-xl font-semibold text-pixel-text mb-2">支持多种 AI 模型</h2>
               <p className="text-pixel-text-light text-sm">自由切换，找到最适合你的翻译引擎</p>
             </div>
             <div className="flex flex-wrap justify-center gap-3">
               {displayModels.map((m) => (
-                <div key={m.id} className="flex items-center gap-3 px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 hover:border-gray-300 transition-colors">
+                <div key={m.id} className="flex items-center gap-3 px-4 py-2.5 bg-pixel-surface border border-pixel-border-light rounded-lg hover:bg-pixel-surface-alt hover:border-pixel-border transition-colors">
                   <div className={`w-2 h-2 rounded-full ${m.color}`} />
                   <div>
                     <div className="text-sm font-medium text-pixel-text">{m.name}</div>
@@ -331,7 +331,7 @@ export default function DashboardPage() {
               { icon: PixelShield, title: "隐私安全", desc: "数据本地存储，不上传不泄露" },
               { icon: Languages, title: "多语言覆盖", desc: "支持 8+ 种语言互译" },
             ].map((item) => (
-              <div key={item.title} className="text-center p-6 bg-white rounded-xl border border-gray-100 spring-hover">
+              <div key={item.title} className="text-center p-6 bg-white rounded-xl border border-pixel-border-light spring-hover">
                 <div className="w-11 h-11 bg-slate-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <item.icon className="w-5 h-5 text-slate-600" />
                 </div>
@@ -360,7 +360,7 @@ export default function DashboardPage() {
                 const from = languages.find((l) => l.code === fromCode);
                 const to = languages.find((l) => l.code === toCode);
                 if (from && to) { setSourceLang(from); setTargetLang(to); setSourceText(""); setTargetText(""); }
-              }} className="flex items-center justify-center gap-2 p-3 bg-white border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-sm transition-all text-sm spring-hover">
+              }} className="flex items-center justify-center gap-2 p-3 bg-white border border-pixel-border-light rounded-xl hover:border-pixel-border hover:shadow-sm transition-all text-sm spring-hover">
                 <span>{lp.from}</span>
                 <ArrowRightLeft className="w-3 h-3 text-pixel-text-muted" />
                 <span>{lp.to}</span>
@@ -378,7 +378,7 @@ export default function DashboardPage() {
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {translationHistory.slice(0, 6).map((item, i) => (
-                <div key={item.id} className={`p-4 bg-white border border-gray-200 rounded-xl spring-hover animate-slide-up stagger-${i + 1}`}>
+                <div key={item.id} className={`p-4 bg-white border border-pixel-border-light rounded-xl spring-hover animate-slide-up stagger-${i + 1}`}>
                   <div className="flex items-center gap-2 mb-2">
                     <Badge variant="secondary" className="text-xs">
                       {languages.find((l) => l.code === item.sourceLang)?.flag} {languages.find((l) => l.code === item.sourceLang)?.name}
@@ -410,7 +410,7 @@ export default function DashboardPage() {
                 </div>
                 <h3 className="font-semibold text-pixel-text mb-2 text-sm">{item.title}</h3>
                 <p className="text-xs text-pixel-text-light leading-relaxed">{item.desc}</p>
-                {i < 2 && <div className="hidden sm:block absolute top-5 left-full w-8 h-px bg-gray-200" />}
+                {i < 2 && <div className="hidden sm:block absolute top-5 left-full w-8 h-px bg-pixel-border-light" />}
               </div>
             ))}
           </div>
@@ -427,7 +427,7 @@ export default function DashboardPage() {
               { title: "日常对话", desc: "自然流畅的口语化翻译", color: "bg-amber-50 text-amber-700" },
               { title: "技术文档", desc: "代码注释、API 文档等技术内容", color: "bg-slate-100 text-slate-700" },
             ].map((item, i) => (
-              <div key={item.title} className={`p-4 bg-white border border-gray-200 rounded-xl spring-hover animate-slide-up stagger-${i + 1}`}>
+              <div key={item.title} className={`p-4 bg-white border border-pixel-border-light rounded-xl spring-hover animate-slide-up stagger-${i + 1}`}>
                 <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium mb-2 ${item.color}`}>{item.title}</span>
                 <p className="text-xs text-pixel-text-light">{item.desc}</p>
               </div>
@@ -437,7 +437,7 @@ export default function DashboardPage() {
 
         {/* Stats */}
         <section className="mb-16 section-enter section-enter-9">
-          <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 p-8 sm:p-10 shadow-sm">
+          <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-pixel-border-light p-8 sm:p-10 shadow-sm">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
               {[
                 { value: "8+", label: "语言" },
@@ -457,7 +457,7 @@ export default function DashboardPage() {
         {/* More Modules */}
         <section className="mb-16 section-enter">
           <div className="grid sm:grid-cols-2 gap-4">
-            <a href="/game" className="flex items-center gap-5 p-6 bg-white border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-sm transition-all group spring-hover">
+            <a href="/game" className="flex items-center gap-5 p-6 bg-white border border-pixel-border-light rounded-xl hover:border-pixel-border hover:shadow-sm transition-all group spring-hover">
               <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-200">
                 <Gamepad className="w-6 h-6 text-amber-600" />
               </div>
@@ -466,7 +466,7 @@ export default function DashboardPage() {
                 <p className="text-xs text-pixel-text-light">学习之余，来一局经典恐龙跑酷</p>
               </div>
             </a>
-            <a href="/tools" className="flex items-center gap-5 p-6 bg-white border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-sm transition-all group spring-hover">
+            <a href="/tools" className="flex items-center gap-5 p-6 bg-white border border-pixel-border-light rounded-xl hover:border-pixel-border hover:shadow-sm transition-all group spring-hover">
               <div className="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-200">
                 <ToolCase className="w-6 h-6 text-slate-600" />
               </div>
@@ -480,7 +480,7 @@ export default function DashboardPage() {
 
         {/* About Section */}
         <section className="mb-16 section-enter">
-          <div className="bg-white rounded-2xl border border-gray-200 p-8 sm:p-12 overflow-hidden relative shadow-sm">
+          <div className="bg-white rounded-2xl border border-pixel-border-light p-8 sm:p-12 overflow-hidden relative shadow-sm">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(148,163,184,0.06),transparent_60%)]" />
             <div className="relative">
               <div className="text-center mb-10">
@@ -501,7 +501,7 @@ export default function DashboardPage() {
                   { icon: PixelShield, title: "隐私优先", desc: "数据本地存储，API Key 仅用于请求，不上传不泄露", color: "bg-amber-50 text-amber-600" },
                   { icon: Languages, title: "多语言", desc: "中英日韩法德西俄 8+ 种语言互译", color: "bg-rose-50 text-rose-600" },
                 ].map((item) => (
-                  <div key={item.title} className="p-4 bg-gray-50 border border-gray-200 rounded-xl spring-hover">
+                  <div key={item.title} className="p-4 bg-pixel-surface border border-pixel-border-light rounded-xl spring-hover">
                     <div className={`w-9 h-9 ${item.color} rounded-lg flex items-center justify-center mb-3`}>
                       <item.icon className="w-4 h-4" />
                     </div>
@@ -526,7 +526,7 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              <div className="pt-8 border-t border-gray-200 text-center">
+              <div className="pt-8 border-t border-pixel-border-light text-center">
                 <p className="text-sm text-pixel-text-light leading-relaxed max-w-3xl mx-auto">
                   译界致力于让语言学习更高效、更智能。我们相信，AI 技术应当成为每一位学习者的私人导师——不是替代思考，而是激发潜能。从精准翻译到深度分析，从智能纠错到个性化练习，译界正在重新定义语言学习的体验。
                 </p>
